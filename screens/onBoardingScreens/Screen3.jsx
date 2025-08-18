@@ -41,12 +41,12 @@ const Screen3 = ({ navigation }) => {
         <Text style={styles.text2}>Curated by Experts</Text>
         <Image style={{ marginTop: 15 }} source={require('../pic/bar2.png')} />
         <Pressable style={styles.button}
-        onPress={()=>{navigation.navigate("Login")}}
+        onPress={()=>{navigation.navigate("Register")}}
         >
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Signup</Text>
         </Pressable>
         <Text style={{color:'#919191', fontFamily:'Adamina-Regular', fontSize:12}}>
-          By clicking login you agree to terms and conditions
+          By clicking you agree to terms and conditions
         </Text>
       </View>
     </PanGestureHandler>

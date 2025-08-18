@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View>
-        <Pressable onPress={() => navigation.navigate('Onboarding3')}>
+        <Pressable onPress={() => navigation.navigate('Register')}>
           <Image
             style={{ marginTop: '2%' }}
             source={require('../pic/backArrow.png')}
@@ -79,12 +79,7 @@ const Login = () => {
         <Text style={styles.loginText}>Login</Text>
       </TouchableOpacity>
 
-      <View style={styles.registerContainer}>
-        <Text style={{ color: '#7C7C7C' }}>Don't have an account? </Text>
-        <Pressable onPress={() => navigation.navigate('Register')}>
-          <Text style={{ color: '#628A73', fontWeight: 'bold' }}>Sign Up</Text>
-        </Pressable>
-      </View>
+    
     </SafeAreaView>
   );
 };
