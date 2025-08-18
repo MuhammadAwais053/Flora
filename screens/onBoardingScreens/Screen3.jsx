@@ -1,23 +1,12 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { PanGestureHandler } from 'react-native-gesture-handler';
-import Login from '../StackScreens/Login';
+import { useNavigation } from '@react-navigation/native';
 
-const Screen3 = ({ navigation }) => {
-  const onGestureEvent = (event) => {
-    const { translationX } = event.nativeEvent;
-
-    if (translationX > 50) {
-      // Swipe right → go back to Screen2
-      navigation.navigate('Onboarding2');
-    }
-  };
+const Screen3 = () => {
+  const navigation =useNavigation()
 
   return (
-    <PanGestureHandler
-      onGestureEvent={onGestureEvent}
-      activeOffsetX={[-20, 20]}
-    >
+    
       <View style={styles.container}>
         <View>
           <Image
@@ -49,7 +38,6 @@ const Screen3 = ({ navigation }) => {
           By clicking you agree to terms and conditions
         </Text>
       </View>
-    </PanGestureHandler>
   );
 };
 

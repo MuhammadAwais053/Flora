@@ -1,34 +1,33 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { PanGestureHandler } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 const Screen1 = () => {
   const navigation = useNavigation();
-  const onGestureEvent = (event) => {
-    if (event.nativeEvent.translationX < -50) {
-      navigation.navigate('Onboarding2');
-    }
-  };
 
   return (
-    <PanGestureHandler
-      onGestureEvent={onGestureEvent}
-      activeOffsetX={[-20, 20]}
-    >
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <Image
+        style={styles.image}
+        source={require('../pic/logo.png')}
+      />
+      <Text style={styles.text}>
+        Flora - Your Digital Garden 
+      </Text>
+      <Text style={styles.text}>
+        Guardian
+      </Text>
+
+      <TouchableOpacity
+        style={styles.arrowBtn}
+        onPress={() => navigation.navigate('Onboarding2')}
+      >
         <Image
-          style={styles.image}
-          source={require('../pic/logo.png')}
+          source={require('../pic/arrow.png')}
+          style={styles.arrowIcon}
         />
-        <Text style={styles.text}>
-          Flora - Your Digital Garden 
-        </Text>
-        <Text style={styles.text}>
-          Guardian
-        </Text>
-      </View>
-    </PanGestureHandler>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -52,6 +51,16 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     color: 'white',
     marginTop: '1%',
-    textAlign:'center'
+    textAlign: 'center'
+  },
+  arrowBtn: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
+  },
+  arrowIcon: {
+    width: 32,
+    height: 32,
+    tintColor: 'white',
   }
 });

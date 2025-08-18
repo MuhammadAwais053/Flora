@@ -21,8 +21,8 @@ const Login = () => {
       <View>
         <Pressable onPress={() => navigation.navigate('Register')}>
           <Image
-            style={{ marginTop: '2%' }}
-            source={require('../pic/backArrow.png')}
+            style={{ marginTop: '2%',width:40,height:40 }}
+            source={require('../pic/Pre.png')}
           />
         </Pressable>
       </View>
