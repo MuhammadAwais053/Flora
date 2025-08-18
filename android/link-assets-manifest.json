@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Adamina-Regular.ttf",
+      "sha1": "7e89222e02124dcc1c7e815acee6cd9c25286063"
+    },
+    {
+      "path": "assets/fonts/Alata-Regular.ttf",
+      "sha1": "05f7d2017cc9baf92e8aaf8d3ab77f9ba2911af2"
+    },
+    {
+      "path": "assets/fonts/Allura-Regular.ttf",
+      "sha1": "0b4eaf5fdaaa60f115aaf1a8b9ce6b2f7cd19216"
+    },
+    {
+      "path": "assets/fonts/Sacramento-Regular.ttf",
+      "sha1": "bb942772a1f61c2f6cc0f980a9da39f1fc602d00"
+    }
+  ]
+}
