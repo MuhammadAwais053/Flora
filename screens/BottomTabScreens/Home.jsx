@@ -1,7 +1,9 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={{alignSelf: 'flex-start', left: '9%'}}>
@@ -15,13 +17,12 @@ const Home = () => {
               alignContent: 'space-between',
               gap: 15,
               top: '5%',
-              paddingHorizontal: 10,
             }}>
             <Text
               style={{
                 fontFamily: 'AbhayaLibre-ExtraBold',
                 fontSize: 24,
-                fontWeight: '800',
+                fontWeight: '700',
                 color: 'black',
                 top: '3%',
               }}>
@@ -41,19 +42,24 @@ const Home = () => {
               borderRadius: 12,
               top: '22%',
             }}>
-            <View
-              style={{flexDirection: 'row', alignSelf: 'center', top: '2%'}}>
-              <Image source={require('../pic/Add.png')} />
-              <Text
-                style={{
-                  fontFamily: 'AbhayaLibre-ExtraBold',
-                  fontSize: 24,
-                  color: 'black',
-                  fontWeight: '500',
-                }}>
-                Add Plant
-              </Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Add Plant');
+              }}>
+              <View
+                style={{flexDirection: 'row', alignSelf: 'center', top: '2%'}}>
+                <Image source={require('../pic/Add.png')} />
+                <Text
+                  style={{
+                    fontFamily: 'AbhayaLibre-ExtraBold',
+                    fontSize: 24,
+                    color: 'black',
+                    fontWeight: '500',
+                  }}>
+                  Add Plant
+                </Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.cont}>
@@ -70,7 +76,7 @@ const Home = () => {
               style={{
                 fontFamily: 'AbhayaLibre-ExtraBold',
                 fontSize: 24,
-                fontWeight: '800',
+                fontWeight: '700',
                 color: 'black',
                 top: '5.2%',
               }}>
@@ -96,7 +102,7 @@ const Home = () => {
               style={{
                 fontFamily: 'AbhayaLibre-ExtraBold',
                 fontSize: 24,
-                fontWeight: '800',
+                fontWeight: '700',
                 color: 'black',
                 top: '5%',
               }}>
@@ -117,7 +123,7 @@ const Home = () => {
             fontSize: 24,
             color: '#000',
           }}>
-          Care Tools
+          Care Tools:
         </Text>
       </View>
 
@@ -167,7 +173,7 @@ const Home = () => {
               color: 'black',
               top: '6%',
             }}>
-            Calulator
+            Calculator
           </Text>
         </View>
       </View>
@@ -201,7 +207,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Adamina-Regular',
     fontSize: 20,
-    fontWeight: '400',
+    fontWeight: '600',
     color: '#2C513F',
     top: '50%',
     textAlign: 'left',
