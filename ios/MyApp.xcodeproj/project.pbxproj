@@ -18,6 +18,8 @@
 		7D6C9339D05B4FE3B506519D /* Alata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FF66F5F5F0144BFB0C8F656 /* Alata-Regular.ttf */; };
 		EF77908D19F9479FA5AF5C7E /* Sacramento-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FEC4B1579E04BA3965E1E4D /* Sacramento-Regular.ttf */; };
 		3FD107DACEFF4E3BB55A2123 /* Adamina-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 389A255D6D6348D4BAF3BAC9 /* Adamina-Regular.ttf */; };
+		7D5787910629422CA9FF681C /* AbhayaLibre-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEB92A3A169140E7AD072F51 /* AbhayaLibre-ExtraBold.ttf */; };
+		5B00CB8DFD424325A2F8E1AE /* Alkalami-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 538116BD4EDE4FDDAE8CAFD2 /* Alkalami-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		2FF66F5F5F0144BFB0C8F656 /* Alata-Regular.ttf */ = {isa = PBXFileReference; name = "Alata-Regular.ttf"; path = "../assets/fonts/Alata-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1FEC4B1579E04BA3965E1E4D /* Sacramento-Regular.ttf */ = {isa = PBXFileReference; name = "Sacramento-Regular.ttf"; path = "../assets/fonts/Sacramento-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		389A255D6D6348D4BAF3BAC9 /* Adamina-Regular.ttf */ = {isa = PBXFileReference; name = "Adamina-Regular.ttf"; path = "../assets/fonts/Adamina-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FEB92A3A169140E7AD072F51 /* AbhayaLibre-ExtraBold.ttf */ = {isa = PBXFileReference; name = "AbhayaLibre-ExtraBold.ttf"; path = "../assets/fonts/AbhayaLibre-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		538116BD4EDE4FDDAE8CAFD2 /* Alkalami-Regular.ttf */ = {isa = PBXFileReference; name = "Alkalami-Regular.ttf"; path = "../assets/fonts/Alkalami-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,8 @@
 				2FF66F5F5F0144BFB0C8F656 /* Alata-Regular.ttf */,
 				1FEC4B1579E04BA3965E1E4D /* Sacramento-Regular.ttf */,
 				389A255D6D6348D4BAF3BAC9 /* Adamina-Regular.ttf */,
+				FEB92A3A169140E7AD072F51 /* AbhayaLibre-ExtraBold.ttf */,
+				538116BD4EDE4FDDAE8CAFD2 /* Alkalami-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -270,6 +276,8 @@
 				7D6C9339D05B4FE3B506519D /* Alata-Regular.ttf in Resources */,
 				EF77908D19F9479FA5AF5C7E /* Sacramento-Regular.ttf in Resources */,
 				3FD107DACEFF4E3BB55A2123 /* Adamina-Regular.ttf in Resources */,
+				7D5787910629422CA9FF681C /* AbhayaLibre-ExtraBold.ttf in Resources */,
+				5B00CB8DFD424325A2F8E1AE /* Alkalami-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,12 +2,20 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/AbhayaLibre-ExtraBold.ttf",
+      "sha1": "9d2a7a176ee329a2f2478858843c614cf57a9472"
+    },
+    {
       "path": "assets/fonts/Adamina-Regular.ttf",
       "sha1": "7e89222e02124dcc1c7e815acee6cd9c25286063"
     },
     {
       "path": "assets/fonts/Alata-Regular.ttf",
       "sha1": "05f7d2017cc9baf92e8aaf8d3ab77f9ba2911af2"
+    },
+    {
+      "path": "assets/fonts/Alkalami-Regular.ttf",
+      "sha1": "b27136b969d8478c5d10478372609067b5b726a0"
     },
     {
       "path": "assets/fonts/Allura-Regular.ttf",
