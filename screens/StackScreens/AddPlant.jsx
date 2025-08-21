@@ -1,6 +1,7 @@
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import rfSpacing from '../../src/Theme/rfSpacing';
 
 const AddPlant = () => {
   const navigation = useNavigation();
@@ -12,18 +13,22 @@ const AddPlant = () => {
             navigation.navigate('Main');
           }}>
           <Image
-            style={{width: 30, height: 30}}
+            style={{width: rfSpacing['30x'], height: rfSpacing['30x']}}
             source={require('../pic/Pre.png')}
           />
         </Pressable>
         <Image
-          style={{width: 33, height: 33, tintColor: 'black'}}
+          style={{
+            width: rfSpacing['33x'],
+            height: rfSpacing['33x'],
+            tintColor: 'black',
+          }}
           source={require('../pic/logo.png')}
         />
         <Text
           style={{
             fontFamily: 'Alkalami-Regular',
-            fontSize: 24,
+            fontSize: rfSpacing['24x'],
             color: 'black',
             bottom: '1.4%',
             left: '2.3%',
@@ -36,7 +41,7 @@ const AddPlant = () => {
         <Text
           style={{
             fontFamily: 'AbhayaLibre-ExtraBold',
-            fontSize: 34,
+            fontSize: rfSpacing['34x'],
             fontWeight: '400',
             color: 'black',
           }}>
@@ -47,7 +52,7 @@ const AddPlant = () => {
         style={{
           fontFamily: 'AbhayaLibre-ExtraBold',
           fontWeight: '600',
-          fontSize: 22,
+          fontSize: rfSpacing['22x'],
           color: '#344E41',
         }}>
         Plant Identification
@@ -55,9 +60,9 @@ const AddPlant = () => {
       <Text
         style={{
           fontFamily: 'Adamina-Regular',
-          fontSize: 15,
+          fontSize: rfSpacing['15x'],
           fontWeight: '500',
-          lineHeight: 24,
+          lineHeight: rfSpacing['24x'],
           color: 'black',
         }}>
         Enter the plant name or take a photo
@@ -66,31 +71,31 @@ const AddPlant = () => {
         style={{
           flexDirection: 'row',
           alignContent: 'space-between',
-          gap: 40,
+          gap: rfSpacing['40x'],
           top: '5%',
           left: '1%',
         }}>
         <View
           style={{
-            width: 130,
-            height: 37,
+            width: rfSpacing['130x'],
+            height: rfSpacing['37x'],
             backgroundColor: '#628A73',
             justifyContent: 'center',
             alignItems: 'center',
             alignContent: 'space-between',
-            borderRadius: 10,
+            borderRadius: rfSpacing['10x'],
           }}>
           <Text style={styles.text}>Manual</Text>
         </View>
         <View
           style={{
-            width: 130,
-            height: 37,
+            width: rfSpacing['130x'],
+            height: rfSpacing['37x'],
             backgroundColor: '#fff',
             justifyContent: 'center',
             alignItems: 'center',
             alignContent: 'space-between',
-            borderRadius: 10,
+            borderRadius: rfSpacing['10x'],
           }}>
           <Text style={styles.text}>Take Photo</Text>
         </View>
@@ -105,12 +110,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#E1EBC7',
-    paddingHorizontal: 15,
+    paddingHorizontal: rfSpacing['15x'],
   },
   text: {
     fontFamily: 'Adamina-Regular',
     fontWeight: '400',
-    fontSize: 15,
+    fontSize: rfSpacing['15x'],
     color: 'black',
   },
 });

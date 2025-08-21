@@ -8,8 +8,9 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import rfSpacing from '../../src/Theme/rfSpacing';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -23,7 +24,11 @@ const Register = () => {
       <View>
         <Pressable onPress={() => navigation.goBack()}>
           <Image
-            style={{ marginTop: '2%', width:40,height:40 }}
+            style={{
+              marginTop: '2%',
+              width: rfSpacing['40x'],
+              height: rfSpacing['40x'],
+            }}
             source={require('../pic/Pre.png')}
           />
         </Pressable>
@@ -36,13 +41,10 @@ const Register = () => {
         </Text>
       </View>
 
-      <View style={{ marginTop: 20 }}>
+      <View style={{marginTop: rfSpacing['20x']}}>
         <Text style={styles.label}>Full Name</Text>
         <View style={styles.inputContainer}>
-          <Image
-            source={require('../pic/user.png')}
-            style={styles.icon}
-          />
+          <Image source={require('../pic/user.png')} style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Enter your full name"
@@ -53,13 +55,10 @@ const Register = () => {
         </View>
       </View>
 
-      <View style={{ marginTop: 20 }}>
+      <View style={{marginTop: rfSpacing['20x']}}>
         <Text style={styles.label}>Email</Text>
         <View style={styles.inputContainer}>
-          <Image
-            source={require('../pic/mail.png')}
-            style={styles.icon}
-          />
+          <Image source={require('../pic/mail.png')} style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Enter your email"
@@ -70,13 +69,10 @@ const Register = () => {
         </View>
       </View>
 
-      <View style={{ marginTop: 20 }}>
+      <View style={{marginTop: rfSpacing['20x']}}>
         <Text style={styles.label}>Password</Text>
         <View style={styles.inputContainer}>
-          <Image
-            source={require('../pic/forgot.png')}
-            style={styles.icon}
-          />
+          <Image source={require('../pic/forgot.png')} style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Enter your password"
@@ -88,13 +84,10 @@ const Register = () => {
         </View>
       </View>
 
-      <View style={{ marginTop: 20 }}>
+      <View style={{marginTop: rfSpacing['20x']}}>
         <Text style={styles.label}>Confirm Password</Text>
         <View style={styles.inputContainer}>
-          <Image
-            source={require('../pic/forgot.png')}
-            style={styles.icon}
-          />
+          <Image source={require('../pic/forgot.png')} style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Re-enter your password"
@@ -111,8 +104,6 @@ const Register = () => {
         onPress={() => navigation.navigate('Login')}>
         <Text style={styles.loginText}>Register</Text>
       </TouchableOpacity>
-
-      
     </SafeAreaView>
   );
 };
@@ -123,7 +114,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
+    paddingHorizontal: rfSpacing['20x'],
   },
   container: {
     justifyContent: 'center',
@@ -131,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: '5%',
   },
   text: {
-    fontSize: 24,
+    fontSize: rfSpacing['24x'],
     fontFamily: 'Adamina-Regular',
     color: 'black',
     marginTop: '8%',
@@ -139,55 +130,55 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontFamily: 'Adamina-Regular',
-    fontSize: 19,
+    fontSize: rfSpacing['19x'],
     color: '#7C7C7C',
     textAlign: 'left',
-    letterSpacing: 0.7,
+    letterSpacing: rfSpacing['0.7x'],
     marginTop: '5%',
   },
   label: {
-    fontSize: 16,
+    fontSize: rfSpacing['16x'],
     fontWeight: '500',
-    marginBottom: 8,
+    marginBottom: rfSpacing['8x'],
     color: 'black',
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 12,
-    paddingHorizontal: 10,
+    borderWidth: rfSpacing['1x'],
+    borderRadius: rfSpacing['12x'],
+    paddingHorizontal: rfSpacing['10x'],
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: rfSpacing['24x'],
+    height: rfSpacing['24x'],
     tintColor: '#7C7C7C',
-    marginRight: 10,
+    marginRight: rfSpacing['10x'],
   },
   input: {
     flex: 1,
-    height: 50,
-    fontSize: 16,
+    height: rfSpacing['50x'],
+    fontSize: rfSpacing['16x'],
     color: 'black',
   },
   loginBtn: {
     flexDirection: 'row',
     backgroundColor: '#628A73',
-    marginTop: 30,
-    paddingVertical: 15,
-    borderRadius: 12,
+    marginTop: rfSpacing['30x'],
+    paddingVertical: rfSpacing['15x'],
+    borderRadius: rfSpacing['12x'],
     justifyContent: 'center',
     alignItems: 'center',
   },
   loginText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: rfSpacing['18x'],
     fontWeight: '600',
   },
   registerContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 25,
+    marginTop: rfSpacing['25x'],
   },
 });

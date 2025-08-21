@@ -1,44 +1,36 @@
-import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
+import rfSpacing from '../../src/Theme/rfSpacing';
 
-const Screen2 = ({ navigation }) => {
+const Screen2 = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View>
         <Image
-          style={{ width: 400, height: 330 }}
+          style={{width: rfSpacing['400x'], height: rfSpacing['330x']}}
           source={require('../pic/On1.png')}
         />
       </View>
       <Text style={styles.text1}>
-        Discover the Perfect Plants for Your Space Tailored to your home's light, climate, and vibe
+        Discover the Perfect Plants for Your Space Tailored to your home's
+        light, climate, and vibe
       </Text>
-      <Text style={styles.text2}>
-        Your Perfect Plant Match
-      </Text>
+      <Text style={styles.text2}>Your Perfect Plant Match</Text>
       <Image
-        style={{ marginTop: 15 }}
+        style={{marginTop: rfSpacing['15x']}}
         source={require('../pic/bar.png')}
       />
 
       <TouchableOpacity
         style={styles.backArrow}
-        onPress={() => navigation.navigate('Onboarding1')}
-      >
-        <Image
-          source={require('../pic/Pre.png')}
-          style={styles.arrowIcon}
-        />
+        onPress={() => navigation.navigate('Onboarding1')}>
+        <Image source={require('../pic/Pre.png')} style={styles.arrowIcon} />
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.forwardArrow}
-        onPress={() => navigation.navigate('Onboarding3')}
-      >
-        <Image
-          source={require('../pic/arrow.png')}
-          style={styles.arrowIcon}
-        />
+        onPress={() => navigation.navigate('Onboarding3')}>
+        <Image source={require('../pic/arrow.png')} style={styles.arrowIcon} />
       </TouchableOpacity>
     </View>
   );
@@ -56,31 +48,31 @@ const styles = StyleSheet.create({
     fontFamily: 'Alata-Regular',
     fontWeight: '400',
     textAlign: 'center',
-    fontSize: 17,
+    fontSize: rfSpacing['17x'],
     color: 'black',
     marginTop: '1%',
-    padding: 20,
+    padding: rfSpacing['20x'],
   },
   text2: {
     fontFamily: 'Sacramento-Regular',
     color: 'black',
     fontWeight: '400',
-    fontSize: 24,
+    fontSize: rfSpacing['24x'],
     textAlign: 'center',
   },
   backArrow: {
     position: 'absolute',
-    bottom: 30,
-    left: 30,
+    bottom: rfSpacing['30x'],
+    left: rfSpacing['30x'],
   },
   forwardArrow: {
     position: 'absolute',
-    bottom: 30,
-    right: 30,
+    bottom: rfSpacing['30x'],
+    right: rfSpacing['30x'],
   },
   arrowIcon: {
-    width: 32,
-    height: 32,
+    width: rfSpacing['32x'],
+    height: rfSpacing['32x'],
     tintColor: 'black',
   },
 });

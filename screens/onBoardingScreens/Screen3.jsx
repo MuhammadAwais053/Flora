@@ -1,43 +1,48 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import rfSpacing from '../../src/Theme/rfSpacing';
 
 const Screen3 = () => {
-  const navigation =useNavigation()
+  const navigation = useNavigation();
 
   return (
-    
-      <View style={styles.container}>
-        <View>
-          <Image
-            style={{ width: 400, height: 330 }}
-            source={require('../pic/On1.png')}
-          />
-        </View>
-        <Text style={styles.text1}>Greenery Made Easy</Text>
-        <Text
-          style={{
-            fontFamily: 'Alata-Regular',
-            fontWeight: '400',
-            textAlign: 'center',
-            fontSize: 17,
-            color: 'black',
-            bottom: '2%',
-          }}
-        >
-          Shop and Care in One Tap
-        </Text>
-        <Text style={styles.text2}>Curated by Experts</Text>
-        <Image style={{ marginTop: 15 }} source={require('../pic/bar2.png')} />
-        <Pressable style={styles.button}
-        onPress={()=>{navigation.navigate("Register")}}
-        >
-          <Text style={styles.buttonText}>Signup</Text>
-        </Pressable>
-        <Text style={{color:'#919191', fontFamily:'Adamina-Regular', fontSize:12}}>
-          By clicking you agree to terms and conditions
-        </Text>
+    <View style={styles.container}>
+      <View>
+        <Image
+          style={{width: rfSpacing['400x'], height: rfSpacing['330x']}}
+          source={require('../pic/On1.png')}
+        />
       </View>
+      <Text style={styles.text1}>Greenery Made Easy</Text>
+      <Text
+        style={{
+          fontFamily: 'Alata-Regular',
+          fontWeight: '400',
+          textAlign: 'center',
+          fontSize: rfSpacing['17x'],
+          color: 'black',
+          bottom: '2%',
+        }}>
+        Shop and Care in One Tap
+      </Text>
+      <Text style={styles.text2}>Curated by Experts</Text>
+      <Image
+        style={{marginTop: rfSpacing['15x']}}
+        source={require('../pic/bar2.png')}
+      />
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate('Register');
+        }}>
+        <Text style={styles.buttonText}>Signup</Text>
+      </Pressable>
+      <Text
+        style={{color: '#919191', fontFamily: 'Adamina-Regular', fontSize: 12}}>
+        By clicking you agree to terms and conditions
+      </Text>
+    </View>
   );
 };
 
@@ -53,31 +58,31 @@ const styles = StyleSheet.create({
     fontFamily: 'Alata-Regular',
     fontWeight: '400',
     textAlign: 'center',
-    fontSize: 17,
+    fontSize: rfSpacing['17x'],
     color: 'black',
     marginTop: '1%',
-    padding: 20,
+    padding: rfSpacing['20x'],
   },
   text2: {
     fontFamily: 'Sacramento-Regular',
     color: 'black',
     fontWeight: '400',
-    fontSize: 24,
+    fontSize: rfSpacing['24x'],
     textAlign: 'center',
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: rfSpacing['20x'],
     fontWeight: 'bold',
     letterSpacing: 1,
     color: 'white',
   },
   button: {
     backgroundColor: '#628A73',
-    width: 328,
-    height: 48,
+    width: rfSpacing['328x'],
+    height: rfSpacing['48x'],
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 8,
+    borderRadius: rfSpacing['8x'],
     marginTop: '50%',
   },
 });

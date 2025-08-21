@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler'; // must be first
+import 'react-native-gesture-handler';
 
 import { AppRegistry } from 'react-native';
 import Flora from './Flora';
