@@ -2,6 +2,7 @@ import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
+import color from '../../src/Theme/color';
 
 const AddPlant = () => {
   const navigation = useNavigation();
@@ -79,7 +80,7 @@ const AddPlant = () => {
           style={{
             width: rfSpacing['130x'],
             height: rfSpacing['37x'],
-            backgroundColor: '#628A73',
+            backgroundColor: color.F_OnBoard,
             justifyContent: 'center',
             alignItems: 'center',
             alignContent: 'space-between',
@@ -91,7 +92,7 @@ const AddPlant = () => {
           style={{
             width: rfSpacing['130x'],
             height: rfSpacing['37x'],
-            backgroundColor: '#fff',
+            backgroundColor: color.F_White,
             justifyContent: 'center',
             alignItems: 'center',
             alignContent: 'space-between',
@@ -109,7 +110,7 @@ export default AddPlant;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E1EBC7',
+    backgroundColor: color.F_Main,
     paddingHorizontal: rfSpacing['15x'],
   },
   text: {

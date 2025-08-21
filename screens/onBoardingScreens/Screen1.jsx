@@ -2,6 +2,7 @@ import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
+import color from '../../src/Theme/color';
 
 const Screen1 = () => {
   const navigation = useNavigation();
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#628A73',
+    backgroundColor: color.F_OnBoard,
   },
   image: {
     width: rfSpacing['56x'],
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: rfSpacing['26x'],
     fontWeight: '400',
     letterSpacing: 1,
-    color: 'white',
+    color: color.F_White,
     marginTop: '1%',
     textAlign: 'center',
   },
@@ -51,6 +52,6 @@ const styles = StyleSheet.create({
   arrowIcon: {
     width: rfSpacing['32x'],
     height: rfSpacing['32x'],
-    tintColor: 'white',
+    tintColor: color.F_White,
   },
 });

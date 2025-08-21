@@ -2,6 +2,7 @@ import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
+import color from '../../src/Theme/color';
 
 const Screen3 = () => {
   const navigation = useNavigation();
@@ -21,7 +22,7 @@ const Screen3 = () => {
           fontWeight: '400',
           textAlign: 'center',
           fontSize: rfSpacing['17x'],
-          color: 'black',
+          color: color.F_Black,
           bottom: '2%',
         }}>
         Shop and Care in One Tap
@@ -51,7 +52,7 @@ export default Screen3;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    color: 'white',
+    color: color.F_White,
     alignItems: 'center',
   },
   text1: {
@@ -59,13 +60,13 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     textAlign: 'center',
     fontSize: rfSpacing['17x'],
-    color: 'black',
+    color: color.F_Black,
     marginTop: '1%',
     padding: rfSpacing['20x'],
   },
   text2: {
     fontFamily: 'Sacramento-Regular',
-    color: 'black',
+    color: color.F_Black,
     fontWeight: '400',
     fontSize: rfSpacing['24x'],
     textAlign: 'center',
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: rfSpacing['20x'],
     fontWeight: 'bold',
     letterSpacing: 1,
-    color: 'white',
+    color: color.F_White,
   },
   button: {
     backgroundColor: '#628A73',

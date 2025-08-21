@@ -11,6 +11,7 @@ import {
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
+import color from '../../src/Theme/color';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -86,7 +87,7 @@ export default Login;
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: color.F_White,
     paddingHorizontal: rfSpacing['20x'],
   },
   container: {
@@ -97,14 +98,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: rfSpacing['24x'],
     fontFamily: 'Adamina-Regular',
-    color: 'black',
+    color: color.F_Black,
     marginTop: '8%',
     fontWeight: '400',
   },
   text2: {
     fontFamily: 'Adamina-Regular',
     fontSize: rfSpacing['19x'],
-    color: '#7C7C7C',
+    color: color.F_InputContainer,
     textAlign: 'left',
     letterSpacing: rfSpacing['0.7x'],
     marginTop: '5%',
@@ -113,12 +114,12 @@ const styles = StyleSheet.create({
     fontSize: rfSpacing['16x'],
     fontWeight: '500',
     marginBottom: rfSpacing['8x'],
-    color: 'black',
+    color: color.F_Black,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#ccc',
+    borderColor: color.F_LightText,
     borderWidth: rfSpacing['1x'],
     borderRadius: rfSpacing['12x'],
     paddingHorizontal: rfSpacing['10x'],
@@ -126,24 +127,24 @@ const styles = StyleSheet.create({
   icon: {
     width: rfSpacing['24x'],
     height: rfSpacing['24x'],
-    tintColor: '#7C7C7C',
+    tintColor: color.F_InputContainer,
     marginRight: rfSpacing['10x'],
   },
   input: {
     flex: 1,
     height: rfSpacing['50x'],
     fontSize: rfSpacing['16x'],
-    color: 'black',
+    color: color.F_Black,
   },
   forgotText: {
-    color: '#628A73',
+    color: color.F_OnBoard,
     textAlign: 'right',
     marginTop: rfSpacing['10x'],
     fontWeight: '500',
   },
   loginBtn: {
     flexDirection: 'row',
-    backgroundColor: '#628A73',
+    backgroundColor: color.F_OnBoard,
     marginTop: rfSpacing['30x'],
     paddingVertical: rfSpacing['15x'],
     borderRadius: rfSpacing['12x'],
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loginText: {
-    color: '#fff',
+    color: color.F_White,
     fontSize: rfSpacing['18x'],
     fontWeight: '600',
   },
