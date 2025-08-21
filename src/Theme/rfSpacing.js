@@ -2,6 +2,7 @@ import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
 export default {
     '0.7x':moderateScale(0.7),
   '1x': moderateScale(1),
+  '3x':moderateScale(3),
   '8x':moderateScale(8),
   '10x':moderateScale(10),
   '12x':moderateScale(12),
@@ -25,6 +26,7 @@ export default {
   '50x':moderateScale(50),
   '56x': moderateScale(56),
   '130x':moderateScale(130),
+  '150x':moderateScale(150),
   '328x':moderateScale(328),
   '330x': moderateScale(330),
   '400x': moderateScale(400),
