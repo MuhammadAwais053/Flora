@@ -13,7 +13,7 @@ import Profile from './screens/BottomTabScreens/Profile';
 import Home from './screens/BottomTabScreens/Home';
 import { Image } from 'react-native';
 import AddPlant from './screens/StackScreens/AddPlant';
-
+import PlantAdded from './screens/StackScreens/PlantAdded';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -94,6 +94,7 @@ export default function Flora() {
                 <Stack.Screen name="Register" component={Register} />
                 <Stack.Screen name="Main" component={TabNaviagtor} />
                 <Stack.Screen name='Add Plant' component={AddPlant} />
+                <Stack.Screen name='Plant Added' component={PlantAdded} />
             </Stack.Navigator>
         </NavigationContainer>
     );

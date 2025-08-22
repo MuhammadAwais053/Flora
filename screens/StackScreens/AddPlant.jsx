@@ -15,8 +15,11 @@ import color from '../../src/Theme/color';
 
 const AddPlant = () => {
   const navigation = useNavigation();
+  const [plantName, setPlantName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [location, setLocation] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [notes, setNotes] = useState('');
   const locations = [
     'Living Room',
     'Bedroom',
@@ -140,13 +143,15 @@ const AddPlant = () => {
           style={styles.input}
           placeholder="e.g Alovera Plant"
           placeholderTextColor={'#A9A9A9'}
+          value={plantName}
+          onChangeText={setPlantName}
         />
       </View>
 
       <View style={{flexDirection: 'column', top: '6%'}}>
         <Text
           style={{
-            fontSize: rfSpacing['15x'],
+            fontSize: rfSpacing['18x'],
             color: color.F_Black,
             fontFamily: 'Adamina-Regular',
             fontWeight: '400',
@@ -203,6 +208,46 @@ const AddPlant = () => {
           </View>
         )}
       </View>
+      <View
+        style={{
+          marginTop: '15%',
+        }}>
+        <Text
+          style={{
+            fontSize: rfSpacing['15x'],
+            fontFamily: 'Adamina-Regular',
+            color: color.F_Black,
+            fontWeight: '400',
+          }}>
+          Notes (Optional)
+        </Text>
+        <View>
+          <TextInput
+            multiline
+            numberOfLines={6}
+            style={{
+              marginTop: rfSpacing['3x'],
+              borderWidth: 1,
+              borderColor: '#ccc',
+              borderRadius: rfSpacing['10x'],
+              padding: rfSpacing['10x'],
+              backgroundColor: color.F_White,
+              maxHeight: '500%',
+              textAlignVertical: 'top',
+              color: color.F_Black,
+            }}
+            placeholder="Add any special care notes or observations"
+            placeholderTextColor={color.F_LightText}
+          />
+        </View>
+      </View>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate('Plant Added', {plantName});
+        }}>
+        <Text style={styles.buttonText}>Add Plant</Text>
+      </Pressable>
     </View>
   );
 };
@@ -235,6 +280,7 @@ const styles = StyleSheet.create({
     borderRadius: rfSpacing['10x'],
     padding: rfSpacing['10x'],
     backgroundColor: color.F_White,
+    color: color.F_Black,
   },
   dropdownContainer: {
     marginTop: 5,
@@ -248,5 +294,20 @@ const styles = StyleSheet.create({
     padding: rfSpacing['10x'],
     borderBottomWidth: 0.3,
     borderBottomColor: '#ccc',
+  },
+  buttonText: {
+    fontSize: rfSpacing['20x'],
+    fontWeight: 'bold',
+    letterSpacing: 1,
+    color: color.F_White,
+  },
+  button: {
+    backgroundColor: '#628A73',
+    width: rfSpacing['328x'],
+    height: rfSpacing['48x'],
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: rfSpacing['8x'],
+    top: '5%',
   },
 });

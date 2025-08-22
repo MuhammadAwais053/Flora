@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   image: {
     width: rfSpacing['56x'],
     height: rfSpacing['56x'],
+    tintColor: color.F_White,
   },
   text: {
     fontFamily: 'Allura-Regular',
