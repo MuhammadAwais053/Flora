@@ -11,7 +11,6 @@ const PlantAdded = () => {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
       <View style={{flexDirection: 'row', top: '2%'}}>
         <Image
           style={{
@@ -44,7 +43,6 @@ const PlantAdded = () => {
         </Text>
       </View>
 
-      {/* Button */}
       <Pressable
         style={styles.button}
         onPress={() => navigation.navigate('Main')}>

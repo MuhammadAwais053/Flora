@@ -84,16 +84,21 @@ const Home = () => {
                 paddingHorizontal: 10,
                 justifyContent: 'center',
               }}>
-              <Text
-                style={{
-                  fontFamily: 'AbhayaLibre-ExtraBold',
-                  fontSize: 24,
-                  fontWeight: '700',
-                  color: 'black',
-                  top: '5.2%',
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Care');
                 }}>
-                Get Care Recommendation
-              </Text>
+                <Text
+                  style={{
+                    fontFamily: 'AbhayaLibre-ExtraBold',
+                    fontSize: 24,
+                    fontWeight: '700',
+                    color: 'black',
+                    top: '18%',
+                  }}>
+                  Get Care Recommendation
+                </Text>
+              </TouchableOpacity>
               <Image
                 style={{width: 90, height: 90}}
                 source={require('../pic/care.png')}
