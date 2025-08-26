@@ -7,6 +7,10 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -19,92 +23,134 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleSignUp = () => {
+    if (!name || !email || !password || !confirmPassword) {
+      Alert.alert('Error', 'Please fill all fields');
+      return;
+    }
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
+    navigation.navigate('Login');
+  };
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View>
-        <Pressable onPress={() => navigation.goBack()}>
-          <Image
-            style={{
-              marginTop: '2%',
-              width: rfSpacing['40x'],
-              height: rfSpacing['40x'],
-            }}
-            source={require('../pic/Pre.png')}
-          />
-        </Pressable>
-      </View>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            flexGrow: 1,
+            paddingBottom: rfSpacing['20x'],
+          }}>
+          <View>
+            <Pressable onPress={() => navigation.goBack()}>
+              <Image
+                style={{
+                  marginTop: '2%',
+                  width: rfSpacing['40x'],
+                  height: rfSpacing['40x'],
+                }}
+                source={require('../pic/Pre.png')}
+              />
+            </Pressable>
+          </View>
 
-      <View style={styles.container}>
-        <Text style={styles.text}>Create Account</Text>
-        <Text style={styles.text2}>
-          Sign up to get personalized plant recommendations and care tips
-        </Text>
-      </View>
+          <View style={styles.container}>
+            <Text style={styles.text}>Create Account</Text>
+            <Text style={styles.text2}>
+              Sign up to get personalized plant recommendations and care tips
+            </Text>
+          </View>
 
-      <View style={{marginTop: rfSpacing['20x']}}>
-        <Text style={styles.label}>Full Name</Text>
-        <View style={styles.inputContainer}>
-          <Image source={require('../pic/user.png')} style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your full name"
-            placeholderTextColor="#7C7C7C"
-            value={name}
-            onChangeText={setName}
-          />
-        </View>
-      </View>
+          <View style={{marginTop: rfSpacing['20x']}}>
+            <Text style={styles.label}>Full Name</Text>
+            <View style={styles.inputContainer}>
+              <Image source={require('../pic/user.png')} style={styles.icon} />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your full name"
+                placeholderTextColor="#7C7C7C"
+                value={name}
+                onChangeText={setName}
+              />
+            </View>
+          </View>
 
-      <View style={{marginTop: rfSpacing['20x']}}>
-        <Text style={styles.label}>Email</Text>
-        <View style={styles.inputContainer}>
-          <Image source={require('../pic/mail.png')} style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your email"
-            placeholderTextColor="#7C7C7C"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
-      </View>
+          <View style={{marginTop: rfSpacing['20x']}}>
+            <Text style={styles.label}>Email</Text>
+            <View style={styles.inputContainer}>
+              <Image source={require('../pic/mail.png')} style={styles.icon} />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your email"
+                placeholderTextColor="#7C7C7C"
+                value={email}
+                onChangeText={setEmail}
+              />
+            </View>
+          </View>
 
-      <View style={{marginTop: rfSpacing['20x']}}>
-        <Text style={styles.label}>Password</Text>
-        <View style={styles.inputContainer}>
-          <Image source={require('../pic/forgot.png')} style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your password"
-            placeholderTextColor="#7C7C7C"
-            secureTextEntry
-            value={password}
-            onChangeText={setPassword}
-          />
-        </View>
-      </View>
+          <View style={{marginTop: rfSpacing['20x']}}>
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.inputContainer}>
+              <Image
+                source={require('../pic/forgot.png')}
+                style={styles.icon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your password"
+                placeholderTextColor="#7C7C7C"
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={setPassword}
+              />
+              <Pressable onPress={() => setShowPassword(!showPassword)}>
+                <Image
+                  source={require('../pic/eye.png')}
+                  style={styles.eyeIcon}
+                />
+              </Pressable>
+            </View>
+          </View>
 
-      <View style={{marginTop: rfSpacing['20x']}}>
-        <Text style={styles.label}>Confirm Password</Text>
-        <View style={styles.inputContainer}>
-          <Image source={require('../pic/forgot.png')} style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Re-enter your password"
-            placeholderTextColor="#7C7C7C"
-            secureTextEntry
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-          />
-        </View>
-      </View>
+          <View style={{marginTop: rfSpacing['20x']}}>
+            <Text style={styles.label}>Confirm Password</Text>
+            <View style={styles.inputContainer}>
+              <Image
+                source={require('../pic/forgot.png')}
+                style={styles.icon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Re-enter your password"
+                placeholderTextColor="#7C7C7C"
+                secureTextEntry={!showConfirmPassword}
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+              />
+              <Pressable
+                onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+                <Image
+                  source={require('../pic/eye.png')}
+                  style={styles.eyeIcon}
+                />
+              </Pressable>
+            </View>
+          </View>
+        </ScrollView>
 
-      <TouchableOpacity
-        style={styles.loginBtn}
-        onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.loginText}>SignUp</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.loginBtn} onPress={handleSignUp}>
+          <Text style={styles.loginText}>SignUp</Text>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -163,10 +209,16 @@ const styles = StyleSheet.create({
     fontSize: rfSpacing['16x'],
     color: 'black',
   },
+  eyeIcon: {
+    width: rfSpacing['24x'],
+    height: rfSpacing['24x'],
+    tintColor: color.F_InputContainer,
+  },
   loginBtn: {
     flexDirection: 'row',
     backgroundColor: color.F_OnBoard,
-    marginTop: rfSpacing['30x'],
+    marginTop: rfSpacing['10x'],
+    marginBottom: rfSpacing['10x'],
     paddingVertical: rfSpacing['15x'],
     borderRadius: rfSpacing['12x'],
     justifyContent: 'center',

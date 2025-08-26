@@ -12,6 +12,13 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
+import {launchCamera} from 'react-native-image-picker';
+
+const openCamera = () => {
+  launchCamera({mediaType: 'photo'}, response => {
+    console.log(response);
+  });
+};
 
 const AddPlant = () => {
   const navigation = useNavigation();
@@ -122,7 +129,12 @@ const AddPlant = () => {
             alignItems: 'center',
             borderRadius: rfSpacing['10x'],
           }}>
-          <Text style={styles.text}>Manual</Text>
+          <Pressable
+            onPress={() => {
+              navigation.navigate('Add Plant');
+            }}>
+            <Text style={styles.text}>Manual</Text>
+          </Pressable>
         </View>
         <View
           style={{
@@ -133,7 +145,9 @@ const AddPlant = () => {
             alignItems: 'center',
             borderRadius: rfSpacing['10x'],
           }}>
-          <Text style={styles.text}>Take Photo</Text>
+          <Pressable onPress={openCamera}>
+            <Text style={styles.text}>Take Photo</Text>
+          </Pressable>
         </View>
       </View>
 

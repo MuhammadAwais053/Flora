@@ -95,6 +95,7 @@ const Home = () => {
                     fontWeight: '700',
                     color: 'black',
                     top: '18%',
+                    lineHeight: 35,
                   }}>
                   Get Care Recommendation
                 </Text>
@@ -122,6 +123,7 @@ const Home = () => {
                   fontWeight: '700',
                   color: 'black',
                   top: '5%',
+                  lineHeight: 65,
                 }}>
                 Monitor Plant Heath
               </Text>
@@ -213,6 +215,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     top: 30,
     alignItems: 'center',
+    alignSelf: 'center',
   },
   cont2: {
     backgroundColor: '#E1EBC7',

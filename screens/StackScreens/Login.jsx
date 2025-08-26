@@ -17,6 +17,7 @@ const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -62,10 +63,13 @@ const Login = () => {
             style={styles.input}
             placeholder="Enter your password"
             placeholderTextColor="#7C7C7C"
-            secureTextEntry
+            secureTextEntry={!showPassword}
             value={password}
             onChangeText={setPassword}
           />
+          <Pressable onPress={() => setShowPassword(!showPassword)}>
+            <Image source={require('../pic/eye.png')} style={styles.eyeIcon} />
+          </Pressable>
         </View>
       </View>
 
@@ -160,5 +164,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: rfSpacing['25x'],
+  },
+  eyeIcon: {
+    width: rfSpacing['24x'],
+    height: rfSpacing['24x'],
+    tintColor: color.F_InputContainer,
   },
 });

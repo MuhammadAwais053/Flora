@@ -1,8 +1,23 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Image,
+  PermissionsAndroid,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
 import {useNavigation} from '@react-navigation/native';
+import {launchCamera} from 'react-native-image-picker';
+
+const openCamera = () => {
+  launchCamera({mediaType: 'photo'}, response => {
+    console.log(response);
+  });
+};
 
 const Care = () => {
   const navigation = useNavigation();
@@ -100,15 +115,9 @@ const Care = () => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Pressable
-              onPress={() => {
-                navigation.navigate('Scanner');
-              }}>
+            <Pressable onPress={openCamera}>
               <Image
-                style={{
-                  width: 50,
-                  height: 50,
-                }}
+                style={{width: 50, height: 50}}
                 source={require('../pic/Cam2.png')}
               />
             </Pressable>
