@@ -8,48 +8,27 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import rfSpacing from '../../src/Theme/rfSpacing';
+import color from '../../src/Theme/color';
 
 const Home = () => {
   const navigation = useNavigation();
   return (
     <ScrollView>
       <View style={styles.container}>
-        <View style={{alignSelf: 'flex-start', left: '9%'}}>
+        <View style={{alignSelf: 'flex-start', left: rfSpacing['9x']}}>
           <Text style={styles.text}>Let's make things bloom!</Text>
         </View>
-        <View style={{flexDirection: 'column', gap: 8}}>
+        <View style={styles.topcontainer}>
           <View style={styles.cont}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignContent: 'space-between',
-                gap: 15,
-                top: '5%',
-              }}>
-              <Text
-                style={{
-                  fontFamily: 'AbhayaLibre-ExtraBold',
-                  fontSize: 24,
-                  fontWeight: '700',
-                  color: 'black',
-                  top: '3%',
-                }}>
-                Identify Your Plant
-              </Text>
+            <View style={styles.container1Top}>
+              <Text style={styles.cont1Text}>Identify Your Plant</Text>
               <Image
-                style={{width: 65, height: 50}}
+                style={{width: rfSpacing['65x'], height: rfSpacing['50x']}}
                 source={require('../pic/Camera.png')}
               />
             </View>
-            <View
-              style={{
-                backgroundColor: '#fff',
-                width: 264,
-                height: 40,
-                alignContent: 'center',
-                borderRadius: 12,
-                top: '22%',
-              }}>
+            <View style={styles.AddPlantContainer}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('Add Plant');
@@ -64,8 +43,8 @@ const Home = () => {
                   <Text
                     style={{
                       fontFamily: 'AbhayaLibre-ExtraBold',
-                      fontSize: 24,
-                      color: 'black',
+                      fontSize: rfSpacing['24x'],
+                      color: color.F_Black,
                       fontWeight: '500',
                     }}>
                     Add Plant
@@ -79,9 +58,9 @@ const Home = () => {
               style={{
                 flexDirection: 'row',
                 alignContent: 'space-between',
-                gap: 15,
+                gap: rfSpacing['15x'],
                 top: '5%',
-                paddingHorizontal: 10,
+                paddingHorizontal: rfSpacing['10x'],
                 justifyContent: 'center',
               }}>
               <TouchableOpacity
@@ -91,17 +70,17 @@ const Home = () => {
                 <Text
                   style={{
                     fontFamily: 'AbhayaLibre-ExtraBold',
-                    fontSize: 24,
+                    fontSize: rfSpacing['24x'],
                     fontWeight: '700',
-                    color: 'black',
+                    color: color.F_Black,
                     top: '18%',
-                    lineHeight: 35,
+                    lineHeight: rfSpacing['35x'],
                   }}>
                   Get Care Recommendation
                 </Text>
               </TouchableOpacity>
               <Image
-                style={{width: 90, height: 90}}
+                style={{width: rfSpacing['90x'], height: rfSpacing['90x']}}
                 source={require('../pic/care.png')}
               />
             </View>
@@ -112,23 +91,23 @@ const Home = () => {
                 flexDirection: 'row',
                 alignContent: 'space-between',
                 top: '8%',
-                paddingHorizontal: 5,
+                paddingHorizontal: rfSpacing['5x'],
                 justifyContent: 'center',
                 left: '4%',
               }}>
               <Text
                 style={{
                   fontFamily: 'AbhayaLibre-ExtraBold',
-                  fontSize: 24,
+                  fontSize: rfSpacing['24x'],
                   fontWeight: '700',
-                  color: 'black',
+                  color: color.F_Black,
                   top: '5%',
-                  lineHeight: 65,
+                  lineHeight: rfSpacing['65x'],
                 }}>
                 Monitor Plant Heath
               </Text>
               <Image
-                style={{width: 90, height: 90}}
+                style={{width: rfSpacing['90x'], height: rfSpacing['90x']}}
                 source={require('../pic/c2.png')}
               />
             </View>
@@ -139,25 +118,30 @@ const Home = () => {
             style={{
               fontFamily: 'Alkalami-Regular',
               fontWeight: '400',
-              fontSize: 24,
-              color: '#000',
+              fontSize: rfSpacing['24x'],
+              color: color.F_Black,
             }}>
             Care Tools:
           </Text>
         </View>
 
-        <View style={{flexDirection: 'row', gap: 8, top: '2%'}}>
+        <View style={{flexDirection: 'row', gap: rfSpacing['8x'], top: '2%'}}>
           <View style={styles.cont2}>
             <Image
-              style={{width: 55, height: 55, tintColor: '#628A73', top: '4%'}}
+              style={{
+                width: rfSpacing['55x'],
+                height: rfSpacing['55x'],
+                tintColor: '#628A73',
+                top: '4%',
+              }}
               source={require('../pic/clock.png')}
             />
             <Text
               style={{
                 fontFamily: 'Adamina-Regular',
-                fontSize: 15,
+                fontSize: rfSpacing['15x'],
                 fontWeight: '600',
-                color: 'black',
+                color: color.F_Black,
                 top: '6%',
               }}>
               Reminders
@@ -165,15 +149,19 @@ const Home = () => {
           </View>
           <View style={styles.cont2}>
             <Image
-              style={{width: 55, height: 55, top: '6%'}}
+              style={{
+                width: rfSpacing['55x'],
+                height: rfSpacing['55x'],
+                top: '6%',
+              }}
               source={require('../pic/Meter.png')}
             />
             <Text
               style={{
                 fontFamily: 'Adamina-Regular',
-                fontSize: 15,
+                fontSize: rfSpacing['15x'],
                 fontWeight: '600',
-                color: 'black',
+                color: color.F_Black,
                 top: '6%',
               }}>
               Lightmeter
@@ -181,15 +169,19 @@ const Home = () => {
           </View>
           <View style={styles.cont2}>
             <Image
-              style={{width: 55, height: 55, top: '4%'}}
+              style={{
+                width: rfSpacing['55x'],
+                height: rfSpacing['55x'],
+                top: '4%',
+              }}
               source={require('../pic/watering-plants.png')}
             />
             <Text
               style={{
                 fontFamily: 'Adamina-Regular',
-                fontSize: 15,
+                fontSize: rfSpacing['15x'],
                 fontWeight: '600',
-                color: 'black',
+                color: color.F_Black,
                 top: '6%',
               }}>
               Calculator
@@ -209,28 +201,53 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cont: {
-    backgroundColor: '#E1EBC7',
-    width: 307,
-    height: 143,
-    borderRadius: 12,
-    top: 30,
+    backgroundColor: color.F_Main,
+    width: rfSpacing['307x'],
+    height: rfSpacing['143x'],
+    borderRadius: rfSpacing['12x'],
+    top: rfSpacing['30x'],
     alignItems: 'center',
     alignSelf: 'center',
   },
   cont2: {
-    backgroundColor: '#E1EBC7',
-    width: 98,
-    height: 92,
-    borderRadius: 12,
+    backgroundColor: color.F_Main,
+    width: rfSpacing['98x'],
+    height: rfSpacing['92x'],
+    borderRadius: rfSpacing['12x'],
     alignSelf: 'center',
     alignItems: 'center',
   },
   text: {
     fontFamily: 'Adamina-Regular',
-    fontSize: 20,
+    fontSize: rfSpacing['20x'],
     fontWeight: '600',
-    color: '#2C513F',
+    color: color.F_MainText,
     top: '50%',
     textAlign: 'left',
+  },
+  topcontainer: {
+    flexDirection: 'column',
+    gap: rfSpacing['8x'],
+  },
+  container1Top: {
+    flexDirection: 'row',
+    alignContent: 'space-between',
+    gap: rfSpacing['15x'],
+    top: rfSpacing['20x'],
+  },
+  cont1Text: {
+    fontFamily: 'AbhayaLibre-ExtraBold',
+    fontSize: rfSpacing['24x'],
+    fontWeight: '700',
+    color: color.F_Black,
+    top: '3%',
+  },
+  AddPlantContainer: {
+    backgroundColor: color.F_White,
+    width: rfSpacing['264x'],
+    height: rfSpacing['40x'],
+    alignContent: 'center',
+    borderRadius: rfSpacing['12x'],
+    top: '22%',
   },
 });

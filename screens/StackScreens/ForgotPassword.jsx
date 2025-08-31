@@ -13,29 +13,38 @@ import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
 
-const Login = () => {
+const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = () => {
-    if (!email.trim() || !password.trim()) {
+  const handleResetPassword = () => {
+    if (!email.trim()) {
       Alert.alert(
         'Rukk',
-        'Email or password is missing',
-        [{text: 'Acha dekhta hun'}],
+        'Please enter your registered email.',
+        [{text: 'Acha Krta hu'}],
         {cancelable: false},
       );
       return;
     }
-    navigation.navigate('Main');
+
+    Alert.alert(
+      'Reset Link Sent',
+      'We have sent a password reset link to your email.',
+      [
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('Login'),
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   return (
     <SafeAreaView style={styles.wrapper}>
       <View>
-        <Pressable onPress={() => navigation.navigate('Register')}>
+        <Pressable onPress={() => navigation.goBack()}>
           <Image
             style={{
               marginTop: '2%',
@@ -48,9 +57,9 @@ const Login = () => {
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.text}>Login Here</Text>
+        <Text style={styles.text}>Forgot Password</Text>
         <Text style={styles.text2}>
-          Log in to discover plant recommendations, expert care guides and more
+          Enter your registered email to receive a password reset link.
         </Text>
       </View>
 
@@ -68,39 +77,14 @@ const Login = () => {
         </View>
       </View>
 
-      <View style={{marginTop: rfSpacing['20x']}}>
-        <Text style={styles.label}>Password</Text>
-        <View style={styles.inputContainer}>
-          <Image source={require('../pic/forgot.png')} style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your password"
-            placeholderTextColor="#7C7C7C"
-            secureTextEntry={!showPassword}
-            value={password}
-            onChangeText={setPassword}
-          />
-          <Pressable onPress={() => setShowPassword(!showPassword)}>
-            <Image source={require('../pic/eye.png')} style={styles.eyeIcon} />
-          </Pressable>
-        </View>
-      </View>
-
-      <Pressable
-        onPress={() => {
-          navigation.navigate('Forgot');
-        }}>
-        <Text style={styles.forgotText}>Forgot Password?</Text>
-      </Pressable>
-
-      <Pressable style={styles.loginBtn} onPress={handleLogin}>
-        <Text style={styles.loginText}>Login</Text>
+      <Pressable style={styles.resetBtn} onPress={handleResetPassword}>
+        <Text style={styles.resetText}>Send Reset Link</Text>
       </Pressable>
     </SafeAreaView>
   );
 };
 
-export default Login;
+export default ForgotPasswordScreen;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -154,13 +138,7 @@ const styles = StyleSheet.create({
     fontSize: rfSpacing['16x'],
     color: color.F_Black,
   },
-  forgotText: {
-    color: color.F_OnBoard,
-    textAlign: 'right',
-    marginTop: rfSpacing['10x'],
-    fontWeight: '500',
-  },
-  loginBtn: {
+  resetBtn: {
     flexDirection: 'row',
     backgroundColor: color.F_OnBoard,
     marginTop: rfSpacing['30x'],
@@ -169,19 +147,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  loginText: {
+  resetText: {
     color: color.F_White,
     fontSize: rfSpacing['18x'],
     fontWeight: '600',
-  },
-  registerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: rfSpacing['25x'],
-  },
-  eyeIcon: {
-    width: rfSpacing['24x'],
-    height: rfSpacing['24x'],
-    tintColor: color.F_InputContainer,
   },
 });

@@ -6,10 +6,8 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
-  Platform,
   Alert,
 } from 'react-native';
 import React, {useState} from 'react';
@@ -28,11 +26,11 @@ const Register = () => {
 
   const handleSignUp = () => {
     if (!name || !email || !password || !confirmPassword) {
-      Alert.alert('Error', 'Please fill all fields');
+      Alert.alert('Rukk', 'Please fill all fields');
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
+      Alert.alert('Rukk', 'Passwords do not match');
       return;
     }
     navigation.navigate('Login');
@@ -40,11 +38,8 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <KeyboardAvoidingView
-        style={{flex: 1}}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <KeyboardAvoidingView style={{flex: 1}}>
         <ScrollView
-          showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             flexGrow: 1,
             paddingBottom: rfSpacing['20x'],
@@ -147,9 +142,9 @@ const Register = () => {
           </View>
         </ScrollView>
 
-        <TouchableOpacity style={styles.loginBtn} onPress={handleSignUp}>
+        <Pressable style={styles.loginBtn} onPress={handleSignUp}>
           <Text style={styles.loginText}>SignUp</Text>
-        </TouchableOpacity>
+        </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -166,7 +161,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignContent: 'center',
-    marginTop: '5%',
   },
   text: {
     fontSize: rfSpacing['24x'],

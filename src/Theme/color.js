@@ -4,6 +4,7 @@ export default{
     F_Black:'#000000',
     F_OnBoard:'#628A73',
     F_InputContainer:'#7C7C7C',
-    F_LightText:'#cccc'
+    F_LightText:'#cccc',
+    F_MainText:'#2C513F'
 
 }

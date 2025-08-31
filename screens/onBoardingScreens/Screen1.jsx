@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, View, Pressable} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
@@ -13,11 +13,11 @@ const Screen1 = () => {
       <Text style={styles.text}>Flora - Your Digital Garden</Text>
       <Text style={styles.text}>Guardian</Text>
 
-      <TouchableOpacity
+      <Pressable
         style={styles.arrowBtn}
         onPress={() => navigation.navigate('Onboarding2')}>
         <Image source={require('../pic/arrow.png')} style={styles.arrowIcon} />
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Allura-Regular',
     fontSize: rfSpacing['26x'],
     fontWeight: '400',
-    letterSpacing: 1,
+    letterSpacing: rfSpacing['2x'],
     color: color.F_White,
     marginTop: '1%',
     textAlign: 'center',

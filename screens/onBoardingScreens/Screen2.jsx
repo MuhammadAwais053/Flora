@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, View, Pressable} from 'react-native';
 import React from 'react';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import {useNavigation} from '@react-navigation/native';
@@ -24,17 +24,17 @@ const Screen2 = () => {
         source={require('../pic/bar.png')}
       />
 
-      <TouchableOpacity
+      <Pressable
         style={styles.backArrow}
         onPress={() => navigation.navigate('Onboarding1')}>
         <Image source={require('../pic/Pre.png')} style={styles.arrowIcon} />
-      </TouchableOpacity>
+      </Pressable>
 
-      <TouchableOpacity
+      <Pressable
         style={styles.forwardArrow}
         onPress={() => navigation.navigate('Onboarding3')}>
         <Image source={require('../pic/arrow.png')} style={styles.arrowIcon} />
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };

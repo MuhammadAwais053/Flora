@@ -19,6 +19,7 @@ import Scanner from './screens/StackScreens/Scanner';
 import SymptomChecker from './screens/StackScreens/SymptomChecker';
 import CareSchedule from './screens/StackScreens/CareSchedule';
 import ExpertTips from './screens/StackScreens/ExpertTips';
+import ForgotPasswordScreen from './screens/StackScreens/ForgotPassword';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -105,6 +106,7 @@ export default function Flora() {
                 <Stack.Screen name='Checker' component={SymptomChecker} />
                 <Stack.Screen name='Care Schedule' component={CareSchedule} />
                 <Stack.Screen name='Expert Tips' component={ExpertTips} />
+                <Stack.Screen name='Forgot' component={ForgotPasswordScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
