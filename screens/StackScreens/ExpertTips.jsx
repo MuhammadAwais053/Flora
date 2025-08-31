@@ -136,13 +136,13 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   listContainer: {
-    padding: rfSpacing['12x'],
-    paddingTop: rfSpacing['12x'],
+    padding: '2%',
+    paddingTop: '2%',
   },
   card: {
     backgroundColor: '#FFF',
     borderRadius: rfSpacing['20x'],
-    marginBottom: rfSpacing['12x'],
+    marginBottom: '2%',
     padding: rfSpacing['12x'],
     borderColor: '#628A73',
     borderWidth: 1,
@@ -158,16 +158,18 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontFamily: 'Adamina-Regular',
-    fontSize: rfSpacing['18x'],
+    fontSize: rfSpacing['17x'],
     color: color.F_Black,
-    fontWeight: '500',
+    fontWeight: '400',
   },
   cardDesc: {
     fontFamily: 'Adamina-Regular',
-    fontSize: rfSpacing['15x'],
+    fontSize: rfSpacing['11x'],
     color: color.F_Black,
     marginLeft: rfSpacing['2x'],
     marginTop: rfSpacing['1x'],
     lineHeight: rfSpacing['20x'],
+    fontWeight: '500',
+    verticalAlign: 'middle',
   },
 });

@@ -95,17 +95,24 @@ const Home = () => {
                 justifyContent: 'center',
                 left: '4%',
               }}>
-              <Text
-                style={{
-                  fontFamily: 'AbhayaLibre-ExtraBold',
-                  fontSize: rfSpacing['24x'],
-                  fontWeight: '700',
-                  color: color.F_Black,
-                  top: '5%',
-                  lineHeight: rfSpacing['65x'],
-                }}>
-                Monitor Plant Heath
-              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Monitor');
+                }}
+                style={{top: '2%', left: '2%'}}>
+                <Text
+                  style={{
+                    fontFamily: 'AbhayaLibre-ExtraBold',
+                    fontSize: rfSpacing['24x'],
+                    fontWeight: '700',
+                    color: color.F_Black,
+                    top: '5%',
+                    lineHeight: rfSpacing['65x'],
+                  }}>
+                  Monitor Plant Heath
+                </Text>
+              </TouchableOpacity>
+
               <Image
                 style={{width: rfSpacing['90x'], height: rfSpacing['90x']}}
                 source={require('../pic/c2.png')}
