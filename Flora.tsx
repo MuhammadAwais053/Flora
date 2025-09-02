@@ -21,6 +21,8 @@ import CareSchedule from './screens/StackScreens/CareSchedule';
 import ExpertTips from './screens/StackScreens/ExpertTips';
 import ForgotPasswordScreen from './screens/StackScreens/ForgotPassword';
 import MonitorHealth from './screens/StackScreens/MonitorHealth';
+import { PlantProvider } from './screens/PlantContext';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -92,24 +94,27 @@ const TabNaviagtor = () => {
 
 export default function Flora() {
     return (
-        <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="Onboarding1" component={Onboarding1} />
-                <Stack.Screen name="Onboarding2" component={Onboarding2} />
-                <Stack.Screen name="Onboarding3" component={Onboarding3} />
-                <Stack.Screen name="Login" component={LoginScreen} />
-                <Stack.Screen name="Register" component={Register} />
-                <Stack.Screen name="Main" component={TabNaviagtor} />
-                <Stack.Screen name='Add Plant' component={AddPlant} />
-                <Stack.Screen name='Plant Added' component={PlantAdded} />
-                <Stack.Screen name='Care' component={Care} />
-                <Stack.Screen name='Scanner' component={Scanner} />
-                <Stack.Screen name='Checker' component={SymptomChecker} />
-                <Stack.Screen name='Care Schedule' component={CareSchedule} />
-                <Stack.Screen name='Expert Tips' component={ExpertTips} />
-                <Stack.Screen name='Forgot' component={ForgotPasswordScreen} />
-                <Stack.Screen name='Monitor' component={MonitorHealth} />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <PlantProvider>
+            <NavigationContainer>
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="Onboarding1" component={Onboarding1} />
+                    <Stack.Screen name="Onboarding2" component={Onboarding2} />
+                    <Stack.Screen name="Onboarding3" component={Onboarding3} />
+                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen name="Register" component={Register} />
+                    <Stack.Screen name="Main" component={TabNaviagtor} />
+                    <Stack.Screen name='Add Plant' component={AddPlant} />
+                    <Stack.Screen name='Plant Added' component={PlantAdded} />
+                    <Stack.Screen name='Care' component={Care} />
+                    <Stack.Screen name='Scanner' component={Scanner} />
+                    <Stack.Screen name='Checker' component={SymptomChecker} />
+                    <Stack.Screen name='Care Schedule' component={CareSchedule} />
+                    <Stack.Screen name='Expert Tips' component={ExpertTips} />
+                    <Stack.Screen name='Forgot' component={ForgotPasswordScreen} />
+                    <Stack.Screen name='Monitor' component={MonitorHealth} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </PlantProvider>
+
     );
 }

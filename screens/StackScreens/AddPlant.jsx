@@ -11,25 +11,22 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
 import {launchCamera} from 'react-native-image-picker';
-
-const openCamera = () => {
-  launchCamera({mediaType: 'photo'}, response => {
-    console.log(response);
-  });
-};
+import {PlantContext} from '../PlantContext';
 
 const AddPlant = () => {
   const navigation = useNavigation();
+  const {addPlant} = useContext(PlantContext);
   const [plantName, setPlantName] = useState('');
   const [nickname, setNickname] = useState('');
   const [location, setLocation] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [notes, setNotes] = useState('');
+  const [imageUri, setImageUri] = useState('');
   const locations = [
     'Living Room',
     'Bedroom',
@@ -52,13 +49,35 @@ const AddPlant = () => {
     'Library',
   ];
 
+  const openCamera = () => {
+    launchCamera({mediaType: 'photo'}, response => {
+      if (
+        response &&
+        response.assets &&
+        response.assets.length > 0 &&
+        response.assets[0].uri
+      ) {
+        setImageUri(response.assets[0].uri);
+      }
+    });
+  };
+
+  const handleAddPlant = () => {
+    if (!plantName || !location) {
+      alert('Please enter plant name and select location!');
+      return;
+    }
+    addPlant({plantName, nickname, location, notes, imageUri});
+    navigation.navigate('Plant Added', {plantName});
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={{flex: 1}}>
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
-            paddingBottom: rfSpacing['20x'],
+            paddingBottom: '15%',
           }}>
           <View style={styles.container}>
             <View style={{flexDirection: 'row', top: '2%'}}>
@@ -128,7 +147,6 @@ const AddPlant = () => {
                 alignContent: 'space-between',
                 gap: rfSpacing['40x'],
                 top: '5%',
-                left: '1%',
               }}>
               <View
                 style={{
@@ -161,6 +179,21 @@ const AddPlant = () => {
               </View>
             </View>
 
+            {/* Preview selected image */}
+            {imageUri ? (
+              <View
+                style={{
+                  alignItems: 'center',
+                  marginTop: rfSpacing['10x'],
+                  top: '3%',
+                }}>
+                <Image
+                  source={{uri: imageUri}}
+                  style={{width: 110, height: 110, borderRadius: 20}}
+                />
+              </View>
+            ) : null}
+
             <View style={{flexDirection: 'column', top: '5%'}}>
               <Text style={styles.label}>Plant name</Text>
               <TextInput
@@ -187,6 +220,8 @@ const AddPlant = () => {
                 style={styles.input}
                 placeholder="Give it a nickname"
                 placeholderTextColor={'#A9A9A9'}
+                value={nickname}
+                onChangeText={setNickname}
               />
             </View>
 
@@ -262,14 +297,12 @@ const AddPlant = () => {
                   }}
                   placeholder="Add any special care notes or observations"
                   placeholderTextColor={color.F_LightText}
+                  value={notes}
+                  onChangeText={setNotes}
                 />
               </View>
             </View>
-            <Pressable
-              style={styles.button}
-              onPress={() => {
-                navigation.navigate('Plant Added', {plantName});
-              }}>
+            <Pressable style={styles.button} onPress={handleAddPlant}>
               <Text style={styles.buttonText}>Add Plant</Text>
             </Pressable>
           </View>
