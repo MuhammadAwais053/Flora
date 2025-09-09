@@ -51,10 +51,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Alata-Regular',
     fontWeight: '400',
     textAlign: 'center',
+    verticalAlign: 'middle',
     fontSize: rfSpacing['17x'],
     color: color.F_Black,
     marginTop: '1%',
     padding: rfSpacing['20x'],
+    verticalAlign: 'middle',
   },
   text2: {
     fontFamily: 'Sacramento-Regular',
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: rfSpacing['24x'],
     textAlign: 'center',
+    verticalAlign: 'middle',
   },
   backArrow: {
     position: 'absolute',

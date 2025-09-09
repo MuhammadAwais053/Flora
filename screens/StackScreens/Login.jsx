@@ -7,11 +7,13 @@ import {
   TextInput,
   View,
   Alert,
+  ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
+import rfSpacing from '../../src/Theme/rfSpacing';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -21,12 +23,9 @@ const Login = () => {
 
   const handleLogin = () => {
     if (!email.trim() || !password.trim()) {
-      Alert.alert(
-        'Rukk',
-        'Email or password is missing',
-        [{text: 'Acha dekhta hun'}],
-        {cancelable: false},
-      );
+      Alert.alert('Rukk', 'Email or password is missing', [
+        {text: 'Acha Krta hu'},
+      ]);
       return;
     }
     navigation.navigate('Main');
@@ -34,68 +33,77 @@ const Login = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View>
-        <Pressable onPress={() => navigation.navigate('Register')}>
-          <Image
-            style={{
-              marginTop: '2%',
-              width: rfSpacing['40x'],
-              height: rfSpacing['40x'],
-            }}
-            source={require('../pic/Pre.png')}
-          />
-        </Pressable>
-      </View>
+      <KeyboardAvoidingView style={{flex: 1}}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps="handled">
+          <View>
+            <Pressable onPress={() => navigation.navigate('Register')}>
+              <Image
+                style={styles.backIcon}
+                resizeMode="contain"
+                source={require('../pic/Pre.png')}
+              />
+            </Pressable>
+          </View>
 
-      <View style={styles.container}>
-        <Text style={styles.text}>Login Here</Text>
-        <Text style={styles.text2}>
-          Log in to discover plant recommendations, expert care guides and more
-        </Text>
-      </View>
+          <View style={styles.container}>
+            <Text style={styles.text}>Login Here</Text>
+            <Text style={styles.text2}>
+              Log in to discover plant recommendations, expert care guides and
+              more
+            </Text>
+          </View>
 
-      <View style={{marginTop: rfSpacing['20x']}}>
-        <Text style={styles.label}>Email</Text>
-        <View style={styles.inputContainer}>
-          <Image source={require('../pic/mail.png')} style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your email"
-            placeholderTextColor="#7C7C7C"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
-      </View>
+          <View style={styles.section}>
+            <Text style={styles.label}>Email</Text>
+            <View style={styles.inputContainer}>
+              <Image source={require('../pic/mail.png')} style={styles.icon} />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your email"
+                placeholderTextColor="#7C7C7C"
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+            </View>
+          </View>
 
-      <View style={{marginTop: rfSpacing['20x']}}>
-        <Text style={styles.label}>Password</Text>
-        <View style={styles.inputContainer}>
-          <Image source={require('../pic/forgot.png')} style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your password"
-            placeholderTextColor="#7C7C7C"
-            secureTextEntry={!showPassword}
-            value={password}
-            onChangeText={setPassword}
-          />
-          <Pressable onPress={() => setShowPassword(!showPassword)}>
-            <Image source={require('../pic/eye.png')} style={styles.eyeIcon} />
+          <View style={styles.section}>
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.inputContainer}>
+              <Image
+                source={require('../pic/forgot.png')}
+                style={styles.icon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your password"
+                placeholderTextColor="#7C7C7C"
+                secureTextEntry={!showPassword}
+                value={password}
+                onChangeText={setPassword}
+              />
+              <Pressable onPress={() => setShowPassword(!showPassword)}>
+                <Image
+                  source={require('../pic/eye.png')}
+                  style={styles.eyeIcon}
+                />
+              </Pressable>
+            </View>
+          </View>
+
+          <Pressable onPress={() => navigation.navigate('Forgot')}>
+            <Text style={styles.forgotText}>Forgot Password?</Text>
           </Pressable>
-        </View>
-      </View>
+        </ScrollView>
 
-      <Pressable
-        onPress={() => {
-          navigation.navigate('Forgot');
-        }}>
-        <Text style={styles.forgotText}>Forgot Password?</Text>
-      </Pressable>
-
-      <Pressable style={styles.loginBtn} onPress={handleLogin}>
-        <Text style={styles.loginText}>Login</Text>
-      </Pressable>
+        <Pressable style={styles.loginBtn} onPress={handleLogin}>
+          <Text style={styles.loginText}>Login</Text>
+        </Pressable>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -106,27 +114,38 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: color.F_White,
-    paddingHorizontal: rfSpacing['20x'],
+    paddingHorizontal: rfSpacing['16x'],
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: rfSpacing['20x'],
+  },
+  backIcon: {
+    marginTop: rfSpacing['8x'],
+    width: rfSpacing['32x'],
+    height: rfSpacing['32x'],
   },
   container: {
     justifyContent: 'center',
-    alignContent: 'center',
-    marginTop: '5%',
+    alignItems: 'flex-start',
+    marginTop: rfSpacing['16x'],
   },
   text: {
     fontSize: rfSpacing['24x'],
     fontFamily: 'Adamina-Regular',
     color: color.F_Black,
-    marginTop: '8%',
     fontWeight: '400',
+    marginBottom: rfSpacing['8x'],
   },
   text2: {
     fontFamily: 'Adamina-Regular',
-    fontSize: rfSpacing['19x'],
+    fontSize: rfSpacing['16x'],
     color: color.F_InputContainer,
     textAlign: 'left',
-    letterSpacing: rfSpacing['0.7x'],
-    marginTop: '5%',
+    lineHeight: rfSpacing['22x'],
+  },
+  section: {
+    marginTop: rfSpacing['20x'],
   },
   label: {
     fontSize: rfSpacing['16x'],
@@ -141,47 +160,45 @@ const styles = StyleSheet.create({
     borderWidth: rfSpacing['1x'],
     borderRadius: rfSpacing['12x'],
     paddingHorizontal: rfSpacing['10x'],
+    paddingVertical: rfSpacing['4x'],
   },
   icon: {
-    width: rfSpacing['24x'],
-    height: rfSpacing['24x'],
+    width: rfSpacing['20x'],
+    height: rfSpacing['20x'],
     tintColor: color.F_InputContainer,
-    marginRight: rfSpacing['10x'],
+    marginRight: rfSpacing['8x'],
+    resizeMode: 'contain',
   },
   input: {
     flex: 1,
-    height: rfSpacing['50x'],
+    minHeight: rfSpacing['44x'],
     fontSize: rfSpacing['16x'],
     color: color.F_Black,
   },
   forgotText: {
     color: color.F_OnBoard,
     textAlign: 'right',
-    marginTop: rfSpacing['10x'],
+    marginTop: rfSpacing['12x'],
     fontWeight: '500',
   },
   loginBtn: {
     flexDirection: 'row',
     backgroundColor: color.F_OnBoard,
-    marginTop: rfSpacing['30x'],
-    paddingVertical: rfSpacing['15x'],
+    marginVertical: rfSpacing['16x'],
+    paddingVertical: rfSpacing['14x'],
     borderRadius: rfSpacing['12x'],
     justifyContent: 'center',
     alignItems: 'center',
   },
   loginText: {
     color: color.F_White,
-    fontSize: rfSpacing['18x'],
+    fontSize: rfSpacing['16x'],
     fontWeight: '600',
   },
-  registerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: rfSpacing['25x'],
-  },
   eyeIcon: {
-    width: rfSpacing['24x'],
-    height: rfSpacing['24x'],
+    width: rfSpacing['20x'],
+    height: rfSpacing['20x'],
     tintColor: color.F_InputContainer,
+    resizeMode: 'contain',
   },
 });

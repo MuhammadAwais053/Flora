@@ -7,6 +7,9 @@ import {
   TextInput,
   View,
   Alert,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -43,43 +46,51 @@ const ForgotPasswordScreen = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View>
-        <Pressable onPress={() => navigation.goBack()}>
-          <Image
-            style={{
-              marginTop: '2%',
-              width: rfSpacing['40x'],
-              height: rfSpacing['40x'],
-            }}
-            source={require('../pic/Pre.png')}
-          />
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <ScrollView
+          contentContainerStyle={{flexGrow: 1, paddingBottom: rfSpacing['20x']}}
+          keyboardShouldPersistTaps="handled">
+          <View>
+            <Pressable onPress={() => navigation.goBack()}>
+              <Image
+                style={{
+                  marginTop: rfSpacing['10x'],
+                  width: rfSpacing['40x'],
+                  height: rfSpacing['40x'],
+                }}
+                source={require('../pic/Pre.png')}
+              />
+            </Pressable>
+          </View>
+
+          <View style={styles.container}>
+            <Text style={styles.text}>Forgot Password</Text>
+            <Text style={styles.text2}>
+              Enter your registered email to receive a password reset link.
+            </Text>
+          </View>
+
+          <View style={{marginTop: rfSpacing['20x']}}>
+            <Text style={styles.label}>Email</Text>
+            <View style={styles.inputContainer}>
+              <Image source={require('../pic/mail.png')} style={styles.icon} />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your email"
+                placeholderTextColor="#7C7C7C"
+                value={email}
+                onChangeText={setEmail}
+              />
+            </View>
+          </View>
+        </ScrollView>
+
+        <Pressable style={styles.resetBtn} onPress={handleResetPassword}>
+          <Text style={styles.resetText}>Send Reset Link</Text>
         </Pressable>
-      </View>
-
-      <View style={styles.container}>
-        <Text style={styles.text}>Forgot Password</Text>
-        <Text style={styles.text2}>
-          Enter your registered email to receive a password reset link.
-        </Text>
-      </View>
-
-      <View style={{marginTop: rfSpacing['20x']}}>
-        <Text style={styles.label}>Email</Text>
-        <View style={styles.inputContainer}>
-          <Image source={require('../pic/mail.png')} style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your email"
-            placeholderTextColor="#7C7C7C"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
-      </View>
-
-      <Pressable style={styles.resetBtn} onPress={handleResetPassword}>
-        <Text style={styles.resetText}>Send Reset Link</Text>
-      </Pressable>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -95,13 +106,13 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignContent: 'center',
-    marginTop: '5%',
+    marginTop: rfSpacing['20x'],
   },
   text: {
     fontSize: rfSpacing['24x'],
     fontFamily: 'Adamina-Regular',
     color: color.F_Black,
-    marginTop: '8%',
+    marginTop: rfSpacing['20x'],
     fontWeight: '400',
   },
   text2: {
@@ -110,7 +121,7 @@ const styles = StyleSheet.create({
     color: color.F_InputContainer,
     textAlign: 'left',
     letterSpacing: rfSpacing['0.7x'],
-    marginTop: '5%',
+    marginTop: rfSpacing['10x'],
   },
   label: {
     fontSize: rfSpacing['16x'],
@@ -141,7 +152,8 @@ const styles = StyleSheet.create({
   resetBtn: {
     flexDirection: 'row',
     backgroundColor: color.F_OnBoard,
-    marginTop: rfSpacing['30x'],
+    marginTop: rfSpacing['20x'],
+    marginBottom: rfSpacing['20x'],
     paddingVertical: rfSpacing['15x'],
     borderRadius: rfSpacing['12x'],
     justifyContent: 'center',

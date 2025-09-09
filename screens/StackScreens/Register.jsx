@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
+import rfSpacing from '../../src/Theme/rfSpacing';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -26,11 +26,11 @@ const Register = () => {
 
   const handleSignUp = () => {
     if (!name || !email || !password || !confirmPassword) {
-      Alert.alert('Rukk', 'Please fill all fields');
+      Alert.alert('Rukk', 'Please fill all fields', [{text: 'Acha Krta hu'}]);
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert('Rukk', 'Passwords do not match');
+      Alert.alert('Rukk', 'Passwords do not match', [{text: 'Acha Krta hu'}]);
       return;
     }
     navigation.navigate('Login');
@@ -40,18 +40,13 @@ const Register = () => {
     <SafeAreaView style={styles.wrapper}>
       <KeyboardAvoidingView style={{flex: 1}}>
         <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            paddingBottom: rfSpacing['20x'],
-          }}>
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps="handled">
           <View>
             <Pressable onPress={() => navigation.goBack()}>
               <Image
-                style={{
-                  marginTop: '2%',
-                  width: rfSpacing['40x'],
-                  height: rfSpacing['40x'],
-                }}
+                style={styles.backIcon}
+                resizeMode="contain"
                 source={require('../pic/Pre.png')}
               />
             </Pressable>
@@ -64,7 +59,7 @@ const Register = () => {
             </Text>
           </View>
 
-          <View style={{marginTop: rfSpacing['20x']}}>
+          <View style={styles.section}>
             <Text style={styles.label}>Full Name</Text>
             <View style={styles.inputContainer}>
               <Image source={require('../pic/user.png')} style={styles.icon} />
@@ -78,7 +73,7 @@ const Register = () => {
             </View>
           </View>
 
-          <View style={{marginTop: rfSpacing['20x']}}>
+          <View style={styles.section}>
             <Text style={styles.label}>Email</Text>
             <View style={styles.inputContainer}>
               <Image source={require('../pic/mail.png')} style={styles.icon} />
@@ -88,11 +83,13 @@ const Register = () => {
                 placeholderTextColor="#7C7C7C"
                 value={email}
                 onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
               />
             </View>
           </View>
 
-          <View style={{marginTop: rfSpacing['20x']}}>
+          <View style={styles.section}>
             <Text style={styles.label}>Password</Text>
             <View style={styles.inputContainer}>
               <Image
@@ -116,7 +113,7 @@ const Register = () => {
             </View>
           </View>
 
-          <View style={{marginTop: rfSpacing['20x']}}>
+          <View style={styles.section}>
             <Text style={styles.label}>Confirm Password</Text>
             <View style={styles.inputContainer}>
               <Image
@@ -156,32 +153,44 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: color.F_White,
-    paddingHorizontal: rfSpacing['20x'],
+    paddingHorizontal: rfSpacing['16x'],
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: rfSpacing['20x'],
+  },
+  backIcon: {
+    marginTop: rfSpacing['8x'],
+    width: rfSpacing['32x'],
+    height: rfSpacing['32x'],
   },
   container: {
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'flex-start',
+    marginTop: rfSpacing['16x'],
   },
   text: {
     fontSize: rfSpacing['24x'],
     fontFamily: 'Adamina-Regular',
-    color: 'black',
-    marginTop: '8%',
+    color: color.F_Black,
     fontWeight: '400',
+    marginBottom: rfSpacing['8x'],
   },
   text2: {
     fontFamily: 'Adamina-Regular',
-    fontSize: rfSpacing['19x'],
+    fontSize: rfSpacing['16x'],
     color: color.F_InputContainer,
     textAlign: 'left',
-    letterSpacing: rfSpacing['0.7x'],
-    marginTop: '5%',
+    lineHeight: rfSpacing['22x'],
+  },
+  section: {
+    marginTop: rfSpacing['20x'],
   },
   label: {
     fontSize: rfSpacing['16x'],
     fontWeight: '500',
     marginBottom: rfSpacing['8x'],
-    color: 'black',
+    color: color.F_Black,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -190,42 +199,39 @@ const styles = StyleSheet.create({
     borderWidth: rfSpacing['1x'],
     borderRadius: rfSpacing['12x'],
     paddingHorizontal: rfSpacing['10x'],
+    paddingVertical: rfSpacing['4x'],
   },
   icon: {
-    width: rfSpacing['24x'],
-    height: rfSpacing['24x'],
+    width: rfSpacing['20x'],
+    height: rfSpacing['20x'],
     tintColor: color.F_InputContainer,
-    marginRight: rfSpacing['10x'],
+    marginRight: rfSpacing['8x'],
+    resizeMode: 'contain',
   },
   input: {
     flex: 1,
-    height: rfSpacing['50x'],
+    minHeight: rfSpacing['44x'],
     fontSize: rfSpacing['16x'],
-    color: 'black',
+    color: color.F_Black,
   },
   eyeIcon: {
-    width: rfSpacing['24x'],
-    height: rfSpacing['24x'],
+    width: rfSpacing['20x'],
+    height: rfSpacing['20x'],
     tintColor: color.F_InputContainer,
+    resizeMode: 'contain',
   },
   loginBtn: {
     flexDirection: 'row',
     backgroundColor: color.F_OnBoard,
-    marginTop: rfSpacing['10x'],
-    marginBottom: rfSpacing['10x'],
-    paddingVertical: rfSpacing['15x'],
+    marginVertical: rfSpacing['12x'],
+    paddingVertical: rfSpacing['14x'],
     borderRadius: rfSpacing['12x'],
     justifyContent: 'center',
     alignItems: 'center',
   },
   loginText: {
     color: color.F_White,
-    fontSize: rfSpacing['18x'],
+    fontSize: rfSpacing['16x'],
     fontWeight: '600',
-  },
-  registerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: rfSpacing['25x'],
   },
 });

@@ -10,6 +10,7 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   ScrollView,
+  Modal,
 } from 'react-native';
 import React, {useState, useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -74,70 +75,26 @@ const AddPlant = () => {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={{flex: 1}}>
-        <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            paddingBottom: '15%',
-          }}>
+        <ScrollView contentContainerStyle={styles.scrollViewCont}>
           <View style={styles.container}>
-            <View style={{flexDirection: 'row', top: '2%'}}>
+            <View style={styles.logoCont}>
               <Pressable onPress={() => navigation.navigate('Main')}>
                 <Image
-                  style={{width: rfSpacing['30x'], height: rfSpacing['30x']}}
+                  style={styles.arrow}
                   source={require('../pic/Pre.png')}
                 />
               </Pressable>
-              <Image
-                style={{
-                  width: rfSpacing['33x'],
-                  height: rfSpacing['33x'],
-                  tintColor: 'black',
-                }}
-                source={require('../pic/logo.png')}
-              />
-              <Text
-                style={{
-                  fontFamily: 'Alkalami-Regular',
-                  fontSize: rfSpacing['24x'],
-                  color: 'black',
-                  bottom: '1.4%',
-                  left: '2.3%',
-                  fontWeight: '400',
-                }}>
-                Flora
-              </Text>
+              <Image style={styles.logo} source={require('../pic/logo.png')} />
+              <Text style={styles.logotext}>Flora</Text>
             </View>
 
             <View style={{alignSelf: 'center'}}>
-              <Text
-                style={{
-                  fontFamily: 'AbhayaLibre-ExtraBold',
-                  fontSize: rfSpacing['34x'],
-                  fontWeight: '400',
-                  color: 'black',
-                }}>
-                Add New Plant
-              </Text>
+              <Text style={styles.headingtext}>Add New Plant</Text>
             </View>
 
-            <Text
-              style={{
-                fontFamily: 'AbhayaLibre-ExtraBold',
-                fontWeight: '600',
-                fontSize: rfSpacing['22x'],
-                color: '#344E41',
-              }}>
-              Plant Identification
-            </Text>
+            <Text style={styles.subHeading}>Plant Identification</Text>
 
-            <Text
-              style={{
-                fontFamily: 'Adamina-Regular',
-                fontSize: rfSpacing['15x'],
-                fontWeight: '500',
-                lineHeight: rfSpacing['24x'],
-                color: 'black',
-              }}>
+            <Text style={styles.destext}>
               Enter the plant name or take a photo
             </Text>
 
@@ -228,7 +185,6 @@ const AddPlant = () => {
             <View style={{flexDirection: 'column', top: '6%'}}>
               <Text style={styles.label}>Location</Text>
 
-              {/* Dropdown Trigger */}
               <TouchableOpacity
                 style={styles.input}
                 onPress={() => setShowDropdown(prev => !prev)}>
@@ -238,33 +194,45 @@ const AddPlant = () => {
                 <Image
                   source={require('../pic/down.png')}
                   style={{
-                    width: rfSpacing['30x'],
-                    height: rfSpacing['30x'],
+                    width: rfSpacing['25x'],
+                    height: rfSpacing['25x'],
                     position: 'absolute',
                     right: 10,
+                    top: '20%',
                     tintColor: color.F_InputContainer,
                   }}
                 />
               </TouchableOpacity>
 
-              {/* Dropdown Menu */}
               {showDropdown && (
-                <View style={styles.dropdownContainer}>
-                  <FlatList
-                    data={locations}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({item}) => (
-                      <TouchableOpacity
-                        style={styles.dropdownItem}
-                        onPress={() => {
-                          setLocation(item);
-                          setShowDropdown(false);
-                        }}>
-                        <Text style={{color: color.F_Black}}>{item}</Text>
-                      </TouchableOpacity>
-                    )}
-                  />
-                </View>
+                <Modal transparent animationType="fade">
+                  <Pressable
+                    style={styles.modalOverlay}
+                    onPress={() => setShowDropdown(false)}>
+                    <View
+                      style={[
+                        styles.dropdownContainer,
+                        {top: '59.5%', left: '41.5%'},
+                      ]}>
+                      <FlatList
+                        data={locations}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({item}) => (
+                          <TouchableOpacity
+                            style={styles.dropdownItem}
+                            onPress={() => {
+                              setLocation(item);
+                              setShowDropdown(false);
+                            }}>
+                            <Text style={{color: color.F_Black}}>{item}</Text>
+                          </TouchableOpacity>
+                        )}
+                        style={{maxHeight: 200}}
+                        nestedScrollEnabled={true}
+                      />
+                    </View>
+                  </Pressable>
+                </Modal>
               )}
             </View>
             <View
@@ -320,6 +288,50 @@ const styles = StyleSheet.create({
     backgroundColor: color.F_Main,
     paddingHorizontal: rfSpacing['15x'],
   },
+  scrollViewCont: {
+    flexGrow: 1,
+    paddingBottom: '15%',
+  },
+  logoCont: {
+    flexDirection: 'row',
+    top: '2%',
+  },
+  arrow: {
+    width: rfSpacing['30x'],
+    height: rfSpacing['30x'],
+  },
+  logo: {
+    width: rfSpacing['33x'],
+    height: rfSpacing['33x'],
+    tintColor: 'black',
+  },
+  logotext: {
+    fontFamily: 'Alkalami-Regular',
+    fontSize: rfSpacing['24x'],
+    color: 'black',
+    bottom: '1.4%',
+    left: '2.3%',
+    fontWeight: '400',
+  },
+  headingtext: {
+    fontFamily: 'AbhayaLibre-ExtraBold',
+    fontSize: rfSpacing['34x'],
+    fontWeight: '400',
+    color: 'black',
+  },
+  subHeading: {
+    fontFamily: 'AbhayaLibre-ExtraBold',
+    fontWeight: '600',
+    fontSize: rfSpacing['22x'],
+    color: '#344E41',
+  },
+  destext: {
+    fontFamily: 'Adamina-Regular',
+    fontSize: rfSpacing['15x'],
+    fontWeight: '500',
+    lineHeight: rfSpacing['24x'],
+    color: 'black',
+  },
   text: {
     fontFamily: 'Adamina-Regular',
     fontWeight: '400',
@@ -349,6 +361,7 @@ const styles = StyleSheet.create({
     borderRadius: rfSpacing['8x'],
     backgroundColor: color.F_White,
     maxHeight: rfSpacing['150x'],
+    maxWidth: 180,
   },
   dropdownItem: {
     padding: rfSpacing['10x'],
@@ -363,11 +376,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#628A73',
-    width: rfSpacing['328x'],
     height: rfSpacing['48x'],
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: rfSpacing['8x'],
+    borderRadius: rfSpacing['12x'],
     top: '5%',
+  },
+  modalOverlay: {
+    flex: 1,
   },
 });

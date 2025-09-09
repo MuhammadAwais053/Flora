@@ -10,8 +10,7 @@ const Screen1 = () => {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require('../pic/logo.png')} />
-      <Text style={styles.text}>Flora - Your Digital Garden</Text>
-      <Text style={styles.text}>Guardian</Text>
+      <Text style={styles.text}>Flora - Your Digital Garden Guardian</Text>
 
       <Pressable
         style={styles.arrowBtn}
@@ -44,6 +43,7 @@ const styles = StyleSheet.create({
     color: color.F_White,
     marginTop: '1%',
     textAlign: 'center',
+    verticalAlign: 'middle',
   },
   arrowBtn: {
     position: 'absolute',

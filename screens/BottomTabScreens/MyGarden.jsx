@@ -72,22 +72,24 @@ const MyGarden = () => {
           <Text style={styles.Gardentext}>My Garden</Text>
         </View>
       </View>
-      <FlatList
-        data={plants}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={renderItem}
-        contentContainerStyle={{padding: rfSpacing['12x']}}
-        ListEmptyComponent={
-          <Text
-            style={{
-              textAlign: 'center',
-              marginTop: rfSpacing['40x'],
-              color: color.F_Black,
-            }}>
-            No plants added yet.
-          </Text>
-        }
-      />
+      <View>
+        <FlatList
+          data={plants}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={renderItem}
+          contentContainerStyle={{padding: rfSpacing['12x']}}
+          ListEmptyComponent={
+            <Text
+              style={{
+                textAlign: 'center',
+                marginTop: rfSpacing['40x'],
+                color: color.F_Black,
+              }}>
+              No plants added yet.
+            </Text>
+          }
+        />
+      </View>
     </View>
   );
 };

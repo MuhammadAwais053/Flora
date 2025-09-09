@@ -10,22 +10,10 @@ const Screen3 = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Image
-          style={{width: rfSpacing['400x'], height: rfSpacing['330x']}}
-          source={require('../pic/On1.png')}
-        />
+        <Image style={styles.image} source={require('../pic/On1.png')} />
       </View>
-      <Text style={styles.text1}>Greenery Made Easy</Text>
-      <Text
-        style={{
-          fontFamily: 'Alata-Regular',
-          fontWeight: '400',
-          textAlign: 'center',
-          fontSize: rfSpacing['17x'],
-          color: color.F_Black,
-          bottom: '2%',
-        }}>
-        Shop and Care in One Tap
+      <Text style={styles.text1}>
+        Greenery Made Easy Shop and Care in One Tap
       </Text>
       <Text style={styles.text2}>Curated by Experts</Text>
       <Image
@@ -63,6 +51,7 @@ const styles = StyleSheet.create({
     color: color.F_Black,
     marginTop: '1%',
     padding: rfSpacing['20x'],
+    verticalAlign: 'middle',
   },
   text2: {
     fontFamily: 'Sacramento-Regular',
@@ -85,5 +74,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: rfSpacing['8x'],
     marginTop: '50%',
+  },
+  image: {
+    width: rfSpacing['400x'],
+    height: rfSpacing['330x'],
   },
 });
