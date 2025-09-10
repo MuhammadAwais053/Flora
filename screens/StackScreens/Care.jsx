@@ -23,9 +23,8 @@ const Care = () => {
       <View
         style={{
           flexDirection: 'column',
-          width: rfSpacing['400x'],
           height: rfSpacing['170x'],
-          backgroundColor: color.F_OnBoard,
+          backgroundColor: '#628A73',
         }}>
         <View style={{flexDirection: 'row', top: rfSpacing['9x']}}>
           <Pressable onPress={() => navigation.navigate('Main')}>

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Allura-Regular',
     fontSize: rfSpacing['26x'],
-    fontWeight: '400',
+    fontWeight: '500',
     letterSpacing: rfSpacing['2x'],
     color: color.F_White,
     marginTop: '1%',

@@ -26,18 +26,9 @@ const AddPlant = () => {
   const [plantName, setPlantName] = useState('');
   const [nickname, setNickname] = useState('');
   const [location, setLocation] = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
   const [notes, setNotes] = useState('');
   const [imageUri, setImageUri] = useState('');
-  const locations = [
-    'Living Room',
-    'Bedroom',
-    'Balcony',
-    'Garden',
-    'Kitchen',
-    'Bathroom',
-    'Office',
-  ];
+  const locations = ['Living Room', 'Bedroom', 'Balcony', 'Garden', 'Kitchen'];
 
   const [openLocation, setOpenLocation] = useState(false);
   const [itemsLocation, setItemsLocation] = useState(
@@ -179,11 +170,11 @@ const AddPlant = () => {
               style={{
                 flexDirection: 'column',
                 top: rfSpacing['18x'],
-                zIndex: 3000,
+                zIndex: 9000,
               }}>
               <Text style={styles.label}>Location</Text>
 
-              <View style={{zIndex: 3000, elevation: 10}}>
+              <View style={{zIndex: 9000}}>
                 <DropDownPicker
                   placeholder="Where is your plant located?"
                   open={openLocation}
@@ -193,11 +184,8 @@ const AddPlant = () => {
                   setValue={setLocation}
                   setItems={setItemsLocation}
                   style={styles.input}
-                  dropDownContainerStyle={[
-                    styles.dropdownContainer,
-                    {maxHeight: rfSpacing['120x']},
-                  ]}
-                  zIndex={3000}
+                  dropDownContainerStyle={styles.dropdownContainer}
+                  zIndex={9000}
                   listMode="SCROLLVIEW"
                   scrollViewProps={{nestedScrollEnabled: true}}
                 />
@@ -328,8 +316,6 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: rfSpacing['8x'],
     backgroundColor: color.F_White,
-    maxHeight: rfSpacing['50x'],
-    maxWidth: 180,
   },
   dropdownItem: {
     padding: rfSpacing['10x'],
