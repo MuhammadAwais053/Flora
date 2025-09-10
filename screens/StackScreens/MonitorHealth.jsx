@@ -62,7 +62,6 @@ const DiseaseTabs = () => {
         </View>
       </View>
 
-      {/* Tabs */}
       <View style={styles.tabsContainer}>
         <View style={styles.tabsRow}>
           <Pressable
@@ -98,7 +97,6 @@ const DiseaseTabs = () => {
         </View>
       </View>
 
-      {/* Content */}
       <ScrollView
         style={{flex: 1}}
         contentContainerStyle={styles.scrollContent}>
@@ -193,50 +191,51 @@ export default DiseaseTabs;
 
 const styles = StyleSheet.create({
   cont: {
-    backgroundColor: '#E1EBC7',
+    backgroundColor: color.F_Main,
     flex: 1,
   },
   topcont: {
     flexDirection: 'column',
-    height: 120,
+    height: rfSpacing['120x'],
     backgroundColor: '#628A73',
-    paddingHorizontal: rfSpacing['12x'],
   },
   headerRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    top: rfSpacing['9x'],
   },
   BackArrow: {
     width: rfSpacing['30x'],
     height: rfSpacing['30x'],
-    tintColor: 'white',
+    tintColor: color.F_White,
   },
   logo: {
     width: rfSpacing['33x'],
     height: rfSpacing['33x'],
-    tintColor: 'white',
-    marginLeft: rfSpacing['10x'],
+    tintColor: color.F_White,
   },
   logoText: {
     fontFamily: 'Alkalami-Regular',
     fontSize: rfSpacing['24x'],
-    color: 'white',
-    marginLeft: rfSpacing['10x'],
+    color: color.F_White,
+    bottom: rfSpacing['3x'],
+    left: rfSpacing['6x'],
     fontWeight: '400',
   },
   centerContainer: {
     marginTop: rfSpacing['8x'],
+    alignItems: 'center',
   },
   title: {
     fontFamily: 'AbrilFatface-Regular',
-    fontSize: 22,
+    fontSize: rfSpacing['25x'],
+    verticalAlign: 'middle',
+    fontWeight: '400',
     color: color.F_White,
     letterSpacing: rfSpacing['0.7x'],
-    fontWeight: '400',
   },
   subtitle: {
     fontFamily: 'Adamina-Regular',
-    fontSize: 15,
+    fontSize: rfSpacing['15x'],
     fontWeight: '400',
     color: color.F_White,
     letterSpacing: rfSpacing['0.6x'],
@@ -245,45 +244,44 @@ const styles = StyleSheet.create({
   tabsContainer: {
     marginTop: rfSpacing['17x'],
     marginBottom: rfSpacing['8x'],
-    paddingHorizontal: rfSpacing['18x'],
+    paddingHorizontal: rfSpacing['12x'],
   },
   tabsRow: {
     flexDirection: 'row',
-    backgroundColor: '#FFF',
+    backgroundColor: color.F_White,
     borderRadius: rfSpacing['12x'],
     padding: rfSpacing['4x'],
     alignItems: 'center',
     gap: rfSpacing['8x'],
-    elevation: 3,
   },
   tab: {
     paddingVertical: rfSpacing['6x'],
     paddingHorizontal: rfSpacing['18x'],
     borderRadius: rfSpacing['10x'],
-    backgroundColor: '#FFF',
+    backgroundColor: color.F_White,
   },
   activeTab: {
-    borderColor: '#628A73',
-    borderWidth: 2,
-    backgroundColor: '#F2F6EF',
+    borderColor: color.F_OnBoard,
+    borderWidth: rfSpacing['1.5x'],
+    backgroundColor: color.F_ActiveTab,
   },
   tabText: {
     fontFamily: 'Adamina-Regular',
     fontSize: rfSpacing['16x'],
-    color: '#628A73',
+    color: color.F_OnBoard,
     fontWeight: '500',
   },
   tabTextActive: {
     fontFamily: 'Adamina-Regular',
     fontSize: rfSpacing['16x'],
-    color: '#628A73',
+    color: color.F_OnBoard,
     fontWeight: '600',
   },
   scrollContent: {
     paddingBottom: rfSpacing['20x'],
   },
   card: {
-    backgroundColor: '#FFF',
+    backgroundColor: color.F_White,
     borderRadius: rfSpacing['20x'],
     marginHorizontal: rfSpacing['18x'],
     marginTop: rfSpacing['18x'],
@@ -317,19 +315,19 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   tipsCard: {
-    backgroundColor: '#FFF',
+    backgroundColor: color.F_White,
     borderRadius: rfSpacing['13x'],
     marginHorizontal: rfSpacing['18x'],
     marginTop: rfSpacing['18x'],
     paddingVertical: rfSpacing['15x'],
     paddingHorizontal: rfSpacing['13x'],
-    borderRadius: 12,
+    borderRadius: rfSpacing['15x'],
   },
   tipsHeaderRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: rfSpacing['4x'],
-    left: '4%',
+    left: rfSpacing['1x'],
   },
   tipsIcon: {
     width: rfSpacing['26x'],
@@ -346,13 +344,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginBottom: rfSpacing['2x'],
-    left: '5%',
+    left: rfSpacing['4x'],
   },
   tipBullet: {
     fontSize: rfSpacing['17x'],
-    color: '#628A73',
+    color: color.F_OnBoard,
     marginRight: rfSpacing['7x'],
-    marginTop: 2,
+    marginTop: rfSpacing['2x'],
   },
   tipText: {
     fontFamily: 'Adamina-Regular',
@@ -369,9 +367,8 @@ const styles = StyleSheet.create({
     paddingVertical: rfSpacing['13x'],
     paddingHorizontal: rfSpacing['10x'],
     borderColor: '#F5C2C7',
-    borderWidth: 2.5,
+    borderWidth: rfSpacing['2x'],
     gap: rfSpacing['10x'],
-    elevation: 2,
   },
   alertIcon: {
     width: rfSpacing['22x'],
@@ -403,12 +400,12 @@ const styles = StyleSheet.create({
     color: color.F_Black,
   },
   stepCard: {
-    backgroundColor: '#FFF',
+    backgroundColor: color.F_White,
     borderRadius: rfSpacing['10x'],
     marginBottom: rfSpacing['12x'],
     padding: rfSpacing['12x'],
-    borderColor: '#3094EF',
-    borderWidth: 1,
+    borderColor: color.F_StepCard,
+    borderWidth: rfSpacing['1x'],
   },
   stepRow: {
     flexDirection: 'row',
@@ -426,7 +423,7 @@ const styles = StyleSheet.create({
   stepNum: {
     fontFamily: 'Adamina-Regular',
     fontSize: rfSpacing['19x'],
-    color: '#000000',
+    color: color.F_Black,
     fontWeight: '700',
   },
   stepTitle: {
@@ -437,14 +434,13 @@ const styles = StyleSheet.create({
   },
   stepDesc: {
     fontFamily: 'Adamina-Regular',
-    fontSize: rfSpacing['15x'],
-    color: '#5b5b5b',
+    fontSize: rfSpacing['13x'],
+    color: color.F_StepDescription,
     marginLeft: rfSpacing['2x'],
     marginTop: rfSpacing['1x'],
-    lineHeight: rfSpacing['20x'],
   },
   historyCard: {
-    backgroundColor: '#FFF',
+    backgroundColor: color.F_White,
     borderRadius: rfSpacing['20x'],
     marginHorizontal: rfSpacing['18x'],
     marginTop: rfSpacing['18x'],
@@ -455,7 +451,7 @@ const styles = StyleSheet.create({
   historyText: {
     fontFamily: 'Adamina-Regular',
     fontSize: rfSpacing['19x'],
-    color: '#5b5b5b',
+    color: color.F_StepDescription,
     fontWeight: '600',
     textAlign: 'center',
   },

@@ -14,12 +14,14 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import color from '../../src/Theme/color';
 import rfSpacing from '../../src/Theme/rfSpacing';
+import LottieView from 'lottie-react-native';
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = () => {
     if (!email.trim() || !password.trim()) {
@@ -28,7 +30,12 @@ const Login = () => {
       ]);
       return;
     }
-    navigation.navigate('Main');
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigation.navigate('Main');
+    }, 1000);
   };
 
   return (
@@ -104,6 +111,21 @@ const Login = () => {
           <Text style={styles.loginText}>Login</Text>
         </Pressable>
       </KeyboardAvoidingView>
+      {loading && (
+        <View
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <LottieView
+            source={require('../assets/egJFdLXsf7.json')}
+            autoPlay
+            loop={false}
+            style={{width: 200, height: 200}}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

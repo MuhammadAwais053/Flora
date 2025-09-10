@@ -1,4 +1,12 @@
-import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useContext} from 'react';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
@@ -33,14 +41,18 @@ const MyGarden = () => {
   return (
     <View style={styles.cont}>
       <View style={styles.topcont}>
-        <View style={{flexDirection: 'row', gap: 2}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            top: rfSpacing['9x'],
+          }}>
           <Pressable
             onPress={() => navigation.navigate('Main', {screen: 'Home'})}>
             <Image
               style={{
                 width: rfSpacing['30x'],
                 height: rfSpacing['30x'],
-                tintColor: 'white',
+                tintColor: color.F_White,
               }}
               source={require('../pic/Pre.png')}
             />
@@ -49,7 +61,7 @@ const MyGarden = () => {
             style={{
               width: rfSpacing['33x'],
               height: rfSpacing['33x'],
-              tintColor: 'white',
+              tintColor: color.F_White,
             }}
             source={require('../pic/logo.png')}
           />
@@ -57,9 +69,9 @@ const MyGarden = () => {
             style={{
               fontFamily: 'Alkalami-Regular',
               fontSize: rfSpacing['24x'],
-              color: 'white',
-              bottom: '1.4%',
-              left: '2.3%',
+              color: color.F_White,
+              bottom: rfSpacing['3x'],
+              left: rfSpacing['6x'],
               fontWeight: '400',
             }}>
             Flora
@@ -72,23 +84,47 @@ const MyGarden = () => {
           <Text style={styles.Gardentext}>My Garden</Text>
         </View>
       </View>
-      <View>
+      <View style={{marginBottom: rfSpacing['264x']}}>
         <FlatList
           data={plants}
           keyExtractor={(item, index) => index.toString()}
           renderItem={renderItem}
           contentContainerStyle={{padding: rfSpacing['12x']}}
           ListEmptyComponent={
-            <Text
+            <View
               style={{
-                textAlign: 'center',
-                marginTop: rfSpacing['40x'],
-                color: color.F_Black,
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: rfSpacing['10x'],
               }}>
-              No plants added yet.
-            </Text>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  marginTop: rfSpacing['37x'],
+                  fontSize: rfSpacing['20x'],
+                  color: color.F_Black,
+                }}>
+                No plants added yet.
+              </Text>
+            </View>
           }
         />
+        <View style={{alignItems: 'center'}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Add Plant');
+            }}>
+            <Text
+              style={{
+                fontSize: rfSpacing['15x'],
+                color: color.F_OnBoard,
+                fontFamily: 'Adamina-Regular',
+                fontWeight: 'bold',
+              }}>
+              Tap here to add plant
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -98,17 +134,17 @@ export default MyGarden;
 
 const styles = StyleSheet.create({
   cont: {
-    backgroundColor: '#E1EBC7',
+    backgroundColor: color.F_Main,
     flex: 1,
   },
   topcont: {
     flexDirection: 'column',
-    height: 120,
+    height: rfSpacing['120x'],
     backgroundColor: '#628A73',
   },
   Gardentext: {
     fontFamily: 'AbrilFatface-Regular',
-    fontSize: 38,
+    fontSize: rfSpacing['38x'],
     verticalAlign: 'middle',
     fontWeight: '400',
     color: color.F_White,
@@ -116,18 +152,18 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 20,
+    backgroundColor: color.F_White,
+    borderRadius: rfSpacing['20x'],
     padding: rfSpacing['12x'],
     alignItems: 'center',
     marginBottom: rfSpacing['12x'],
   },
   plantImage: {
-    width: 97,
-    height: 120,
-    borderRadius: 20,
-    backgroundColor: '#f4f4f4',
-    right: '5%',
+    width: rfSpacing['97x'],
+    height: rfSpacing['120x'],
+    borderRadius: rfSpacing['20x'],
+    backgroundColor: color.F_LightText,
+    right: rfSpacing['8x'],
   },
   details: {
     flex: 1,
@@ -135,38 +171,37 @@ const styles = StyleSheet.create({
   },
   plantName: {
     fontFamily: 'Adamina-Regular',
-    fontSize: 22,
+    fontSize: rfSpacing['22x'],
     fontWeight: '600',
     color: color.F_Black,
   },
   plantType: {
     fontFamily: 'Adamina-Regular',
-    fontSize: 18,
-    color: '#9EC696',
+    fontSize: rfSpacing['18x'],
+    color: color.F_OnBoard,
     fontWeight: '400',
-    top: '1.2%',
+    top: rfSpacing['2x'],
   },
   divider: {
-    borderBottomColor: '#ACA6A6',
-    borderBottomWidth: 1.5,
+    borderBottomColor: color.F_Divider,
+    borderBottomWidth: rfSpacing['2x'],
     marginVertical: rfSpacing['10x'],
-    width: '90%',
   },
   reminderRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: '1%',
+    marginTop: rfSpacing['1x'],
   },
   bellIcon: {
-    width: 22,
-    height: 22,
-    tintColor: '#7C7C7C',
+    width: rfSpacing['22x'],
+    height: rfSpacing['22x'],
+    tintColor: color.F_InputContainer,
     marginRight: rfSpacing['8x'],
   },
   reminderText: {
     fontFamily: 'Adamina-Regular',
-    fontSize: 18,
-    color: '#90B386',
+    fontSize: rfSpacing['18x'],
+    color: color.F_OnBoard,
     fontWeight: '400',
   },
 });

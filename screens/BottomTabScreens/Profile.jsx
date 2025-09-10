@@ -9,14 +9,14 @@ const Profile = () => {
   return (
     <View style={styles.cont}>
       <View style={styles.topcont}>
-        <View style={{flexDirection: 'row', gap: 2}}>
+        <View style={{flexDirection: 'row', top: rfSpacing['9x']}}>
           <Pressable
             onPress={() => navigation.navigate('Main', {screen: 'Home'})}>
             <Image
               style={{
                 width: rfSpacing['30x'],
                 height: rfSpacing['30x'],
-                tintColor: 'white',
+                tintColor: color.F_White,
               }}
               source={require('../pic/Pre.png')}
             />
@@ -25,7 +25,7 @@ const Profile = () => {
             style={{
               width: rfSpacing['33x'],
               height: rfSpacing['33x'],
-              tintColor: 'white',
+              tintColor: color.F_White,
             }}
             source={require('../pic/logo.png')}
           />
@@ -33,9 +33,9 @@ const Profile = () => {
             style={{
               fontFamily: 'Alkalami-Regular',
               fontSize: rfSpacing['24x'],
-              color: 'white',
-              bottom: '1.4%',
-              left: '2.3%',
+              color: color.F_White,
+              bottom: rfSpacing['3x'],
+              left: rfSpacing['6x'],
               fontWeight: '400',
             }}>
             Flora
@@ -56,19 +56,19 @@ export default Profile;
 
 const styles = StyleSheet.create({
   cont: {
-    backgroundColor: '#E1EBC7',
+    backgroundColor: color.F_Main,
     flex: 1,
   },
   topcont: {
     flexDirection: 'column',
-    height: 120,
-    backgroundColor: '#628A73',
+    height: rfSpacing['120x'],
+    backgroundColor: color.F_OnBoard,
   },
   Gardentext: {
     fontFamily: 'AbrilFatface-Regular',
-    fontSize: 32,
+    fontSize: rfSpacing['32x'],
     verticalAlign: 'middle',
-    fontWeight: '400',
+    fontWeight: '500',
     color: color.F_White,
     letterSpacing: rfSpacing['0.7x'],
   },

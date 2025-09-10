@@ -16,24 +16,24 @@ const Care = () => {
   return (
     <View
       style={{
-        backgroundColor: '#E1EBC7',
+        backgroundColor: color.F_Main,
         flex: 1,
-        gap: 10,
+        gap: rfSpacing['10x'],
       }}>
       <View
         style={{
           flexDirection: 'column',
-          width: 400,
-          height: 190,
-          backgroundColor: '#628A73',
+          width: rfSpacing['400x'],
+          height: rfSpacing['170x'],
+          backgroundColor: color.F_OnBoard,
         }}>
-        <View style={{flexDirection: 'row', top: '2%'}}>
+        <View style={{flexDirection: 'row', top: rfSpacing['9x']}}>
           <Pressable onPress={() => navigation.navigate('Main')}>
             <Image
               style={{
                 width: rfSpacing['30x'],
                 height: rfSpacing['30x'],
-                tintColor: 'white',
+                tintColor: color.F_White,
               }}
               source={require('../pic/Pre.png')}
             />
@@ -42,7 +42,7 @@ const Care = () => {
             style={{
               width: rfSpacing['33x'],
               height: rfSpacing['33x'],
-              tintColor: 'white',
+              tintColor: color.F_White,
             }}
             source={require('../pic/logo.png')}
           />
@@ -50,9 +50,9 @@ const Care = () => {
             style={{
               fontFamily: 'Alkalami-Regular',
               fontSize: rfSpacing['24x'],
-              color: 'white',
-              bottom: '1.4%',
-              left: '2.3%',
+              color: color.F_White,
+              bottom: rfSpacing['3x'],
+              left: rfSpacing['6x'],
               fontWeight: '400',
             }}>
             Flora
@@ -61,10 +61,10 @@ const Care = () => {
         <Text
           style={{
             fontFamily: 'Adamina-Regular',
-            fontSize: 20,
-            left: '2%',
+            fontSize: rfSpacing['20x'],
+            left: rfSpacing['8x'],
             fontWeight: '400',
-            color: '#FFFBFB',
+            color: color.F_Subtitle,
             letterSpacing: rfSpacing['0.7x'],
           }}>
           Get Care Recommendations
@@ -72,10 +72,10 @@ const Care = () => {
         <Text
           style={{
             fontFamily: 'Adamina-Regular',
-            fontSize: 16,
-            left: '2%',
+            fontSize: rfSpacing['16x'],
+            left: rfSpacing['8x'],
             fontWeight: '400',
-            lineHeight: 100,
+            lineHeight: rfSpacing['48x'],
             color: color.F_White,
           }}>
           Let Flora help your plants thrive
@@ -85,31 +85,31 @@ const Care = () => {
         style={{
           flexDirection: 'row',
           alignSelf: 'center',
-          top: '10%',
-          gap: 15,
+          top: rfSpacing['45x'],
+          gap: rfSpacing['15x'],
         }}>
         <View
           style={{
             flexDirection: 'column',
-            width: 150,
-            height: 195,
+            width: rfSpacing['150x'],
+            height: rfSpacing['195x'],
             backgroundColor: color.F_White,
-            borderRadius: 15,
+            borderRadius: rfSpacing['17x'],
             justifyContent: 'center',
             alignItems: 'center',
           }}>
           <View
             style={{
-              backgroundColor: '#E1EBC7',
-              width: 120,
-              height: 80,
-              borderRadius: 13,
+              backgroundColor: color.F_Main,
+              width: rfSpacing['120x'],
+              height: rfSpacing['80x'],
+              borderRadius: rfSpacing['13x'],
               alignItems: 'center',
               justifyContent: 'center',
             }}>
             <Pressable onPress={openCamera}>
               <Image
-                style={{width: 50, height: 50}}
+                style={{width: rfSpacing['50x'], height: rfSpacing['50x']}}
                 source={require('../pic/Cam2.png')}
               />
             </Pressable>
@@ -120,27 +120,27 @@ const Care = () => {
         <View
           style={{
             flexDirection: 'column',
-            width: 150,
-            height: 195,
+            width: rfSpacing['150x'],
+            height: rfSpacing['195x'],
             backgroundColor: color.F_White,
-            borderRadius: 15,
+            borderRadius: rfSpacing['15x'],
           }}>
           <View
             style={{
               flexDirection: 'column',
-              width: 150,
-              height: 195,
+              width: rfSpacing['150x'],
+              height: rfSpacing['195x'],
               backgroundColor: color.F_White,
-              borderRadius: 15,
+              borderRadius: rfSpacing['15x'],
               justifyContent: 'center',
               alignItems: 'center',
             }}>
             <View
               style={{
-                backgroundColor: '#E1EBC7',
-                width: 120,
-                height: 80,
-                borderRadius: 13,
+                backgroundColor: color.F_Main,
+                width: rfSpacing['120x'],
+                height: rfSpacing['80x'],
+                borderRadius: rfSpacing['13x'],
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
@@ -150,8 +150,8 @@ const Care = () => {
                 }}>
                 <Image
                   style={{
-                    width: 50,
-                    height: 50,
+                    width: rfSpacing['50x'],
+                    height: rfSpacing['50x'],
                   }}
                   source={require('../pic/Seac.png')}
                 />
@@ -166,33 +166,33 @@ const Care = () => {
         style={{
           flexDirection: 'row',
           alignSelf: 'center',
-          top: '10%',
-          gap: 15,
+          top: rfSpacing['45x'],
+          gap: rfSpacing['15x'],
         }}>
         <View
           style={{
             flexDirection: 'column',
-            width: 150,
-            height: 195,
+            width: rfSpacing['150x'],
+            height: rfSpacing['195x'],
             backgroundColor: color.F_White,
-            borderRadius: 15,
+            borderRadius: rfSpacing['15x'],
           }}>
           <View
             style={{
               flexDirection: 'column',
-              width: 150,
-              height: 195,
+              width: rfSpacing['150x'],
+              height: rfSpacing['195x'],
               backgroundColor: color.F_White,
-              borderRadius: 15,
+              borderRadius: rfSpacing['15x'],
               justifyContent: 'center',
               alignItems: 'center',
             }}>
             <View
               style={{
-                backgroundColor: '#E1EBC7',
-                width: 120,
-                height: 80,
-                borderRadius: 13,
+                backgroundColor: color.F_Main,
+                width: rfSpacing['120x'],
+                height: rfSpacing['80x'],
+                borderRadius: rfSpacing['13x'],
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
@@ -202,8 +202,8 @@ const Care = () => {
                 }}>
                 <Image
                   style={{
-                    width: 50,
-                    height: 50,
+                    width: rfSpacing['50x'],
+                    height: rfSpacing['50x'],
                   }}
                   source={require('../pic/calendar.png')}
                 />
@@ -216,27 +216,27 @@ const Care = () => {
         <View
           style={{
             flexDirection: 'column',
-            width: 150,
-            height: 195,
+            width: rfSpacing['150x'],
+            height: rfSpacing['195x'],
             backgroundColor: color.F_White,
-            borderRadius: 15,
+            borderRadius: rfSpacing['15x'],
           }}>
           <View
             style={{
               flexDirection: 'column',
-              width: 150,
-              height: 195,
+              width: rfSpacing['150x'],
+              height: rfSpacing['195x'],
               backgroundColor: color.F_White,
-              borderRadius: 15,
+              borderRadius: rfSpacing['15x'],
               justifyContent: 'center',
               alignItems: 'center',
             }}>
             <View
               style={{
-                backgroundColor: '#E1EBC7',
-                width: 120,
-                height: 80,
-                borderRadius: 13,
+                backgroundColor: color.F_Main,
+                width: rfSpacing['120x'],
+                height: rfSpacing['80x'],
+                borderRadius: rfSpacing['13x'],
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
@@ -246,8 +246,8 @@ const Care = () => {
                 }}>
                 <Image
                   style={{
-                    width: 50,
-                    height: 50,
+                    width: rfSpacing['50x'],
+                    height: rfSpacing['50x'],
                   }}
                   source={require('../pic/gardener.png')}
                 />
@@ -267,19 +267,21 @@ export default Care;
 const styles = StyleSheet.create({
   CardName: {
     color: color.F_Black,
-    fontSize: 16,
+    fontSize: rfSpacing['16x'],
     fontFamily: 'Adamina-Regular',
     fontWeight: '400',
-    letterSpacing: 0.5,
+    letterSpacing: rfSpacing['0.5x'],
     verticalAlign: 'middle',
+    textAlign: 'center',
   },
   subTitle: {
     color: color.F_Black,
-    fontSize: 14,
+    fontSize: rfSpacing['14x'],
     fontFamily: 'Adamina-Regular',
     fontWeight: '400',
-    letterSpacing: 0.5,
+    letterSpacing: rfSpacing['0.5x'],
     verticalAlign: 'middle',
-    top: '2%',
+    top: rfSpacing['7x'],
+    textAlign: 'center',
   },
 });

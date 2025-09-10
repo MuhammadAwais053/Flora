@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     verticalAlign: 'middle',
     fontSize: rfSpacing['17x'],
     color: color.F_Black,
-    marginTop: '1%',
+    marginTop: rfSpacing['2x'],
     padding: rfSpacing['20x'],
     verticalAlign: 'middle',
   },

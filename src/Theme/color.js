@@ -5,6 +5,11 @@ export default{
     F_OnBoard:'#628A73',
     F_InputContainer:'#7C7C7C',
     F_LightText:'#cccc',
-    F_MainText:'#2C513F'
+    F_MainText:'#2C513F',
+    F_Subtitle:'#FFFBFB',
+    F_Divider:'#ACA6A6',
+    F_ActiveTab:'#F2F6EF',
+    F_StepCard:'#3094EF',
+    F_StepDescription:'#5b5b5b'
 
 }
