@@ -40,7 +40,7 @@ const TabNaviagtor = () => {
                     height: '9.3%',
                     width: '87%',
                     borderRadius: 19,
-                    bottom: '3.5%',
+                    bottom: '3%',
                     backgroundColor: '#FFFFFF',
                 },
                 tabBarLabelStyle: {

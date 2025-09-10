@@ -18,6 +18,7 @@ import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
 import {launchCamera} from 'react-native-image-picker';
 import {PlantContext} from '../PlantContext';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const AddPlant = () => {
   const navigation = useNavigation();
@@ -36,19 +37,12 @@ const AddPlant = () => {
     'Kitchen',
     'Bathroom',
     'Office',
-    'Study Room',
-    'Dining Room',
-    'Hallway',
-    'Front Porch',
-    'Backyard',
-    'Terrace',
-    'Greenhouse',
-    'Window Sill',
-    'Patio',
-    'Sunroom',
-    'Reception Area',
-    'Library',
   ];
+
+  const [openLocation, setOpenLocation] = useState(false);
+  const [itemsLocation, setItemsLocation] = useState(
+    locations.map(l => ({label: l, value: l})),
+  );
 
   const openCamera = () => {
     launchCamera({mediaType: 'photo'}, response => {
@@ -103,7 +97,7 @@ const AddPlant = () => {
                 flexDirection: 'row',
                 alignContent: 'space-between',
                 gap: rfSpacing['40x'],
-                top: '5%',
+                top: rfSpacing['15x'],
               }}>
               <View
                 style={{
@@ -136,13 +130,12 @@ const AddPlant = () => {
               </View>
             </View>
 
-            {/* Preview selected image */}
             {imageUri ? (
               <View
                 style={{
                   alignItems: 'center',
                   marginTop: rfSpacing['10x'],
-                  top: '3%',
+                  top: rfSpacing['10x'],
                 }}>
                 <Image
                   source={{uri: imageUri}}
@@ -151,7 +144,7 @@ const AddPlant = () => {
               </View>
             ) : null}
 
-            <View style={{flexDirection: 'column', top: '5%'}}>
+            <View style={{flexDirection: 'column', top: rfSpacing['15x']}}>
               <Text style={styles.label}>Plant name</Text>
               <TextInput
                 style={styles.input}
@@ -162,14 +155,14 @@ const AddPlant = () => {
               />
             </View>
 
-            <View style={{flexDirection: 'column', top: '6%'}}>
+            <View style={{flexDirection: 'column', top: rfSpacing['18x']}}>
               <Text
                 style={{
-                  fontSize: rfSpacing['18x'],
+                  fontSize: rfSpacing['15x'],
                   color: color.F_Black,
                   fontFamily: 'Adamina-Regular',
                   fontWeight: '400',
-                  top: '1%',
+                  top: rfSpacing['5x'],
                 }}>
                 Plant Details:
               </Text>
@@ -182,62 +175,37 @@ const AddPlant = () => {
               />
             </View>
 
-            <View style={{flexDirection: 'column', top: '6%'}}>
+            <View
+              style={{
+                flexDirection: 'column',
+                top: rfSpacing['18x'],
+                zIndex: 3000,
+              }}>
               <Text style={styles.label}>Location</Text>
 
-              <TouchableOpacity
-                style={styles.input}
-                onPress={() => setShowDropdown(prev => !prev)}>
-                <Text style={{color: location ? color.F_Black : '#A9A9A9'}}>
-                  {location || 'Where is your plant located?'}
-                </Text>
-                <Image
-                  source={require('../pic/down.png')}
-                  style={{
-                    width: rfSpacing['25x'],
-                    height: rfSpacing['25x'],
-                    position: 'absolute',
-                    right: 10,
-                    top: '20%',
-                    tintColor: color.F_InputContainer,
-                  }}
+              <View style={{zIndex: 3000, elevation: 10}}>
+                <DropDownPicker
+                  placeholder="Where is your plant located?"
+                  open={openLocation}
+                  value={location}
+                  items={itemsLocation}
+                  setOpen={setOpenLocation}
+                  setValue={setLocation}
+                  setItems={setItemsLocation}
+                  style={styles.input}
+                  dropDownContainerStyle={[
+                    styles.dropdownContainer,
+                    {maxHeight: rfSpacing['120x']},
+                  ]}
+                  zIndex={3000}
+                  listMode="SCROLLVIEW"
+                  scrollViewProps={{nestedScrollEnabled: true}}
                 />
-              </TouchableOpacity>
-
-              {showDropdown && (
-                <Modal transparent animationType="fade">
-                  <Pressable
-                    style={styles.modalOverlay}
-                    onPress={() => setShowDropdown(false)}>
-                    <View
-                      style={[
-                        styles.dropdownContainer,
-                        {top: '59.5%', left: '41.5%'},
-                      ]}>
-                      <FlatList
-                        data={locations}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({item}) => (
-                          <TouchableOpacity
-                            style={styles.dropdownItem}
-                            onPress={() => {
-                              setLocation(item);
-                              setShowDropdown(false);
-                            }}>
-                            <Text style={{color: color.F_Black}}>{item}</Text>
-                          </TouchableOpacity>
-                        )}
-                        style={{maxHeight: 200}}
-                        nestedScrollEnabled={true}
-                      />
-                    </View>
-                  </Pressable>
-                </Modal>
-              )}
+              </View>
             </View>
             <View
               style={{
-                marginTop: '15%',
+                marginTop: rfSpacing['40x'],
               }}>
               <Text
                 style={{
@@ -259,7 +227,7 @@ const AddPlant = () => {
                     borderRadius: rfSpacing['10x'],
                     padding: rfSpacing['10x'],
                     backgroundColor: color.F_White,
-                    maxHeight: '500%',
+                    maxHeight: rfSpacing['500x'],
                     textAlignVertical: 'top',
                     color: color.F_Black,
                   }}
@@ -290,11 +258,11 @@ const styles = StyleSheet.create({
   },
   scrollViewCont: {
     flexGrow: 1,
-    paddingBottom: '15%',
+    paddingBottom: rfSpacing['50x'],
   },
   logoCont: {
     flexDirection: 'row',
-    top: '2%',
+    top: rfSpacing['5x'],
   },
   arrow: {
     width: rfSpacing['30x'],
@@ -309,8 +277,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Alkalami-Regular',
     fontSize: rfSpacing['24x'],
     color: 'black',
-    bottom: '1.4%',
-    left: '2.3%',
+    bottom: rfSpacing['5x'],
+    left: rfSpacing['10x'],
     fontWeight: '400',
   },
   headingtext: {
@@ -339,7 +307,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   label: {
-    fontSize: rfSpacing['13x'],
+    fontSize: rfSpacing['15x'],
     color: color.F_Black,
     fontFamily: 'Adamina-Regular',
     fontWeight: '400',
@@ -360,7 +328,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: rfSpacing['8x'],
     backgroundColor: color.F_White,
-    maxHeight: rfSpacing['150x'],
+    maxHeight: rfSpacing['50x'],
     maxWidth: 180,
   },
   dropdownItem: {
@@ -380,7 +348,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: rfSpacing['12x'],
-    top: '5%',
+    top: rfSpacing['15x'],
   },
   modalOverlay: {
     flex: 1,
