@@ -1,0 +1,76 @@
+mkdir -p .github/workflows
+cat > .github/workflows/android-debug.yml <<'YAML'
+name: Build and Upload Debug APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build Debug APK
+        run: |
+          cd android
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload to Appetize.io
+        run: |
+          curl -s -X POST "https://api.appetize.io/v1/apps" \
+            -H "X-API-KEY: ${{ secrets.APPETIZE_API_TOKEN }}" \
+            -F "file=@android/app/build/outputs/apk/debug/app-debug.apk" \
+            -F "platform=android" \
+            -F "note=Debug build from GitHub Actions" \
+            -o appetize_response.json
+          echo "Saved Appetize response to appetize_response.json"
+
+      - name: Add Appetize URL to workflow summary
+        run: |
+          # try to build a short link from the response and add full JSON to the run summary
+          URL=$(python3 - <<'PY'
+import json,sys
+try:
+    r=json.load(open('appetize_response.json'))
+except Exception:
+    print('')
+    sys.exit(0)
+pk = r.get('publicKey') or r.get('public_key') or (r.get('data') or {}).get('publicKey') or (r.get('data') or {}).get('public_key') or r.get('id') or r.get('url') or ''
+if pk:
+    if str(pk).startswith('http'):
+        print(pk)
+    else:
+        print('https://appetize.io/app/{}'.format(pk))
+else:
+    print('')
+PY
+)
+          echo "Appetize test URL: $URL" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Appetize full response (JSON):" >> $GITHUB_STEP_SUMMARY
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat appetize_response.json >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+YAML
