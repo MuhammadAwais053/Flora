@@ -14,8 +14,8 @@ import color from '../../src/Theme/color';
 const Home = () => {
   const navigation = useNavigation();
   return (
-    <ScrollView>
-      <View style={{alignSelf: 'flex-start', left: rfSpacing['22x']}}>
+    <ScrollView contentContainerStyle={{paddingBottom: rfSpacing['120x']}}>
+      <View style={styles.headerContainer}>
         <Text style={styles.text}>Let's make things bloom!</Text>
       </View>
       <View style={styles.container}>
@@ -44,155 +44,60 @@ const Home = () => {
             </View>
           </View>
           <View style={styles.cont}>
-            <View
-              style={{
-                flexDirection: 'row',
-                gap: rfSpacing['15x'],
-                top: rfSpacing['10x'],
-                paddingHorizontal: rfSpacing['10x'],
-                justifyContent: 'center',
-                left: rfSpacing['5x'],
-                alignItems: 'center',
-              }}>
+            <View style={styles.careContainer}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('Care');
                 }}>
-                <Text
-                  style={{
-                    fontFamily: 'AbhayaLibre-ExtraBold',
-                    fontSize: rfSpacing['24x'],
-                    fontWeight: '700',
-                    color: color.F_Black,
-                    top: rfSpacing['12x'],
-                  }}>
-                  Get Care Recommendation
-                </Text>
+                <Text style={styles.careText}>Get Care</Text>
+                <Text style={styles.careText}>Recommendation</Text>
               </TouchableOpacity>
               <Image
-                style={{width: rfSpacing['90x'], height: rfSpacing['90x']}}
+                style={styles.careIcon}
                 source={require('../pic/care.png')}
               />
             </View>
           </View>
           <View style={styles.cont}>
-            <View
-              style={{
-                flexDirection: 'row',
-                top: rfSpacing['10x'],
-                paddingHorizontal: rfSpacing['20x'],
-                justifyContent: 'center',
-                left: rfSpacing['15x'],
-                alignItems: 'center',
-              }}>
+            <View style={styles.monitorContainer}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('Monitor');
                 }}
-                style={{top: rfSpacing['5x'], left: rfSpacing['5x']}}>
-                <Text
-                  style={{
-                    fontFamily: 'AbhayaLibre-ExtraBold',
-                    fontSize: rfSpacing['24x'],
-                    fontWeight: '700',
-                    color: color.F_Black,
-                    top: rfSpacing['5x'],
-                    lineHeight: rfSpacing['65x'],
-                  }}>
-                  Monitor Plant Heath
-                </Text>
+                style={styles.monitorTouchable}>
+                <Text style={styles.monitorText}>Monitor Plant Heath</Text>
               </TouchableOpacity>
-
               <Image
-                style={{width: rfSpacing['90x'], height: rfSpacing['90x']}}
+                style={styles.monitorIcon}
                 source={require('../pic/c2.png')}
               />
             </View>
           </View>
         </View>
-        <View
-          style={{
-            alignSelf: 'flex-start',
-            left: rfSpacing['20x'],
-            top: rfSpacing['19x'],
-          }}>
-          <Text
-            style={{
-              fontFamily: 'Alkalami-Regular',
-              fontWeight: '400',
-              fontSize: rfSpacing['24x'],
-              color: color.F_Black,
-            }}>
-            Care Tools:
-          </Text>
+        <View style={styles.toolsHeaderContainer}>
+          <Text style={styles.toolsHeaderText}>Care Tools:</Text>
         </View>
-
-        <View
-          style={{
-            flexDirection: 'row',
-            gap: rfSpacing['8x'],
-            top: rfSpacing['10x'],
-          }}>
+        <View style={styles.toolsContainer}>
           <View style={styles.cont2}>
             <Image
-              style={{
-                width: rfSpacing['55x'],
-                height: rfSpacing['55x'],
-                tintColor: '#628A73',
-                top: rfSpacing['8x'],
-              }}
+              style={[styles.toolIcon, styles.clockIcon]}
               source={require('../pic/clock.png')}
             />
-            <Text
-              style={{
-                fontFamily: 'Adamina-Regular',
-                fontSize: rfSpacing['15x'],
-                fontWeight: '600',
-                color: color.F_Black,
-                top: rfSpacing['10x'],
-              }}>
-              Reminders
-            </Text>
+            <Text style={styles.toolText}>Reminders</Text>
           </View>
           <View style={styles.cont2}>
             <Image
-              style={{
-                width: rfSpacing['55x'],
-                height: rfSpacing['55x'],
-                top: rfSpacing['8x'],
-              }}
+              style={styles.toolIcon}
               source={require('../pic/Meter.png')}
             />
-            <Text
-              style={{
-                fontFamily: 'Adamina-Regular',
-                fontSize: rfSpacing['15x'],
-                fontWeight: '600',
-                color: color.F_Black,
-                top: rfSpacing['10x'],
-              }}>
-              Lightmeter
-            </Text>
+            <Text style={styles.toolText}>Lightmeter</Text>
           </View>
           <View style={styles.cont2}>
             <Image
-              style={{
-                width: rfSpacing['52x'],
-                height: rfSpacing['52x'],
-                top: rfSpacing['8x'],
-              }}
+              style={[styles.toolIcon, styles.calculatorIcon]}
               source={require('../pic/watering-plants.png')}
             />
-            <Text
-              style={{
-                fontFamily: 'Adamina-Regular',
-                fontSize: rfSpacing['15x'],
-                fontWeight: '600',
-                color: color.F_Black,
-                top: rfSpacing['10x'],
-              }}>
-              Calculator
-            </Text>
+            <Text style={styles.toolText}>Calculator</Text>
           </View>
         </View>
       </View>
@@ -206,24 +111,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    paddingHorizontal: rfSpacing['16x'],
+  },
+  headerContainer: {
+    alignSelf: 'flex-start',
+    paddingLeft: rfSpacing['22x'],
+    marginTop: rfSpacing['14x'],
   },
   cont: {
     backgroundColor: color.F_Main,
-    width: rfSpacing['307x'],
-    height: rfSpacing['143x'],
+    width: '100%',
+    maxWidth: rfSpacing['350x'],
+    minHeight: rfSpacing['143x'],
     borderRadius: rfSpacing['12x'],
-    top: rfSpacing['30x'],
+    marginTop: rfSpacing['10x'],
     alignItems: 'center',
     alignSelf: 'center',
-    gap: rfSpacing['11x'],
+    paddingHorizontal: rfSpacing['14x'],
   },
   cont2: {
     backgroundColor: color.F_Main,
-    width: rfSpacing['97x'],
+    flex: 1,
+    minWidth: rfSpacing['90x'],
     height: rfSpacing['106x'],
     borderRadius: rfSpacing['12x'],
-    alignSelf: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: rfSpacing['2x'],
   },
   camIcon: {
     width: rfSpacing['65x'],
@@ -234,48 +148,121 @@ const styles = StyleSheet.create({
     fontSize: rfSpacing['20x'],
     fontWeight: '600',
     color: color.F_MainText,
-    top: rfSpacing['22x'],
     textAlign: 'left',
   },
   topcontainer: {
-    flexDirection: 'column',
-    gap: rfSpacing['8x'],
+    width: '100%',
+    alignItems: 'center',
   },
   container1Top: {
     flexDirection: 'row',
-    alignContent: 'space-between',
-    gap: rfSpacing['15x'],
-    top: rfSpacing['20x'],
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    paddingTop: rfSpacing['10x'],
   },
   cont1Text: {
     fontFamily: 'AbhayaLibre-ExtraBold',
     fontSize: rfSpacing['24x'],
     fontWeight: '700',
     color: color.F_Black,
-    top: rfSpacing['8x'],
   },
   AddPlantContainer: {
     backgroundColor: color.F_White,
-    width: rfSpacing['264x'],
+    width: '90%',
     height: rfSpacing['40x'],
-    alignContent: 'center',
+    justifyContent: 'center',
     borderRadius: rfSpacing['12x'],
-    top: rfSpacing['15x'],
+    marginTop: rfSpacing['10x'],
   },
   AddContainerWithText: {
     flexDirection: 'row',
     alignSelf: 'center',
-    top: rfSpacing['5x'],
+    alignItems: 'center',
   },
   addIcon: {
-    width: 22,
-    height: 22,
-    top: rfSpacing['2x'],
+    width: rfSpacing['22x'],
+    height: rfSpacing['22x'],
+    marginRight: rfSpacing['8x'],
   },
   addPlantText: {
     fontFamily: 'AbhayaLibre-ExtraBold',
     fontSize: rfSpacing['24x'],
     color: color.F_Black,
     fontWeight: '500',
+  },
+  careContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingTop: rfSpacing['16x'],
+  },
+  careText: {
+    fontFamily: 'AbhayaLibre-ExtraBold',
+    fontSize: rfSpacing['24x'],
+    fontWeight: '700',
+    color: color.F_Black,
+  },
+  careIcon: {
+    width: rfSpacing['90x'],
+    height: rfSpacing['90x'],
+  },
+  monitorContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingTop: rfSpacing['16x'],
+  },
+  monitorTouchable: {
+    flex: 1,
+  },
+  monitorText: {
+    fontFamily: 'AbhayaLibre-ExtraBold',
+    fontSize: rfSpacing['24x'],
+    fontWeight: '700',
+    color: color.F_Black,
+  },
+  monitorIcon: {
+    width: rfSpacing['90x'],
+    height: rfSpacing['90x'],
+  },
+  toolsHeaderContainer: {
+    alignSelf: 'flex-start',
+    marginTop: rfSpacing['0.7x'],
+    paddingLeft: rfSpacing['4x'],
+  },
+  toolsHeaderText: {
+    fontFamily: 'Alkalami-Regular',
+    fontWeight: '400',
+    fontSize: rfSpacing['24x'],
+    color: color.F_Black,
+  },
+  toolsContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: rfSpacing['6x'],
+    paddingHorizontal: rfSpacing['2x'],
+    justifyContent: 'space-between',
+  },
+  toolIcon: {
+    width: rfSpacing['55x'],
+    height: rfSpacing['55x'],
+    marginBottom: rfSpacing['8x'],
+  },
+  clockIcon: {
+    tintColor: '#628A73',
+  },
+  calculatorIcon: {
+    width: rfSpacing['52x'],
+    height: rfSpacing['52x'],
+  },
+  toolText: {
+    fontFamily: 'Adamina-Regular',
+    fontSize: rfSpacing['15x'],
+    fontWeight: '700',
+    color: color.F_Black,
+    textAlign: 'center',
   },
 });

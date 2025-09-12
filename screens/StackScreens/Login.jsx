@@ -119,7 +119,7 @@ const Login = () => {
             alignItems: 'center',
           }}>
           <LottieView
-            source={require('../assets/egJFdLXsf7.json')}
+            source={require('../assets/Svgs/egJFdLXsf7.json')}
             autoPlay
             loop={false}
             style={{width: 200, height: 200}}

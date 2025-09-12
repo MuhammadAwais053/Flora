@@ -27,10 +27,6 @@ const Screen3 = () => {
         }}>
         <Text style={styles.buttonText}>Signup</Text>
       </Pressable>
-      <Text
-        style={{color: '#919191', fontFamily: 'Adamina-Regular', fontSize: 12}}>
-        By clicking you agree to terms and conditions
-      </Text>
     </View>
   );
 };
@@ -49,7 +45,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: rfSpacing['17x'],
     color: color.F_Black,
-    marginTop: '1%',
+    marginTop: rfSpacing['2x'],
     padding: rfSpacing['20x'],
     verticalAlign: 'middle',
   },
@@ -76,7 +72,7 @@ const styles = StyleSheet.create({
     marginTop: '50%',
   },
   image: {
-    width: rfSpacing['400x'],
+    width: rfSpacing['420x'],
     height: rfSpacing['330x'],
   },
 });

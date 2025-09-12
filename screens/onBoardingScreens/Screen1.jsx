@@ -10,7 +10,19 @@ const Screen1 = () => {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require('../pic/logo.png')} />
-      <Text style={styles.text}>Flora - Your Digital Garden Guardian</Text>
+      <Text style={styles.text}>Flora - Your Digital Garden</Text>
+      <Text
+        style={{
+          fontFamily: 'Allura-Regular',
+          fontSize: rfSpacing['26x'],
+          fontWeight: '500',
+          letterSpacing: rfSpacing['2x'],
+          color: color.F_White,
+          textAlign: 'center',
+          verticalAlign: 'middle',
+        }}>
+        Guardian
+      </Text>
 
       <Pressable
         style={styles.arrowBtn}
@@ -41,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     letterSpacing: rfSpacing['2x'],
     color: color.F_White,
-    marginTop: '1%',
+    marginTop: rfSpacing['2x'],
     textAlign: 'center',
     verticalAlign: 'middle',
   },

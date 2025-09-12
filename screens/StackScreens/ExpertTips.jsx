@@ -72,8 +72,8 @@ const ExpertTips = () => {
   return (
     <View style={styles.mainCont}>
       <View style={styles.TopCont}>
-        <View style={{flexDirection: 'row', top: '2%'}}>
-          <Pressable onPress={() => navigation.navigate('Care')}>
+        <View style={{flexDirection: 'row', top: rfSpacing['6x']}}>
+          <Pressable onPress={() => navigation.goBack()}>
             <Image
               style={styles.BackArrow}
               source={require('../pic/Pre.png')}
@@ -108,49 +108,48 @@ export default ExpertTips;
 
 const styles = StyleSheet.create({
   mainCont: {
-    backgroundColor: '#E1EBC7',
+    backgroundColor: color.F_Main,
     flex: 1,
   },
   TopCont: {
     flexDirection: 'column',
-    width: 400,
-    height: 120,
-    backgroundColor: '#628A73',
+    height: rfSpacing['120x'],
+    backgroundColor: color.F_OnBoard,
   },
   BackArrow: {
     width: rfSpacing['30x'],
     height: rfSpacing['30x'],
-    tintColor: 'white',
+    tintColor: color.F_White,
   },
   logo: {
     width: rfSpacing['33x'],
     height: rfSpacing['33x'],
-    tintColor: 'white',
+    tintColor: color.F_White,
   },
   logoText: {
     fontFamily: 'Alkalami-Regular',
     fontSize: rfSpacing['24x'],
-    color: 'white',
-    bottom: '1.4%',
-    left: '2.3%',
+    color: color.F_White,
+    bottom: rfSpacing['4x'],
+    left: rfSpacing['4x'],
     fontWeight: '400',
   },
   listContainer: {
-    padding: '2%',
-    paddingTop: '2%',
+    padding: rfSpacing['6x'],
+    paddingTop: rfSpacing['6x'],
   },
   card: {
-    backgroundColor: '#FFF',
+    backgroundColor: color.F_White,
     borderRadius: rfSpacing['20x'],
-    marginBottom: '2%',
+    marginBottom: rfSpacing['6x'],
     padding: rfSpacing['12x'],
-    borderColor: '#628A73',
-    borderWidth: 1,
+    borderColor: color.F_OnBoard,
+    borderWidth: rfSpacing['1x'],
   },
   cardRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: rfSpacing['7x'],
+    marginBottom: rfSpacing['6x'],
   },
   cardIcon: {
     fontSize: rfSpacing['22x'],

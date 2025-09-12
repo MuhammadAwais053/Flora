@@ -9,7 +9,11 @@ const Profile = () => {
   return (
     <View style={styles.cont}>
       <View style={styles.topcont}>
-        <View style={{flexDirection: 'row', top: rfSpacing['9x']}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            top: rfSpacing['9x'],
+          }}>
           <Pressable
             onPress={() => navigation.navigate('Main', {screen: 'Home'})}>
             <Image
@@ -47,6 +51,7 @@ const Profile = () => {
           }}>
           <Text style={styles.Gardentext}>Muhammad Awais</Text>
         </View>
+        <View style={styles.centered}></View>
       </View>
     </View>
   );
@@ -63,6 +68,31 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: rfSpacing['120x'],
     backgroundColor: color.F_OnBoard,
+    justifyContent: 'flex-start',
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconBack: {
+    width: rfSpacing['30x'],
+    height: rfSpacing['30x'],
+    tintColor: color.F_White,
+  },
+  iconLogo: {
+    width: rfSpacing['33x'],
+    height: rfSpacing['33x'],
+    tintColor: color.F_White,
+  },
+  logoText: {
+    fontFamily: 'Alkalami-Regular',
+    fontSize: rfSpacing['24x'],
+    color: color.F_White,
+    fontWeight: '400',
+    marginLeft: rfSpacing['6x'],
+  },
+  centered: {
+    alignItems: 'center',
   },
   Gardentext: {
     fontFamily: 'AbrilFatface-Regular',

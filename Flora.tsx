@@ -22,6 +22,8 @@ import ExpertTips from './screens/StackScreens/ExpertTips';
 import ForgotPasswordScreen from './screens/StackScreens/ForgotPassword';
 import MonitorHealth from './screens/StackScreens/MonitorHealth';
 import { PlantProvider } from './screens/PlantContext';
+import rfSpacing from './src/Theme/rfSpacing';
+import color from './src/Theme/color';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,23 +33,23 @@ const TabNaviagtor = () => {
         <Tab.Navigator
             initialRouteName="Home"
             screenOptions={{
-                tabBarActiveTintColor: '#628A73',
-                tabBarInactiveTintColor: '#94A3B8',
+                tabBarActiveTintColor: color.F_OnBoard,
+                tabBarInactiveTintColor: color.F_InActive,
                 tabBarStyle: {
                     position: 'absolute',
-                    left: '4%',
-                    margin: '2%',
-                    height: '9.3%',
-                    width: '87%',
-                    borderRadius: 19,
-                    bottom: '3%',
-                    backgroundColor: '#FFFFFF',
+                    left: rfSpacing['10x'],
+                    right: rfSpacing['9x'],
+                    margin: rfSpacing['12x'],
+                    height: rfSpacing['70x'],
+                    borderRadius: rfSpacing['18x'],
+                    bottom: rfSpacing['20x'],
+                    backgroundColor: color.F_White,
                 },
                 tabBarLabelStyle: {
                     fontFamily: 'Adamina-Regular',
-                    fontSize: 13,
+                    fontSize: rfSpacing['14x'],
                     textAlign: 'center',
-                    marginBottom: '4.8%',
+                    paddingBottom: rfSpacing['10x']
                 },
 
                 headerShown: false,
@@ -59,7 +61,7 @@ const TabNaviagtor = () => {
                     tabBarIcon: ({ color }) => (
                         <Image
                             source={require('./screens/pic/home.png')}
-                            style={{ width: 22, height: 22, tintColor: color }}
+                            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
                         />
                     ),
                 }}
@@ -71,7 +73,7 @@ const TabNaviagtor = () => {
                     tabBarIcon: ({ color }) => (
                         <Image
                             source={require('./screens/pic/park.png')}
-                            style={{ width: 22, height: 22, tintColor: color }}
+                            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
                         />
                     ),
                 }}
@@ -83,7 +85,7 @@ const TabNaviagtor = () => {
                     tabBarIcon: ({ color }) => (
                         <Image
                             source={require('./screens/pic/user.png')}
-                            style={{ width: 22, height: 22, tintColor: color }}
+                            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
                         />
                     ),
                 }}

@@ -10,6 +10,7 @@ export default{
     F_Divider:'#ACA6A6',
     F_ActiveTab:'#F2F6EF',
     F_StepCard:'#3094EF',
-    F_StepDescription:'#5b5b5b'
+    F_StepDescription:'#5b5b5b',
+    F_InActive:'#94A3B8',
 
 }

@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
   loginBtn: {
     flexDirection: 'row',
     backgroundColor: color.F_OnBoard,
-    marginVertical: rfSpacing['12x'],
+    marginVertical: rfSpacing['18x'],
     paddingVertical: rfSpacing['14x'],
     borderRadius: rfSpacing['12x'],
     justifyContent: 'center',
@@ -232,6 +232,6 @@ const styles = StyleSheet.create({
   loginText: {
     color: color.F_White,
     fontSize: rfSpacing['16x'],
-    fontWeight: '600',
+    fontWeight: 'bold',
   },
 });

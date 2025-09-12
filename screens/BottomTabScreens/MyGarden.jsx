@@ -13,30 +13,50 @@ import color from '../../src/Theme/color';
 import {useNavigation} from '@react-navigation/native';
 import {PlantContext} from '../PlantContext';
 
-const renderItem = ({item}) => (
-  <View style={styles.card}>
-    <Image
-      source={
-        item.imageUri ? {uri: item.imageUri} : require('../pic/image.png')
-      }
-      style={styles.plantImage}
-      resizeMode="cover"
-    />
-    <View style={styles.details}>
-      <Text style={styles.plantName}>{item.plantName}</Text>
-      <Text style={styles.plantType}>{item.nickname || 'Flowering plant'}</Text>
-      <View style={styles.divider} />
-      <Pressable style={styles.reminderRow}>
-        <Image source={require('../pic/bell.png')} style={styles.bellIcon} />
-        <Text style={styles.reminderText}>Add Reminder</Text>
-      </Pressable>
-    </View>
-  </View>
-);
-
 const MyGarden = () => {
   const navigation = useNavigation();
   const {plants} = useContext(PlantContext);
+
+  const renderItem = ({item, index}) => (
+    <View style={styles.card}>
+      <Image
+        source={
+          item.imageUri ? {uri: item.imageUri} : require('../pic/image.png')
+        }
+        style={styles.plantImage}
+        resizeMode="cover"
+      />
+      <View style={styles.details}>
+        <Text style={styles.plantName}>{item.plantName}</Text>
+        <Text style={styles.plantType}>
+          {item.nickname || 'Flowering plant'}
+        </Text>
+        <View style={styles.divider} />
+        <Pressable style={styles.reminderRow}>
+          <Image source={require('../pic/bell.png')} style={styles.bellIcon} />
+          <Text style={styles.reminderText}>Add Reminder</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            navigation.navigate('Care Schedule', {
+              selectedPlant: item,
+              plantIndex: index,
+            });
+          }}
+          style={styles.reminderRow}>
+          <Image
+            source={require('../pic/calendar.png')}
+            style={{
+              width: rfSpacing['22x'],
+              height: rfSpacing['22x'],
+              marginRight: rfSpacing['8x'],
+            }}
+          />
+          <Text style={styles.reminderText}>Schedule Care</Text>
+        </Pressable>
+      </View>
+    </View>
+  );
 
   return (
     <View style={styles.cont}>
@@ -195,7 +215,7 @@ const styles = StyleSheet.create({
   bellIcon: {
     width: rfSpacing['22x'],
     height: rfSpacing['22x'],
-    tintColor: color.F_InputContainer,
+    tintColor: '#F7DC6F',
     marginRight: rfSpacing['8x'],
   },
   reminderText: {

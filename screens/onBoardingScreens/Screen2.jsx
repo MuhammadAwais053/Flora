@@ -10,23 +10,19 @@ const Screen2 = () => {
     <View style={styles.container}>
       <View>
         <Image
-          style={{width: rfSpacing['400x'], height: rfSpacing['330x']}}
+          style={{width: rfSpacing['420x'], height: rfSpacing['330x']}}
           source={require('../pic/On1.png')}
         />
       </View>
-      <Text style={styles.text1}>
-        Discover the Perfect Plants for Your Space Tailored to your home's
-        light, climate, and vibe
-      </Text>
+      <Text style={styles.text1}>Discover the Perfect Plants for Your</Text>
+      <Text style={styles.text1}>Space Tailored to your home's light</Text>
       <Text style={styles.text2}>Your Perfect Plant Match</Text>
       <Image
         style={{marginTop: rfSpacing['15x']}}
         source={require('../pic/bar.png')}
       />
 
-      <Pressable
-        style={styles.backArrow}
-        onPress={() => navigation.navigate('Onboarding1')}>
+      <Pressable style={styles.backArrow} onPress={() => navigation.goBack()}>
         <Image source={require('../pic/Pre.png')} style={styles.arrowIcon} />
       </Pressable>
 
@@ -49,13 +45,13 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontFamily: 'Alata-Regular',
+    top: rfSpacing['20x'],
     fontWeight: '400',
     textAlign: 'center',
     verticalAlign: 'middle',
     fontSize: rfSpacing['17x'],
     color: color.F_Black,
-    marginTop: rfSpacing['2x'],
-    padding: rfSpacing['20x'],
+    padding: rfSpacing['1x'],
     verticalAlign: 'middle',
   },
   text2: {
@@ -65,6 +61,7 @@ const styles = StyleSheet.create({
     fontSize: rfSpacing['24x'],
     textAlign: 'center',
     verticalAlign: 'middle',
+    marginTop: rfSpacing['30x'],
   },
   backArrow: {
     position: 'absolute',
