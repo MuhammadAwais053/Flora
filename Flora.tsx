@@ -27,6 +27,7 @@ import rfSpacing from './src/Theme/rfSpacing';
 import color from './src/Theme/color';
 import Q3Screen from './screens/StackScreens/Q3Screen';
 import Q4Screen from './screens/StackScreens/Q4Screen';
+import Q5Screen from './screens/StackScreens/Q5Screen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -119,6 +120,7 @@ export default function Flora() {
                     <Stack.Screen name='Q2' component={Q2Screen} />
                     <Stack.Screen name='Q3' component={Q3Screen} />
                     <Stack.Screen name='Q4' component={Q4Screen} />
+                    <Stack.Screen name='Q5' component={Q5Screen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </PlantProvider>

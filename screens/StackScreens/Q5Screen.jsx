@@ -5,69 +5,68 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
 
-const Q4 = () => {
+const Q5 = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {selectedSymptom, selectedFrequency, selectedLocation} =
     route.params || {};
 
-  const handleOptionPress = option => {
-    setSelectedOption(option);
+  const handleSubmit = () => {
+    Alert.alert(
+      'Confirm Submission',
+      'Are you sure you want to submit your plant diagnosis request? Please review your responses below.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Submit',
+          onPress: () => processSubmission(),
+        },
+      ],
+    );
   };
 
-  const handleNext = () => {
-    if (selectedOption) {
-      navigation.navigate('Q5', {
-        selectedSymptom,
-        selectedFrequency,
-        selectedLocation,
-        selectedSeverity: selectedOption,
-      });
-    }
+  const processSubmission = async () => {
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      Alert.alert(
+        'Success!',
+        'Your plant diagnosis has been submitted successfully. Our experts will analyze your plant and provide recommendations.',
+        [
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('Care'),
+          },
+        ],
+      );
+    }, 2000);
   };
 
-  const severityOptions = [
-    {
-      id: 1,
-      name: 'Mild',
-      description: '(just a few spots or changes)',
-    },
-    {
-      id: 2,
-      name: 'Moderate',
-      description: '(spreading to several areas)',
-    },
-    {
-      id: 3,
-      name: 'Severe',
-      description: '(large areas damaged, plant weakening)',
-    },
-    {
-      id: 4,
-      name: 'Very severe',
-      description: '(plant close to dying)',
-    },
-  ];
-
-  const renderCard = option => (
-    <Pressable
-      key={option.id}
-      onPress={() => handleOptionPress(option)}
-      style={({pressed}) => [
-        styles.card,
-        selectedOption?.id === option.id && styles.selectedCard,
-        pressed && styles.pressedCard,
-      ]}>
-      <Text style={styles.cardtext}>{option.name}</Text>
-      <Text style={styles.cardtext}>{option.description}</Text>
-    </Pressable>
+  const renderSummaryCard = (title, selectedItem) => (
+    <View style={styles.summaryCard}>
+      <Text style={styles.summaryTitle}>{title}</Text>
+      <Text style={styles.summaryValue}>
+        {selectedItem?.name || 'Not selected'}
+      </Text>
+      {selectedItem?.description && (
+        <Text style={styles.summaryDescription}>
+          {selectedItem.description}
+        </Text>
+      )}
+    </View>
   );
 
   return (
@@ -94,40 +93,50 @@ const Q4 = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
         <View style={styles.QCon}>
-          <Text style={styles.Qtext}>Question 4 of 5</Text>
-          <Text style={styles.Q}>How severe are the symptoms right now?</Text>
-          <View style={styles.cardsContainer}>
-            <View style={styles.cardRow}>
-              {renderCard(severityOptions[0])}
-              {renderCard(severityOptions[1])}
-            </View>
-            <View style={styles.cardRow}>
-              {renderCard(severityOptions[2])}
-              {renderCard(severityOptions[3])}
-            </View>
+          <Text style={styles.Qtext}>Question 5 of 5</Text>
+          <Text style={styles.Q}>Review Your Responses</Text>
+          <Text style={styles.reviewText}>
+            Please review the information below before submitting:
+          </Text>
+
+          <View style={styles.summaryContainer}>
+            {renderSummaryCard('Symptom Type', selectedSymptom)}
+            {renderSummaryCard('Frequency', selectedFrequency)}
+            {renderSummaryCard('Plant Location', selectedLocation)}
+            {renderSummaryCard(
+              'Severity Level',
+              route.params?.selectedSeverity,
+            )}
+          </View>
+
+          <View style={styles.noteContainer}>
+            <Text style={styles.noteTitle}>What happens next?</Text>
+            <Text style={styles.noteText}>
+              • Our plant experts will analyze your responses{'\n'}• You'll
+              receive a detailed diagnosis report{'\n'}• Treatment
+              recommendations will be provided{'\n'}• Follow-up care
+              instructions included
+            </Text>
           </View>
         </View>
+
         <View style={styles.bottomContainer}>
           <Pressable
             style={styles.previousButton}
-            onPress={() => {
-              navigation.goBack();
-            }}>
+            onPress={() => navigation.goBack()}>
             <Text style={styles.nextButtonText}>Previous</Text>
           </Pressable>
+
           <Pressable
-            style={[
-              styles.nextButton,
-              !selectedOption && styles.disabledButton,
-            ]}
-            onPress={handleNext}
-            disabled={!selectedOption}>
+            style={[styles.nextButton, isSubmitting && styles.disabledButton]}
+            onPress={handleSubmit}
+            disabled={isSubmitting}>
             <Text
               style={[
                 styles.nextButtonText,
-                !selectedOption && styles.disabledButtonText,
+                isSubmitting && styles.disabledButtonText,
               ]}>
-              Next
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </Text>
           </Pressable>
         </View>
@@ -136,7 +145,7 @@ const Q4 = () => {
   );
 };
 
-export default Q4;
+export default Q5;
 
 const styles = StyleSheet.create({
   mainCont: {
@@ -216,41 +225,65 @@ const styles = StyleSheet.create({
     fontFamily: 'Adamina-Regular',
     fontSize: 15,
     fontWeight: '400',
+    marginBottom: 15,
+  },
+  reviewText: {
+    color: color.F_Black,
+    fontFamily: 'Adamina-Regular',
+    fontSize: 14,
+    marginBottom: 20,
+    lineHeight: 20,
+  },
+  summaryContainer: {
+    gap: 15,
     marginBottom: 20,
   },
-  cardsContainer: {
-    gap: 15,
+  summaryCard: {
+    backgroundColor: '#F8F9FA',
+    borderRadius: 15,
+    padding: 15,
+    borderLeftWidth: 4,
+    borderLeftColor: '#628A73',
   },
-  cardRow: {
-    flexDirection: 'row',
-    gap: 10,
-    justifyContent: 'space-evenly',
+  summaryTitle: {
+    fontFamily: 'Adamina-Regular',
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#628A73',
+    marginBottom: 5,
   },
-  card: {
-    width: 140,
-    height: 180,
-    borderRadius: 30,
+  summaryValue: {
+    fontFamily: 'Adamina-Regular',
+    fontSize: 16,
+    fontWeight: '400',
+    color: color.F_Black,
+    marginBottom: 3,
+  },
+  summaryDescription: {
+    fontFamily: 'Adamina-Regular',
+    fontSize: 12,
+    color: '#666',
+    fontStyle: 'italic',
+  },
+  noteContainer: {
+    backgroundColor: '#E1EBC7',
+    borderRadius: 15,
+    padding: 15,
     borderWidth: 1,
     borderColor: '#628A73',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 2,
-    backgroundColor: 'white',
   },
-  selectedCard: {
-    backgroundColor: '#E1EBC7',
-    borderWidth: 2,
-    borderColor: '#628A73',
-  },
-  pressedCard: {
-    opacity: 0.7,
-    transform: [{scale: 0.98}],
-  },
-  cardtext: {
+  noteTitle: {
     fontFamily: 'Adamina-Regular',
-    color: color.F_Black,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#628A73',
+    marginBottom: 10,
+  },
+  noteText: {
+    fontFamily: 'Adamina-Regular',
     fontSize: 14,
-    textAlign: 'center',
+    color: color.F_Black,
+    lineHeight: 20,
   },
   bottomContainer: {
     paddingHorizontal: 20,
