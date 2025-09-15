@@ -1,4 +1,11 @@
-import {Image, StyleSheet, Text, View, Pressable} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';

@@ -7,81 +7,64 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
 
-const SymptomChecker = () => {
+const NextQuestion = () => {
   const navigation = useNavigation();
-  const [selectedSymptom, setSelectedSymptom] = useState(null);
+  const route = useRoute();
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleSymptomPress = symptom => {
-    setSelectedSymptom(symptom);
+  const {selectedSymptom} = route.params || {};
+
+  const handleOptionPress = option => {
+    setSelectedOption(option);
   };
 
   const handleNext = () => {
-    if (selectedSymptom) {
-      navigation.navigate('Q2', {selectedSymptom});
+    if (selectedOption) {
+      navigation.navigate('Q3', {
+        selectedSymptom,
+        selectedFrequency: selectedOption,
+      });
     }
   };
 
-  const symptoms = [
+  const frequencyOptions = [
     {
       id: 1,
-      name: 'Yellow Leaves',
-      description: '(Leaves turning Yellow)',
-      image: require('../pic/YellowEclipse.png'),
+      name: 'Just Started',
+      description: '(Within the last week)',
     },
     {
       id: 2,
-      name: 'Dark Spots',
-      description: '(Dark spot on leaves)',
-      image: require('../pic/GreenEclipse.png'),
+      name: '1-2 Weeks',
+      description: '(Noticed recently)',
     },
     {
       id: 3,
-      name: 'Wilting',
-      description: '(Dropping leaves)',
-      image: require('../pic/Wilting.png'),
+      name: '2-4 Weeks',
+      description: '(Getting worse)',
     },
     {
       id: 4,
-      name: 'Holes in leaves',
-      description: '(Chewed or damaged)',
-      image: require('../pic/C3.png'),
-    },
-    {
-      id: 5,
-      name: 'Leaf Curling',
-      description: '(Leaves curling up)',
-      image: require('../pic/leafcurl.png'),
-    },
-    {
-      id: 6,
-      name: 'Stunted Growth',
-      description: '(Not Growth well)',
-      image: require('../pic/c6.png'),
+      name: 'Over a Month',
+      description: '(Long term issue)',
     },
   ];
 
-  const renderCard = symptom => (
+  const renderCard = option => (
     <Pressable
-      key={symptom.id}
-      onPress={() => handleSymptomPress(symptom)}
+      key={option.id}
+      onPress={() => handleOptionPress(option)}
       style={({pressed}) => [
         styles.card,
-        selectedSymptom?.id === symptom.id && styles.selectedCard,
+        selectedOption?.id === option.id && styles.selectedCard,
         pressed && styles.pressedCard,
       ]}>
-      <Image
-        source={symptom.image}
-        style={{
-          width: 60,
-          height: 60,
-        }}
-      />
-      <Text style={styles.cardtext}>{symptom.name}</Text>
-      <Text style={styles.cardtext}>{symptom.description}</Text>
+      <Text style={styles.cardtext}>{option.name}</Text>
+      <Text style={styles.cardtext}>{option.description}</Text>
     </Pressable>
   );
 
@@ -109,35 +92,40 @@ const SymptomChecker = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
         <View style={styles.QCon}>
-          <Text style={styles.Qtext}>Question 1 of 5</Text>
-          <Text style={styles.Q}>What Symptoms are you seeing?</Text>
+          <Text style={styles.Qtext}>Question 2 of 5</Text>
+          <Text style={styles.Q}>
+            How long have you noticed these symptoms?
+          </Text>
           <View style={styles.cardsContainer}>
             <View style={styles.cardRow}>
-              {renderCard(symptoms[0])}
-              {renderCard(symptoms[1])}
+              {renderCard(frequencyOptions[0])}
+              {renderCard(frequencyOptions[1])}
             </View>
             <View style={styles.cardRow}>
-              {renderCard(symptoms[2])}
-              {renderCard(symptoms[3])}
-            </View>
-            <View style={styles.cardRow}>
-              {renderCard(symptoms[4])}
-              {renderCard(symptoms[5])}
+              {renderCard(frequencyOptions[2])}
+              {renderCard(frequencyOptions[3])}
             </View>
           </View>
         </View>
         <View style={styles.bottomContainer}>
           <Pressable
+            style={styles.previousButton}
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <Text style={styles.nextButtonText}>Previous</Text>
+          </Pressable>
+          <Pressable
             style={[
               styles.nextButton,
-              !selectedSymptom && styles.disabledButton,
+              !selectedOption && styles.disabledButton,
             ]}
             onPress={handleNext}
-            disabled={!selectedSymptom}>
+            disabled={!selectedOption}>
             <Text
               style={[
                 styles.nextButtonText,
-                !selectedSymptom && styles.disabledButtonText,
+                !selectedOption && styles.disabledButtonText,
               ]}>
               Next
             </Text>
@@ -148,7 +136,7 @@ const SymptomChecker = () => {
   );
 };
 
-export default SymptomChecker;
+export default NextQuestion;
 
 const styles = StyleSheet.create({
   mainCont: {
@@ -268,12 +256,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
     backgroundColor: '#E1EBC7',
+    flexDirection: 'row',
+    gap: 10,
+    justifyContent: 'space-between',
   },
   nextButton: {
     backgroundColor: '#628A73',
     paddingVertical: 15,
     borderRadius: 12,
     alignItems: 'center',
+    width: '45%',
+  },
+  previousButton: {
+    backgroundColor: '#ccc',
+    paddingVertical: 15,
+    borderRadius: 12,
+    alignItems: 'center',
+    width: '45%',
   },
   disabledButton: {
     backgroundColor: '#ccc',

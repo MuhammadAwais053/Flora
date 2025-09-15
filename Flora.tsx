@@ -21,9 +21,12 @@ import CareSchedule from './screens/StackScreens/CareSchedule';
 import ExpertTips from './screens/StackScreens/ExpertTips';
 import ForgotPasswordScreen from './screens/StackScreens/ForgotPassword';
 import MonitorHealth from './screens/StackScreens/MonitorHealth';
+import Q2Screen from './screens/StackScreens/Q2Screen';
 import { PlantProvider } from './screens/PlantContext';
 import rfSpacing from './src/Theme/rfSpacing';
 import color from './src/Theme/color';
+import Q3Screen from './screens/StackScreens/Q3Screen';
+import Q4Screen from './screens/StackScreens/Q4Screen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -113,6 +116,9 @@ export default function Flora() {
                     <Stack.Screen name='Expert Tips' component={ExpertTips} />
                     <Stack.Screen name='Forgot' component={ForgotPasswordScreen} />
                     <Stack.Screen name='Monitor' component={MonitorHealth} />
+                    <Stack.Screen name='Q2' component={Q2Screen} />
+                    <Stack.Screen name='Q3' component={Q3Screen} />
+                    <Stack.Screen name='Q4' component={Q4Screen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </PlantProvider>
