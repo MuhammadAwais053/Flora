@@ -35,7 +35,7 @@ const treatmentSteps = [
     number: 3,
     title: 'Improve Air Circulation',
     description:
-      'Maintain 12–18 inch spacing between plants for airflow; use fans or vents in enclosed spaces. Clear weeds and control humidity to prevent fungal diseases like leaf spot.',
+      'Maintain 12-18 inch spacing between plants for airflow; use fans or vents in enclosed spaces. Clear weeds and control humidity to prevent fungal diseases like leaf spot.',
   },
 ];
 
@@ -47,8 +47,7 @@ const DiseaseTabs = () => {
     <View style={styles.cont}>
       <View style={styles.topcont}>
         <View style={styles.headerRow}>
-          <Pressable
-            onPress={() => navigation.navigate('Main', {screen: 'Home'})}>
+          <Pressable onPress={() => navigation.goBack()}>
             <Image
               style={styles.BackArrow}
               source={require('../pic/Pre.png')}
@@ -243,7 +242,7 @@ const styles = StyleSheet.create({
   },
   tabsContainer: {
     marginTop: rfSpacing['17x'],
-    marginBottom: rfSpacing['8x'],
+    flex: 0,
     paddingHorizontal: rfSpacing['12x'],
   },
   tabsRow: {
@@ -253,12 +252,15 @@ const styles = StyleSheet.create({
     padding: rfSpacing['4x'],
     alignItems: 'center',
     gap: rfSpacing['8x'],
+    justifyContent: 'center',
   },
   tab: {
-    paddingVertical: rfSpacing['6x'],
-    paddingHorizontal: rfSpacing['18x'],
-    borderRadius: rfSpacing['10x'],
+    paddingVertical: rfSpacing['8x'],
+    paddingHorizontal: rfSpacing['12x'],
+    borderRadius: rfSpacing['12x'],
     backgroundColor: color.F_White,
+    flex: 1,
+    alignItems: 'center',
   },
   activeTab: {
     borderColor: color.F_OnBoard,

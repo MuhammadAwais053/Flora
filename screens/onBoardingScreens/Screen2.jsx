@@ -8,11 +8,8 @@ const Screen2 = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View>
-        <Image
-          style={{width: rfSpacing['420x'], height: rfSpacing['330x']}}
-          source={require('../pic/On1.png')}
-        />
+      <View style={{maxHeight: rfSpacing['330x'], maxWidth: 'auto'}}>
+        <Image style={styles.image} source={require('../pic/On1.png')} />
       </View>
       <Text style={styles.text1}>Discover the Perfect Plants for Your</Text>
       <Text style={styles.text1}>Space Tailored to your home's light</Text>
@@ -77,5 +74,9 @@ const styles = StyleSheet.create({
     width: rfSpacing['32x'],
     height: rfSpacing['32x'],
     tintColor: color.F_Black,
+  },
+  image: {
+    flex: 1,
+    width: rfSpacing['420x'],
   },
 });

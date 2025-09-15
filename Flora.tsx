@@ -39,7 +39,6 @@ const TabNaviagtor = () => {
                     position: 'absolute',
                     left: rfSpacing['10x'],
                     right: rfSpacing['9x'],
-                    margin: rfSpacing['12x'],
                     height: rfSpacing['70x'],
                     borderRadius: rfSpacing['18x'],
                     bottom: rfSpacing['20x'],
@@ -49,7 +48,7 @@ const TabNaviagtor = () => {
                     fontFamily: 'Adamina-Regular',
                     fontSize: rfSpacing['14x'],
                     textAlign: 'center',
-                    paddingBottom: rfSpacing['10x']
+                    paddingBottom: rfSpacing['4x']
                 },
 
                 headerShown: false,

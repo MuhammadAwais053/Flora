@@ -49,7 +49,7 @@ const Home = () => {
                 onPress={() => {
                   navigation.navigate('Care');
                 }}>
-                <Text style={styles.careText}>Get Care</Text>
+                <Text style={styles.careText}>Get Care </Text>
                 <Text style={styles.careText}>Recommendation</Text>
               </TouchableOpacity>
               <Image
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    paddingTop: rfSpacing['16x'],
+    paddingTop: rfSpacing['17x'],
   },
   careText: {
     fontFamily: 'AbhayaLibre-ExtraBold',
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    paddingTop: rfSpacing['16x'],
+    paddingTop: rfSpacing['17x'],
   },
   monitorTouchable: {
     flex: 1,
@@ -238,6 +238,8 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: rfSpacing['24x'],
     color: color.F_Black,
+    marginTop: 'auto',
+    marginBottom: 'auto',
   },
   toolsContainer: {
     flexDirection: 'row',
@@ -245,6 +247,7 @@ const styles = StyleSheet.create({
     marginTop: rfSpacing['6x'],
     paddingHorizontal: rfSpacing['2x'],
     justifyContent: 'space-between',
+    marginBottom: 'auto',
   },
   toolIcon: {
     width: rfSpacing['55x'],

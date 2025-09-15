@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   },
   TopCont: {
     flexDirection: 'column',
+    width: 'auto',
     height: rfSpacing['120x'],
     backgroundColor: color.F_OnBoard,
   },

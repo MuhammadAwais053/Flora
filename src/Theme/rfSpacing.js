@@ -10,6 +10,7 @@ export default {
   '5x': moderateScale(5),
   '6x': moderateScale(6),
   '6.5x':moderateScale(6.5),
+  '7x':moderateScale(7),
   '7.5x':moderateScale(7.5),
   '8x': moderateScale(8),
   '9x': moderateScale(9),

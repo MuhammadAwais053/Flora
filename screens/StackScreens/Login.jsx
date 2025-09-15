@@ -122,7 +122,7 @@ const Login = () => {
             source={require('../assets/Svgs/egJFdLXsf7.json')}
             autoPlay
             loop={false}
-            style={{width: 200, height: 200}}
+            style={{width: 220, height: 220}}
           />
         </View>
       )}
@@ -200,8 +200,9 @@ const styles = StyleSheet.create({
   forgotText: {
     color: color.F_OnBoard,
     textAlign: 'right',
-    marginTop: rfSpacing['12x'],
+    marginTop: rfSpacing['14x'],
     fontWeight: '500',
+    fontSize: rfSpacing['14x'],
   },
   loginBtn: {
     flexDirection: 'row',

@@ -9,7 +9,7 @@ const Screen3 = () => {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.imageCont}>
         <Image style={styles.image} source={require('../pic/On1.png')} />
       </View>
       <Text style={styles.text1}>
@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
     flex: 1,
     color: color.F_White,
     alignItems: 'center',
+  },
+  imageCont: {
+    maxHeight: rfSpacing['330x'],
+    maxWidth: 'auto',
   },
   text1: {
     fontFamily: 'Alata-Regular',
@@ -69,10 +73,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: rfSpacing['8x'],
-    marginTop: '50%',
+    marginTop: 'auto',
+    marginBottom: rfSpacing['22x'],
   },
   image: {
+    flex: 1,
     width: rfSpacing['420x'],
-    height: rfSpacing['330x'],
   },
 });
