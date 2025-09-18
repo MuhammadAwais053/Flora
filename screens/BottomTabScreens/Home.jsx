@@ -3,9 +3,9 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   StatusBar,
+  Pressable,
 } from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -39,7 +39,7 @@ const Home = () => {
               />
             </View>
             <View style={styles.AddPlantContainer}>
-              <TouchableOpacity
+              <Pressable
                 onPress={() => {
                   navigation.navigate('Add Plant');
                 }}>
@@ -50,18 +50,18 @@ const Home = () => {
                   />
                   <Text style={styles.addPlantText}>Add Plant</Text>
                 </View>
-              </TouchableOpacity>
+              </Pressable>
             </View>
           </View>
           <View style={styles.cont}>
             <View style={styles.careContainer}>
-              <TouchableOpacity
+              <Pressable
                 onPress={() => {
                   navigation.navigate('Care');
                 }}>
                 <Text style={styles.careText}>Get Care </Text>
                 <Text style={styles.careText}>Recommendation</Text>
-              </TouchableOpacity>
+              </Pressable>
               <Image
                 style={styles.careIcon}
                 source={require('../pic/care.png')}
@@ -70,13 +70,13 @@ const Home = () => {
           </View>
           <View style={styles.cont}>
             <View style={styles.monitorContainer}>
-              <TouchableOpacity
+              <Pressable
                 onPress={() => {
                   navigation.navigate('Monitor');
                 }}
                 style={styles.monitorTouchable}>
                 <Text style={styles.monitorText}>Monitor Plant Heath</Text>
-              </TouchableOpacity>
+              </Pressable>
               <Image
                 style={styles.monitorIcon}
                 source={require('../pic/c2.png')}

@@ -35,12 +35,7 @@ const AddPlant = () => {
 
   const openCamera = () => {
     launchCamera({mediaType: 'photo'}, response => {
-      if (
-        response &&
-        response.assets &&
-        response.assets.length > 0 &&
-        response.assets[0].uri
-      ) {
+      if (response.assets.length > 0 && response.assets[0].uri) {
         setImageUri(response.assets[0].uri);
       }
     });
