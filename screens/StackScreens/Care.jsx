@@ -1,4 +1,11 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
@@ -15,6 +22,11 @@ const Care = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.topContainer}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={color.F_OnBoard}
+      />
       <View style={styles.cont}>
         <View style={{flexDirection: 'row', top: rfSpacing['9x']}}>
           <Pressable onPress={() => navigation.navigate('Main')}>
@@ -131,6 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.F_Main,
     flex: 1,
     gap: rfSpacing['12x'],
+    paddingTop: StatusBar.currentHeight,
   },
   cont: {
     flexDirection: 'column',

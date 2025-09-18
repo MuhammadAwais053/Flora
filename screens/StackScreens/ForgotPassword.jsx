@@ -10,6 +10,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  StatusBar,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -46,6 +47,11 @@ const ForgotPasswordScreen = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={'transparent'}
+      />
       <KeyboardAvoidingView
         style={{flex: 1}}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -102,6 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.F_White,
     paddingHorizontal: rfSpacing['20x'],
+    paddingTop: StatusBar.currentHeight,
   },
   container: {
     justifyContent: 'center',

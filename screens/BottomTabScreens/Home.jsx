@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar,
 } from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -14,7 +15,16 @@ import color from '../../src/Theme/color';
 const Home = () => {
   const navigation = useNavigation();
   return (
-    <ScrollView contentContainerStyle={{paddingBottom: rfSpacing['120x']}}>
+    <ScrollView
+      contentContainerStyle={{
+        paddingBottom: rfSpacing['120x'],
+        paddingTop: StatusBar.currentHeight,
+      }}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={'transparent'}
+      />
       <View style={styles.headerContainer}>
         <Text style={styles.text}>Let's make things bloom!</Text>
       </View>

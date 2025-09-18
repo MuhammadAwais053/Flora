@@ -1,4 +1,12 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
@@ -9,6 +17,11 @@ const Screen3 = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={'transparent'}
+      />
       <View style={styles.imageCont}>
         <Image style={styles.image} source={require('../pic/On1.png')} />
       </View>

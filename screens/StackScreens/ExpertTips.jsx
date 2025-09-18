@@ -1,4 +1,12 @@
-import {Image, Pressable, StyleSheet, Text, View, FlatList} from 'react-native';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
@@ -71,6 +79,11 @@ const ExpertTips = () => {
 
   return (
     <View style={styles.mainCont}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={color.F_OnBoard}
+      />
       <View style={styles.TopCont}>
         <View style={{flexDirection: 'row', top: rfSpacing['6x']}}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -110,6 +123,7 @@ const styles = StyleSheet.create({
   mainCont: {
     backgroundColor: color.F_Main,
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
   },
   TopCont: {
     flexDirection: 'column',

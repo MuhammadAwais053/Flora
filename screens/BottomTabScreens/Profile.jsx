@@ -1,4 +1,11 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
@@ -8,6 +15,11 @@ const Profile = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.cont}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={color.F_OnBoard}
+      />
       <View style={styles.topcont}>
         <View
           style={{
@@ -63,6 +75,7 @@ const styles = StyleSheet.create({
   cont: {
     backgroundColor: color.F_Main,
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
   },
   topcont: {
     flexDirection: 'column',

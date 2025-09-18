@@ -2,6 +2,7 @@ import {
   Image,
   Pressable,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -72,6 +73,11 @@ const Q4 = () => {
 
   return (
     <View style={styles.mainCont}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={color.F_OnBoard}
+      />
       <View style={styles.topCont}>
         <View style={styles.logoCont}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -142,6 +148,7 @@ const styles = StyleSheet.create({
   mainCont: {
     backgroundColor: '#E1EBC7',
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
   },
   topCont: {
     flexDirection: 'column',

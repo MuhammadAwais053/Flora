@@ -15,7 +15,6 @@ import { Image } from 'react-native';
 import AddPlant from './screens/StackScreens/AddPlant';
 import PlantAdded from './screens/StackScreens/PlantAdded';
 import Care from './screens/StackScreens/Care';
-import Scanner from './screens/StackScreens/Scanner';
 import SymptomChecker from './screens/StackScreens/SymptomChecker';
 import CareSchedule from './screens/StackScreens/CareSchedule';
 import ExpertTips from './screens/StackScreens/ExpertTips';
@@ -111,7 +110,6 @@ export default function Flora() {
                     <Stack.Screen name='Add Plant' component={AddPlant} />
                     <Stack.Screen name='Plant Added' component={PlantAdded} />
                     <Stack.Screen name='Care' component={Care} />
-                    <Stack.Screen name='Scanner' component={Scanner} />
                     <Stack.Screen name='Checker' component={SymptomChecker} />
                     <Stack.Screen name='Care Schedule' component={CareSchedule} />
                     <Stack.Screen name='Expert Tips' component={ExpertTips} />

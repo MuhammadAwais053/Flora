@@ -5,6 +5,7 @@ import {
   View,
   Pressable,
   StatusBar,
+  SafeAreaView,
 } from 'react-native';
 import React from 'react';
 import rfSpacing from '../../src/Theme/rfSpacing';
@@ -14,28 +15,39 @@ import color from '../../src/Theme/color';
 const Screen2 = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <View style={{maxHeight: rfSpacing['330x'], maxWidth: 'auto'}}>
-        <Image style={styles.image} source={require('../pic/On1.png')} />
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
+        <StatusBar
+          translucent={true}
+          barStyle={'light-content'}
+          backgroundColor={'transparent'}
+        />
+
+        <View style={{maxHeight: rfSpacing['330x'], maxWidth: 'auto'}}>
+          <Image style={styles.image} source={require('../pic/On1.png')} />
+        </View>
+        <Text style={styles.text1}>Discover the Perfect Plants for Your</Text>
+        <Text style={styles.text1}>Space Tailored to your home's light</Text>
+        <Text style={styles.text2}>Your Perfect Plant Match</Text>
+        <Image
+          style={{marginTop: rfSpacing['15x']}}
+          source={require('../pic/bar.png')}
+        />
+
+        <Pressable style={styles.backArrow} onPress={() => navigation.goBack()}>
+          <Image source={require('../pic/Pre.png')} style={styles.arrowIcon} />
+        </Pressable>
+
+        <Pressable
+          style={styles.forwardArrow}
+          onPress={() => navigation.navigate('Onboarding3')}>
+          <Image
+            source={require('../pic/arrow.png')}
+            style={styles.arrowIcon}
+          />
+        </Pressable>
       </View>
-      <Text style={styles.text1}>Discover the Perfect Plants for Your</Text>
-      <Text style={styles.text1}>Space Tailored to your home's light</Text>
-      <Text style={styles.text2}>Your Perfect Plant Match</Text>
-      <Image
-        style={{marginTop: rfSpacing['15x']}}
-        source={require('../pic/bar.png')}
-      />
-
-      <Pressable style={styles.backArrow} onPress={() => navigation.goBack()}>
-        <Image source={require('../pic/Pre.png')} style={styles.arrowIcon} />
-      </Pressable>
-
-      <Pressable
-        style={styles.forwardArrow}
-        onPress={() => navigation.navigate('Onboarding3')}>
-        <Image source={require('../pic/arrow.png')} style={styles.arrowIcon} />
-      </Pressable>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -84,6 +96,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    width: rfSpacing['420x'],
+    width: rfSpacing['450x'],
   },
 });

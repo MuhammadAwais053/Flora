@@ -5,12 +5,10 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
-  FlatList,
   SafeAreaView,
   KeyboardAvoidingView,
   ScrollView,
-  Modal,
+  StatusBar,
 } from 'react-native';
 import React, {useState, useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -59,6 +57,11 @@ const AddPlant = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={'transparent'}
+      />
       <KeyboardAvoidingView style={{flex: 1}}>
         <ScrollView contentContainerStyle={styles.scrollViewCont}>
           <View style={styles.container}>
@@ -243,6 +246,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.F_Main,
     paddingHorizontal: rfSpacing['15x'],
+    paddingTop: StatusBar.currentHeight,
   },
   scrollViewCont: {
     flexGrow: 1,

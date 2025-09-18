@@ -6,6 +6,7 @@ import {
   Text,
   View,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
@@ -45,6 +46,11 @@ const DiseaseTabs = () => {
 
   return (
     <View style={styles.cont}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={color.F_OnBoard}
+      />
       <View style={styles.topcont}>
         <View style={styles.headerRow}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -192,6 +198,7 @@ const styles = StyleSheet.create({
   cont: {
     backgroundColor: color.F_Main,
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
   },
   topcont: {
     flexDirection: 'column',

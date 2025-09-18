@@ -74,4 +74,5 @@ export default {
   '330x': moderateScale(330),
   '369x': moderateScale(369),
   '420x': moderateScale(420),
+  '450x':moderateScale(450),
 };

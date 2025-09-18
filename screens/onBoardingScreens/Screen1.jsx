@@ -16,6 +16,7 @@ const Screen1 = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle={'light-content'} backgroundColor={color.F_OnBoard} />
       <Image style={styles.image} source={require('../pic/logo.png')} />
       <Text style={styles.text}>Flora - Your Digital Garden</Text>
       <Text

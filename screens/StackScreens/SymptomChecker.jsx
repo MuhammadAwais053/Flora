@@ -2,6 +2,7 @@ import {
   Image,
   Pressable,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -87,6 +88,11 @@ const SymptomChecker = () => {
 
   return (
     <View style={styles.mainCont}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={color.F_OnBoard}
+      />
       <View style={styles.topCont}>
         <View style={styles.logoCont}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -154,6 +160,7 @@ const styles = StyleSheet.create({
   mainCont: {
     backgroundColor: color.F_Main,
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
   },
   topCont: {
     flexDirection: 'column',

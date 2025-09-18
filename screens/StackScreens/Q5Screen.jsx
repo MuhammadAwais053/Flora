@@ -6,6 +6,7 @@ import {
   Text,
   View,
   Alert,
+  StatusBar,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -52,7 +53,7 @@ const Q5 = () => {
           },
         ],
       );
-    }, 2000);
+    }, 1000);
   };
 
   const renderSummaryCard = (title, selectedItem) => (
@@ -71,6 +72,11 @@ const Q5 = () => {
 
   return (
     <View style={styles.mainCont}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={color.F_OnBoard}
+      />
       <View style={styles.topCont}>
         <View style={styles.logoCont}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -151,6 +157,7 @@ const styles = StyleSheet.create({
   mainCont: {
     backgroundColor: '#E1EBC7',
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
   },
   topCont: {
     flexDirection: 'column',

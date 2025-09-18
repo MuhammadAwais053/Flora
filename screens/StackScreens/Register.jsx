@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Alert,
+  StatusBar,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -38,6 +39,12 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.wrapper}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={'transparent'}
+      />
+
       <KeyboardAvoidingView style={{flex: 1}}>
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
@@ -154,6 +161,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.F_White,
     paddingHorizontal: rfSpacing['16x'],
+    paddingTop: StatusBar.currentHeight,
   },
   scrollContainer: {
     flexGrow: 1,

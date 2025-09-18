@@ -1,5 +1,13 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {View, Text, Image, Pressable, Platform, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  Platform,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -80,6 +88,11 @@ const CareSchedule = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={color.F_OnBoard}
+      />
       <View style={styles.topContainer}>
         <View style={styles.headerRow}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -142,6 +155,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#E1EBC7',
+    paddingTop: StatusBar.currentHeight,
   },
   topContainer: {
     flexDirection: 'column',

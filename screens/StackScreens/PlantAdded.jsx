@@ -1,4 +1,11 @@
-import {View, Text, Image, Pressable, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
@@ -11,6 +18,11 @@ const PlantAdded = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        translucent={true}
+        barStyle={'dark-content'}
+        backgroundColor={'transparent'}
+      />
       <View style={{flexDirection: 'row', top: '2%'}}>
         <Image
           style={{
@@ -61,6 +73,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: rfSpacing['15x'],
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: StatusBar.currentHeight,
   },
   content: {
     alignItems: 'center',
