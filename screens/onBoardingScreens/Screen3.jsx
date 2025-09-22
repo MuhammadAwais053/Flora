@@ -19,7 +19,7 @@ const Screen3 = () => {
     <View style={styles.container}>
       <StatusBar
         translucent={true}
-        barStyle={'dark-content'}
+        barStyle={'light-content'}
         backgroundColor={'transparent'}
       />
       <View style={styles.imageCont}>
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: rfSpacing['20x'],
     fontWeight: 'bold',
-    letterSpacing: 1,
     color: color.F_White,
   },
   button: {

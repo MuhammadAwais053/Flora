@@ -12,5 +12,6 @@ export default{
     F_StepCard:'#3094EF',
     F_StepDescription:'#5b5b5b',
     F_InActive:'#94A3B8',
+    F_GradWithOnBoard:'#D9E4C3'
 
 }

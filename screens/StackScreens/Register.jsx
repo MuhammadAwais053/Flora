@@ -15,6 +15,7 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import color from '../../src/Theme/color';
 import rfSpacing from '../../src/Theme/rfSpacing';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -146,9 +147,15 @@ const Register = () => {
           </View>
         </ScrollView>
 
-        <Pressable style={styles.loginBtn} onPress={handleSignUp}>
-          <Text style={styles.loginText}>SignUp</Text>
-        </Pressable>
+        <LinearGradient
+          start={{x: 0, y: 1}}
+          end={{x: 1, y: 0}}
+          colors={[color.F_OnBoard, color.F_Main]}
+          style={styles.gradientButton}>
+          <Pressable style={styles.loginBtn} onPress={handleSignUp}>
+            <Text style={styles.loginText}>SignUp</Text>
+          </Pressable>
+        </LinearGradient>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -228,10 +235,12 @@ const styles = StyleSheet.create({
     tintColor: color.F_InputContainer,
     resizeMode: 'contain',
   },
+  gradientButton: {
+    marginVertical: rfSpacing['18x'],
+    borderRadius: rfSpacing['12x'],
+  },
   loginBtn: {
     flexDirection: 'row',
-    backgroundColor: color.F_OnBoard,
-    marginVertical: rfSpacing['18x'],
     paddingVertical: rfSpacing['14x'],
     borderRadius: rfSpacing['12x'],
     justifyContent: 'center',

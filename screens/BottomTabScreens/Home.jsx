@@ -11,6 +11,7 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -30,85 +31,131 @@ const Home = () => {
       </View>
       <View style={styles.container}>
         <View style={styles.topcontainer}>
-          <View style={styles.cont}>
-            <View style={styles.container1Top}>
-              <Text style={styles.cont1Text}>Identify Your Plant</Text>
-              <Image
-                style={styles.camIcon}
-                source={require('../pic/Cam2.png')}
-              />
+          <LinearGradient
+            start={{x: 0, y: 1}}
+            end={{x: 1, y: 0}}
+            colors={[color.F_OnBoard, color.F_Main]}
+            style={{
+              flex: 1,
+              maxWidth: rfSpacing['350x'],
+              minHeight: rfSpacing['143x'],
+              borderRadius: rfSpacing['12x'],
+              marginTop: rfSpacing['10x'],
+            }}>
+            <View style={styles.cont}>
+              <View style={styles.container1Top}>
+                <Text style={styles.cont1Text}>Identify Your Plant</Text>
+                <Image
+                  style={styles.camIcon}
+                  source={require('../pic/Cam2.png')}
+                />
+              </View>
+              <View style={styles.AddPlantContainer}>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('Add Plant');
+                  }}>
+                  <View style={styles.AddContainerWithText}>
+                    <Image
+                      style={styles.addIcon}
+                      source={require('../pic/Add.png')}
+                    />
+                    <Text style={styles.addPlantText}>Add Plant</Text>
+                  </View>
+                </Pressable>
+              </View>
             </View>
-            <View style={styles.AddPlantContainer}>
-              <Pressable
-                onPress={() => {
-                  navigation.navigate('Add Plant');
-                }}>
-                <View style={styles.AddContainerWithText}>
-                  <Image
-                    style={styles.addIcon}
-                    source={require('../pic/Add.png')}
-                  />
-                  <Text style={styles.addPlantText}>Add Plant</Text>
-                </View>
-              </Pressable>
+          </LinearGradient>
+
+          <LinearGradient
+            start={{x: 0, y: 1}}
+            end={{x: 1, y: 0}}
+            colors={[color.F_OnBoard, color.F_Main]}
+            style={styles.gradientContainer}>
+            <View style={styles.cont}>
+              <View style={styles.careContainer}>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('Care');
+                  }}>
+                  <Text style={styles.careText}>Get Care </Text>
+                  <Text style={styles.careText}>Recommendation</Text>
+                </Pressable>
+                <Image
+                  style={styles.careIcon}
+                  source={require('../pic/care.png')}
+                />
+              </View>
             </View>
-          </View>
-          <View style={styles.cont}>
-            <View style={styles.careContainer}>
-              <Pressable
-                onPress={() => {
-                  navigation.navigate('Care');
-                }}>
-                <Text style={styles.careText}>Get Care </Text>
-                <Text style={styles.careText}>Recommendation</Text>
-              </Pressable>
-              <Image
-                style={styles.careIcon}
-                source={require('../pic/care.png')}
-              />
+          </LinearGradient>
+
+          <LinearGradient
+            start={{x: 0, y: 1}}
+            end={{x: 1, y: 0}}
+            colors={[color.F_OnBoard, color.F_Main]}
+            style={styles.gradientContainer}>
+            <View style={styles.cont}>
+              <View style={styles.monitorContainer}>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('Monitor');
+                  }}
+                  style={styles.monitorTouchable}>
+                  <Text style={styles.monitorText}>Monitor Plant Heath</Text>
+                </Pressable>
+                <Image
+                  style={styles.monitorIcon}
+                  source={require('../pic/c2.png')}
+                />
+              </View>
             </View>
-          </View>
-          <View style={styles.cont}>
-            <View style={styles.monitorContainer}>
-              <Pressable
-                onPress={() => {
-                  navigation.navigate('Monitor');
-                }}
-                style={styles.monitorTouchable}>
-                <Text style={styles.monitorText}>Monitor Plant Heath</Text>
-              </Pressable>
-              <Image
-                style={styles.monitorIcon}
-                source={require('../pic/c2.png')}
-              />
-            </View>
-          </View>
+          </LinearGradient>
         </View>
         <View style={styles.toolsHeaderContainer}>
           <Text style={styles.toolsHeaderText}>Care Tools:</Text>
         </View>
         <View style={styles.toolsContainer}>
-          <View style={styles.cont2}>
-            <Image
-              style={[styles.toolIcon, styles.clockIcon]}
-              source={require('../pic/clock.png')}
-            />
-            <Text style={styles.toolText}>Reminders</Text>
-          </View>
-          <View style={styles.cont2}>
-            <Image
-              style={styles.toolIcon}
-              source={require('../pic/Meter.png')}
-            />
-            <Text style={styles.toolText}>Lightmeter</Text>
-          </View>
-          <View style={styles.cont2}>
-            <Image
-              style={[styles.toolIcon, styles.calculatorIcon]}
-              source={require('../pic/watering-plants.png')}
-            />
-            <Text style={styles.toolText}>Calculator</Text>
-          </View>
+          <LinearGradient
+            start={{x: 0, y: 1}}
+            end={{x: 1, y: 0}}
+            colors={[color.F_OnBoard, color.F_Main]}
+            style={styles.toolGradientContainer}>
+            <View style={styles.cont2}>
+              <Image
+                style={[styles.toolIcon, styles.clockIcon]}
+                source={require('../pic/clock.png')}
+              />
+              <Text style={styles.toolText}>Reminders</Text>
+            </View>
+          </LinearGradient>
+
+          <LinearGradient
+            start={{x: 0, y: 1}}
+            end={{x: 1, y: 0}}
+            colors={[color.F_OnBoard, color.F_Main]}
+            style={styles.toolGradientContainer}>
+            <View style={styles.cont2}>
+              <Image
+                style={styles.toolIcon}
+                source={require('../pic/Meter.png')}
+              />
+              <Text style={styles.toolText}>Lightmeter</Text>
+            </View>
+          </LinearGradient>
+
+          <LinearGradient
+            start={{x: 0, y: 1}}
+            end={{x: 1, y: 0}}
+            colors={[color.F_OnBoard, color.F_Main]}
+            style={styles.toolGradientContainer}>
+            <View style={styles.cont2}>
+              <Image
+                style={[styles.toolIcon, styles.calculatorIcon]}
+                source={require('../pic/watering-plants.png')}
+              />
+              <Text style={styles.toolText}>Calculator</Text>
+            </View>
+          </LinearGradient>
         </View>
       </View>
     </ScrollView>
@@ -129,8 +176,6 @@ const styles = StyleSheet.create({
     marginTop: rfSpacing['14x'],
   },
   cont: {
-    backgroundColor: color.F_Main,
-    width: '100%',
     maxWidth: rfSpacing['350x'],
     minHeight: rfSpacing['143x'],
     borderRadius: rfSpacing['12x'],
@@ -140,13 +185,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: rfSpacing['14x'],
   },
   cont2: {
-    backgroundColor: color.F_Main,
+    backgroundColor: 'transparent',
     flex: 1,
     minWidth: rfSpacing['90x'],
     height: rfSpacing['106x'],
     borderRadius: rfSpacing['12x'],
     alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal: rfSpacing['2x'],
+  },
+  gradientContainer: {
+    flex: 1,
+    maxWidth: rfSpacing['350x'],
+    minHeight: rfSpacing['143x'],
+    borderRadius: rfSpacing['12x'],
+    marginTop: rfSpacing['10x'],
+  },
+  toolGradientContainer: {
+    flex: 1,
+    minWidth: rfSpacing['90x'],
+    height: rfSpacing['106x'],
+    borderRadius: rfSpacing['12x'],
     marginHorizontal: rfSpacing['2x'],
   },
   camIcon: {
@@ -179,8 +238,8 @@ const styles = StyleSheet.create({
   },
   AddPlantContainer: {
     backgroundColor: color.F_White,
-    width: '90%',
-    height: rfSpacing['40x'],
+    width: rfSpacing['264x'],
+    height: rfSpacing['44x'],
     justifyContent: 'center',
     borderRadius: rfSpacing['12x'],
     marginTop: rfSpacing['10x'],

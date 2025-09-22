@@ -19,7 +19,13 @@ const MyGarden = () => {
   const {plants} = useContext(PlantContext);
 
   const renderItem = ({item, index}) => (
-    <View style={styles.card}>
+    <Pressable
+      onPress={() =>
+        navigation.navigate('Plant Details', {
+          plantIndex: index, // pass the index so details can fetch plant + schedules
+        })
+      }
+      style={styles.card}>
       <Image
         source={
           item.imageUri ? {uri: item.imageUri} : require('../pic/image.png')
@@ -56,14 +62,14 @@ const MyGarden = () => {
           <Text style={styles.reminderText}>Schedule Care</Text>
         </Pressable>
       </View>
-    </View>
+    </Pressable>
   );
 
   return (
     <View style={styles.cont}>
       <StatusBar
         translucent={true}
-        barStyle={'dark-content'}
+        barStyle={'light-content'}
         backgroundColor={color.F_OnBoard}
       />
       <View style={styles.topcont}>

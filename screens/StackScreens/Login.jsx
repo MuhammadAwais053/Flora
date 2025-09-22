@@ -15,14 +15,13 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import color from '../../src/Theme/color';
 import rfSpacing from '../../src/Theme/rfSpacing';
-import LottieView from 'lottie-react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleLogin = () => {
     if (!email.trim() || !password.trim()) {
@@ -32,107 +31,97 @@ const Login = () => {
       return;
     }
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigation.navigate('Main');
-    }, 1000);
+    navigation.navigate('Main');
   };
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <StatusBar
-        translucent={true}
-        barStyle={'dark-content'}
-        backgroundColor={'transparent'}
-      />
-      <KeyboardAvoidingView style={{flex: 1}}>
-        <ScrollView
-          contentContainerStyle={styles.scrollContainer}
-          keyboardShouldPersistTaps="handled">
-          <View>
-            <Pressable onPress={() => navigation.navigate('Register')}>
-              <Image
-                style={styles.backIcon}
-                resizeMode="contain"
-                source={require('../pic/Pre.png')}
-              />
-            </Pressable>
-          </View>
-
-          <View style={styles.container}>
-            <Text style={styles.text}>Login Here</Text>
-            <Text style={styles.text2}>
-              Log in to discover plant recommendations, expert care guides and
-              more
-            </Text>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.label}>Email</Text>
-            <View style={styles.inputContainer}>
-              <Image source={require('../pic/mail.png')} style={styles.icon} />
-              <TextInput
-                style={styles.input}
-                placeholder="Enter your email"
-                placeholderTextColor="#7C7C7C"
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-            </View>
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.label}>Password</Text>
-            <View style={styles.inputContainer}>
-              <Image
-                source={require('../pic/forgot.png')}
-                style={styles.icon}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Enter your password"
-                placeholderTextColor="#7C7C7C"
-                secureTextEntry={!showPassword}
-                value={password}
-                onChangeText={setPassword}
-              />
-              <Pressable onPress={() => setShowPassword(!showPassword)}>
+    <LinearGradient
+      start={{x: 0, y: 1}}
+      end={{x: 1, y: 0}}
+      colors={[color.F_OnBoard, color.F_Main]}
+      style={{flex: 1}}>
+      <SafeAreaView style={styles.wrapper}>
+        <StatusBar
+          translucent={true}
+          barStyle={'light-content'}
+          backgroundColor={'transparent'}
+        />
+        <KeyboardAvoidingView style={{flex: 1}}>
+          <ScrollView
+            contentContainerStyle={styles.scrollContainer}
+            keyboardShouldPersistTaps="handled">
+            <View>
+              <Pressable onPress={() => navigation.goBack()}>
                 <Image
-                  source={require('../pic/eye.png')}
-                  style={styles.eyeIcon}
+                  style={styles.backIcon}
+                  resizeMode="contain"
+                  source={require('../pic/Pre.png')}
                 />
               </Pressable>
             </View>
-          </View>
 
-          <Pressable onPress={() => navigation.navigate('Forgot')}>
-            <Text style={styles.forgotText}>Forgot Password?</Text>
+            <View style={styles.container}>
+              <Text style={styles.text}>Login Here</Text>
+              <Text style={styles.text2}>
+                Log in to discover plant recommendations, expert care guides and
+                more
+              </Text>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.label}>Email</Text>
+              <View style={styles.inputContainer}>
+                <Image
+                  source={require('../pic/mail.png')}
+                  style={styles.icon}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your email"
+                  placeholderTextColor="#7C7C7C"
+                  value={email}
+                  onChangeText={setEmail}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+              </View>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.label}>Password</Text>
+              <View style={styles.inputContainer}>
+                <Image
+                  source={require('../pic/forgot.png')}
+                  style={styles.icon}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter your password"
+                  placeholderTextColor="#7C7C7C"
+                  secureTextEntry={!showPassword}
+                  value={password}
+                  onChangeText={setPassword}
+                />
+                <Pressable onPress={() => setShowPassword(!showPassword)}>
+                  <Image
+                    source={require('../pic/eye.png')}
+                    style={styles.eyeIcon}
+                  />
+                </Pressable>
+              </View>
+            </View>
+
+            <Pressable onPress={() => navigation.navigate('Forgot')}>
+              <Text style={styles.forgotText}>Forgot Password?</Text>
+            </Pressable>
+          </ScrollView>
+
+          <Pressable style={styles.loginBtn} onPress={handleLogin}>
+            <Text style={styles.loginText}>Login</Text>
           </Pressable>
-        </ScrollView>
-
-        <Pressable style={styles.loginBtn} onPress={handleLogin}>
-          <Text style={styles.loginText}>Login</Text>
-        </Pressable>
-      </KeyboardAvoidingView>
-      {loading && (
-        <View
-          style={{
-            ...StyleSheet.absoluteFillObject,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <LottieView
-            source={require('../assets/Svgs/egJFdLXsf7.json')}
-            autoPlay
-            loop={false}
-            style={{width: 220, height: 220}}
-          />
-        </View>
-      )}
-    </SafeAreaView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
@@ -141,7 +130,6 @@ export default Login;
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: color.F_White,
     paddingHorizontal: rfSpacing['16x'],
     paddingTop: StatusBar.currentHeight,
   },
@@ -190,6 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: rfSpacing['12x'],
     paddingHorizontal: rfSpacing['10x'],
     paddingVertical: rfSpacing['4x'],
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   icon: {
     width: rfSpacing['20x'],
