@@ -23,8 +23,8 @@ const Home = () => {
       }}>
       <StatusBar
         translucent={true}
-        barStyle={'dark-content'}
-        backgroundColor={'transparent'}
+        barStyle={'light-content'}
+        backgroundColor={color.F_OnBoard}
       />
       <View style={styles.headerContainer}>
         <Text style={styles.text}>Let's make things bloom!</Text>

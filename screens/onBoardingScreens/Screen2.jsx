@@ -34,10 +34,6 @@ const Screen2 = () => {
           source={require('../pic/bar.png')}
         />
 
-        <Pressable style={styles.backArrow} onPress={() => navigation.goBack()}>
-          <Image source={require('../pic/Pre.png')} style={styles.arrowIcon} />
-        </Pressable>
-
         <Pressable
           style={styles.forwardArrow}
           onPress={() => navigation.navigate('Onboarding3')}>

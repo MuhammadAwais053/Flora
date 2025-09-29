@@ -1,19 +1,20 @@
-apply plugin: "com.android.application"
-apply plugin: "org.jetbrains.kotlin.android"
-apply plugin: "com.facebook.react"
-apply plugin: "com.google.gms.google-services" // Google services plugin
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "com.facebook.react"
+    id "com.google.gms.google-services" // ✅ Correct place for Google Services
+}
 
 react {
-    // Default config is usually fine, uncomment if needed.
+    // Default React Native config, uncomment if needed
     // root = file("../")
     // reactNativeDir = file("../node_modules/react-native")
     // codegenDir = file("../node_modules/@react-native/codegen")
     // cliFile = file("../node_modules/react-native/cli.js")
-
     // debuggableVariants = ["liteDebug", "prodDebug"]
     // nodeExecutableAndArgs = ["node"]
     // bundleCommand = "ram-bundle"
-    // bundleConfig = file(../rn-cli.config.js)
+    // bundleConfig = file("../rn-cli.config.js")
     // bundleAssetName = "MyApplication.android.bundle"
     // entryFile = file("../js/MyApplication.android.js")
     // extraPackagerArgs = []
@@ -21,11 +22,11 @@ react {
     // hermesFlags = ["-O", "-output-source-map"]
 }
 
-// ✅ ProGuard for release
+// ✅ ProGuard for release builds
 def enableProguardInReleaseBuilds = true
 
-// ✅ JSC flavor fallback (if Hermes disabled)
-def jscFlavor = 'org.webkit:android-jsc:+'
+// ✅ JSC fallback if Hermes disabled
+def jscFlavor = "org.webkit:android-jsc:+"
 
 android {
     namespace "com.myapp"
@@ -40,18 +41,16 @@ android {
         versionCode 1
         versionName "1.0"
 
-        // ✅ Reduce APK size by excluding unneeded ABIs
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
     }
 
-    // ✅ Align Java and Kotlin JVM targets
+    // ✅ Java + Kotlin targets
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -70,14 +69,13 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            signingConfig signingConfigs.debug // ⚠️ Replace with your own release keystore before publishing!
+            signingConfig signingConfigs.debug // ⚠️ Replace before publishing!
             minifyEnabled enableProguardInReleaseBuilds
             shrinkResources true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
-    // ✅ Handle duplicate .so files gracefully
     packagingOptions {
         pickFirst "**/*.so"
     }
@@ -94,16 +92,17 @@ dependencies {
         implementation jscFlavor
     }
 
-    // ✅ Firebase BoM (ensures compatible versions)
-    implementation platform("com.google.firebase:firebase-bom:32.7.4")
+    // ✅ Firebase BoM (controls versions)
+    implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
 
-    // ✅ Firebase products (versions picked from BoM automatically)
-    implementation "com.google.firebase:firebase-analytics"
-    implementation "com.google.firebase:firebase-firestore"
+    // ✅ Firebase products (auto-picked versions from BoM)
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-firestore")
     // Add more as needed:
-    // implementation "com.google.firebase:firebase-auth"
-    // implementation "com.google.firebase:firebase-messaging"
+    // implementation("com.google.firebase:firebase-auth")
+    // implementation("com.google.firebase:firebase-messaging")
 }
 
-apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); 
+// ✅ Load React Native native modules
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
 applyNativeModulesAppBuildGradle(project)

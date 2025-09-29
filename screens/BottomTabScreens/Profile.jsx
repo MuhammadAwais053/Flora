@@ -17,7 +17,7 @@ const Profile = () => {
     <View style={styles.cont}>
       <StatusBar
         translucent={true}
-        barStyle={'dark-content'}
+        barStyle={'light-content'}
         backgroundColor={color.F_OnBoard}
       />
       <View style={styles.topcont}>

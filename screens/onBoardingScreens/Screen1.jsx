@@ -1,18 +1,19 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  StatusBar,
-} from 'react-native';
-import React from 'react';
+import {Image, StyleSheet, Text, View, StatusBar} from 'react-native';
+import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import color from '../../src/Theme/color';
 
 const Screen1 = () => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.replace('Onboarding2');
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
@@ -31,12 +32,6 @@ const Screen1 = () => {
         }}>
         Guardian
       </Text>
-
-      <Pressable
-        style={styles.arrowBtn}
-        onPress={() => navigation.navigate('Onboarding2')}>
-        <Image source={require('../pic/arrow.png')} style={styles.arrowIcon} />
-      </Pressable>
     </View>
   );
 };
@@ -64,15 +59,5 @@ const styles = StyleSheet.create({
     marginTop: rfSpacing['2x'],
     textAlign: 'center',
     verticalAlign: 'middle',
-  },
-  arrowBtn: {
-    position: 'absolute',
-    bottom: rfSpacing['30x'],
-    right: rfSpacing['30x'],
-  },
-  arrowIcon: {
-    width: rfSpacing['32x'],
-    height: rfSpacing['32x'],
-    tintColor: color.F_White,
   },
 });

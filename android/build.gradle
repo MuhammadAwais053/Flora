@@ -6,21 +6,20 @@ buildscript {
         targetSdkVersion = 34
         ndkVersion = "26.1.10909125"
 
-        // ✅ Kotlin and AGP versions are good
-        kotlinVersion = "1.8.22"
-        androidGradlePluginVersion = "8.2.2"
+        // ✅ Updated Kotlin & AGP versions
+        kotlinVersion = "2.0.0"
+        androidGradlePluginVersion = "8.3.0"
     }
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
-      
     }
     dependencies {
         classpath("com.android.tools.build:gradle:$androidGradlePluginVersion")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath("com.google.gms:google-services:4.4.2")
+        classpath("com.google.gms:google-services:4.4.3") // ✅ latest version
     }
 }
 

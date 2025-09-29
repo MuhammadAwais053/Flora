@@ -16,6 +16,8 @@ import {useNavigation} from '@react-navigation/native';
 import color from '../../src/Theme/color';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import LinearGradient from 'react-native-linear-gradient';
+import { getAuth, createUserWithEmailAndPassword } from '@react-native-firebase/auth';
+
 
 const Register = () => {
   const navigation = useNavigation();
