@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: rfSpacing['120x'],
     backgroundColor: '#628A73',
+    bottom:rfSpacing['12x']
   },
   Gardentext: {
     fontFamily: 'AbrilFatface-Regular',

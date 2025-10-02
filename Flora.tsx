@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, ActivityIndicator } from 'react-native';
+import { getAuth, onAuthStateChanged, signOut } from '@react-native-firebase/auth';
 
 import Onboarding1 from './screens/onBoardingScreens/Screen1';
 import Onboarding2 from './screens/onBoardingScreens/Screen2';
@@ -29,103 +32,152 @@ import Q4Screen from './screens/StackScreens/Q4Screen';
 import Q5Screen from './screens/StackScreens/Q5Screen';
 import PlantDetails from './screens/StackScreens/PlantDetails';
 
-
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const TabNaviagtor = () => {
-    return (
-        <Tab.Navigator
-            initialRouteName="Home"
-            screenOptions={{
-                tabBarActiveTintColor: color.F_OnBoard,
-                tabBarInactiveTintColor: color.F_InActive,
-                tabBarStyle: {
-                    position: 'absolute',
-                    left: rfSpacing['10x'],
-                    right: rfSpacing['9x'],
-                    height: rfSpacing['70x'],
-                    borderRadius: rfSpacing['18x'],
-                    bottom: rfSpacing['20x'],
-                    backgroundColor: color.F_White,
-                },
-                tabBarLabelStyle: {
-                    fontFamily: 'Adamina-Regular',
-                    fontSize: rfSpacing['14x'],
-                    textAlign: 'center',
-                    paddingBottom: rfSpacing['4x']
-                },
-
-                headerShown: false,
-            }}>
-            <Tab.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ color }) => (
-                        <Image
-                            source={require('./screens/pic/home.png')}
-                            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
-                        />
-                    ),
-                }}
-            />
-            <Tab.Screen
-                name="My Garden"
-                component={MyGarden}
-                options={{
-                    tabBarIcon: ({ color }) => (
-                        <Image
-                            source={require('./screens/pic/park.png')}
-                            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
-                        />
-                    ),
-                }}
-            />
-            <Tab.Screen
-                name="Profile"
-                component={Profile}
-                options={{
-                    tabBarIcon: ({ color }) => (
-                        <Image
-                            source={require('./screens/pic/user.png')}
-                            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
-                        />
-                    ),
-                }}
-            />
-        </Tab.Navigator>
-    );
-};
+const TabNavigator = () => (
+  <Tab.Navigator
+    initialRouteName="Home"
+    screenOptions={{
+      tabBarActiveTintColor: color.F_OnBoard,
+      tabBarInactiveTintColor: color.F_InActive,
+      tabBarStyle: {
+        position: 'absolute',
+        left: rfSpacing['10x'],
+        right: rfSpacing['9x'],
+        height: rfSpacing['70x'],
+        borderRadius: rfSpacing['18x'],
+        bottom: rfSpacing['20x'],
+        backgroundColor: color.F_White,
+      },
+      tabBarLabelStyle: {
+        fontFamily: 'Adamina-Regular',
+        fontSize: rfSpacing['14x'],
+        textAlign: 'center',
+        paddingBottom: rfSpacing['4x']
+      },
+      headerShown: false,
+    }}>
+    <Tab.Screen
+      name="Home"
+      component={Home}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <Image
+            source={require('./screens/pic/home.png')}
+            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="My Garden"
+      component={MyGarden}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <Image
+            source={require('./screens/pic/park.png')}
+            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Profile"
+      component={Profile}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <Image
+            source={require('./screens/pic/user.png')}
+            style={{ width: rfSpacing['23x'], height: rfSpacing['23x'], tintColor: color }}
+          />
+        ),
+      }}
+    />
+  </Tab.Navigator>
+);
 
 export default function Flora() {
-    return (
-        <PlantProvider>
-            <NavigationContainer>
-                <Stack.Navigator screenOptions={{ headerShown: false }}>
-                    <Stack.Screen name="Onboarding1" component={Onboarding1} />
-                    <Stack.Screen name="Onboarding2" component={Onboarding2} />
-                    <Stack.Screen name="Onboarding3" component={Onboarding3} />
-                    <Stack.Screen name="Login" component={LoginScreen} />
-                    <Stack.Screen name="Register" component={Register} />
-                    <Stack.Screen name="Main" component={TabNaviagtor} />
-                    <Stack.Screen name='Add Plant' component={AddPlant} />
-                    <Stack.Screen name='Plant Added' component={PlantAdded} />
-                    <Stack.Screen name='Care' component={Care} />
-                    <Stack.Screen name='Checker' component={SymptomChecker} />
-                    <Stack.Screen name='Care Schedule' component={CareSchedule} />
-                    <Stack.Screen name='Expert Tips' component={ExpertTips} />
-                    <Stack.Screen name='Forgot' component={ForgotPasswordScreen} />
-                    <Stack.Screen name='Monitor' component={MonitorHealth} />
-                    <Stack.Screen name='Q2' component={Q2Screen} />
-                    <Stack.Screen name='Q3' component={Q3Screen} />
-                    <Stack.Screen name='Q4' component={Q4Screen} />
-                    <Stack.Screen name='Q5' component={Q5Screen} />
-                    <Stack.Screen name="Plant Details" component={PlantDetails} />
+  const [pending, setPending] = useState(true);
+  const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-                </Stack.Navigator>
-            </NavigationContainer>
-        </PlantProvider>
+  useEffect(() => {
+    let initialCheckDone = false;
+    const auth = getAuth();
 
-    );
+    const doInitialCheck = async () => {
+      const hasLaunched = await AsyncStorage.getItem('hasLaunched');
+      if (hasLaunched === null) {
+        setIsFirstLaunch(true);
+        await AsyncStorage.setItem('hasLaunched', 'true');
+      } else {
+        setIsFirstLaunch(false);
+        if (auth.currentUser) {
+          await signOut(auth);
+        }
+        await AsyncStorage.removeItem('isLoggedIn');
+      }
+      initialCheckDone = true;
+    };
+
+    doInitialCheck();
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+      if (initialCheckDone) {
+        setPending(false);
+      } else {
+        const waitInterval = setInterval(() => {
+          if (initialCheckDone) {
+            setPending(false);
+            clearInterval(waitInterval);
+          }
+        }, 30);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+
+
+  return (
+    <PlantProvider>
+      <NavigationContainer>
+        {isAuthenticated ? (
+          <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Main">
+            <Stack.Screen name="Main" component={TabNavigator} />
+            <Stack.Screen name='Add Plant' component={AddPlant} />
+            <Stack.Screen name='Plant Added' component={PlantAdded} />
+            <Stack.Screen name='Care' component={Care} />
+            <Stack.Screen name='Checker' component={SymptomChecker} />
+            <Stack.Screen name='Care Schedule' component={CareSchedule} />
+            <Stack.Screen name='Expert Tips' component={ExpertTips} />
+            <Stack.Screen name='Monitor' component={MonitorHealth} />
+            <Stack.Screen name='Q2' component={Q2Screen} />
+            <Stack.Screen name='Q3' component={Q3Screen} />
+            <Stack.Screen name='Q4' component={Q4Screen} />
+            <Stack.Screen name='Q5' component={Q5Screen} />
+            <Stack.Screen name="Plant Details" component={PlantDetails} />
+          </Stack.Navigator>
+        ) : (
+          <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Onboarding1">
+            <Stack.Screen name="Onboarding1" component={Onboarding1} />
+            {isFirstLaunch && (
+              <>
+                <Stack.Screen name="Onboarding2" component={Onboarding2} />
+                <Stack.Screen name="Onboarding3" component={Onboarding3} />
+              </>
+            )}
+            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Forgot" component={ForgotPasswordScreen} />
+          </Stack.Navigator>
+        )}
+      </NavigationContainer>
+    </PlantProvider>
+  );
 }

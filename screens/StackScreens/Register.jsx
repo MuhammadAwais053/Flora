@@ -10,14 +10,14 @@ import {
   ScrollView,
   Alert,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import color from '../../src/Theme/color';
 import rfSpacing from '../../src/Theme/rfSpacing';
 import LinearGradient from 'react-native-linear-gradient';
-import { getAuth, createUserWithEmailAndPassword } from '@react-native-firebase/auth';
-
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from '@react-native-firebase/auth';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -27,17 +27,57 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (!name || !email || !password || !confirmPassword) {
-      Alert.alert('Rukk', 'Please fill all fields', [{text: 'Acha Krta hu'}]);
+      Alert.alert('Rukk', 'Please fill all fields', [{ text: 'Acha Krta hu' }]);
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert('Rukk', 'Passwords do not match', [{text: 'Acha Krta hu'}]);
+      Alert.alert('Rukk', 'Passwords do not match', [{ text: 'Acha Krta hu' }]);
       return;
     }
-    navigation.navigate('Login');
+    if (password.length < 6) {
+      Alert.alert('Rukk', 'Password must be at least 6 characters', [
+        { text: 'Acha Krta hu' },
+      ]);
+      return;
+    }
+    setLoading(true);
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(auth, email.trim(), password);
+      await updateProfile(userCredential.user, {
+        displayName: name.trim(),
+      });
+      setLoading(false);
+      Alert.alert(
+        'Success',
+        'Account created successfully!',
+        [
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('Main'),
+          },
+        ],
+      );
+    } catch (error) {
+      let errorMessage = 'An error occurred during registration';
+      if (error.code === 'auth/email-already-in-use') {
+        errorMessage = 'This email is already registered';
+      } else if (error.code === 'auth/invalid-email') {
+        errorMessage = 'Invalid email address';
+      } else if (error.code === 'auth/weak-password') {
+        errorMessage = 'Password is too weak';
+      } else if (error.code === 'auth/network-request-failed') {
+        errorMessage = 'Network error. Check your internet connection';
+      } else {
+        errorMessage = `Error: ${error.code}\n${error.message}`;
+      }
+      setLoading(false);
+      Alert.alert('Registration Failed', errorMessage, [{ text: 'OK' }]);
+    }
   };
 
   return (
@@ -47,8 +87,7 @@ const Register = () => {
         barStyle={'dark-content'}
         backgroundColor={'transparent'}
       />
-
-      <KeyboardAvoidingView style={{flex: 1}}>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
           keyboardShouldPersistTaps="handled">
@@ -61,14 +100,12 @@ const Register = () => {
               />
             </Pressable>
           </View>
-
           <View style={styles.container}>
             <Text style={styles.text}>Create Account</Text>
             <Text style={styles.text2}>
               Sign up to get personalized plant recommendations and care tips
             </Text>
           </View>
-
           <View style={styles.section}>
             <Text style={styles.label}>Full Name</Text>
             <View style={styles.inputContainer}>
@@ -79,10 +116,10 @@ const Register = () => {
                 placeholderTextColor="#7C7C7C"
                 value={name}
                 onChangeText={setName}
+                editable={!loading}
               />
             </View>
           </View>
-
           <View style={styles.section}>
             <Text style={styles.label}>Email</Text>
             <View style={styles.inputContainer}>
@@ -95,10 +132,10 @@ const Register = () => {
                 onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize="none"
+                editable={!loading}
               />
             </View>
           </View>
-
           <View style={styles.section}>
             <Text style={styles.label}>Password</Text>
             <View style={styles.inputContainer}>
@@ -113,8 +150,9 @@ const Register = () => {
                 secureTextEntry={!showPassword}
                 value={password}
                 onChangeText={setPassword}
+                editable={!loading}
               />
-              <Pressable onPress={() => setShowPassword(!showPassword)}>
+              <Pressable onPress={() => setShowPassword((prev) => !prev)}>
                 <Image
                   source={require('../pic/eye.png')}
                   style={styles.eyeIcon}
@@ -122,7 +160,6 @@ const Register = () => {
               </Pressable>
             </View>
           </View>
-
           <View style={styles.section}>
             <Text style={styles.label}>Confirm Password</Text>
             <View style={styles.inputContainer}>
@@ -137,9 +174,9 @@ const Register = () => {
                 secureTextEntry={!showConfirmPassword}
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
+                editable={!loading}
               />
-              <Pressable
-                onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+              <Pressable onPress={() => setShowConfirmPassword((prev) => !prev)}>
                 <Image
                   source={require('../pic/eye.png')}
                   style={styles.eyeIcon}
@@ -147,15 +184,27 @@ const Register = () => {
               </Pressable>
             </View>
           </View>
+          <Pressable onPress={() => navigation.replace('Login')}>
+            <Text style={styles.loginText}>
+              Already have an account?{' '}
+              <Text style={styles.loginLink}>Login</Text>
+            </Text>
+          </Pressable>
         </ScrollView>
-
         <LinearGradient
-          start={{x: 0, y: 1}}
-          end={{x: 1, y: 0}}
+          start={{ x: 0, y: 1 }}
+          end={{ x: 1, y: 0 }}
           colors={[color.F_OnBoard, color.F_Main]}
-          style={styles.gradientButton}>
-          <Pressable style={styles.loginBtn} onPress={handleSignUp}>
-            <Text style={styles.loginText}>SignUp</Text>
+          style={[styles.gradientButton, loading && styles.gradientButtonDisabled]}>
+          <Pressable
+            style={styles.loginBtn}
+            onPress={handleSignUp}
+            disabled={loading}>
+            {loading ? (
+              <ActivityIndicator color={color.F_White} />
+            ) : (
+              <Text style={styles.loginText2}>SignUp</Text>
+            )}
           </Pressable>
         </LinearGradient>
       </KeyboardAvoidingView>
@@ -237,9 +286,22 @@ const styles = StyleSheet.create({
     tintColor: color.F_InputContainer,
     resizeMode: 'contain',
   },
+  loginText: {
+    color: color.F_InputContainer,
+    textAlign: 'center',
+    marginTop: rfSpacing['10x'],
+    fontSize: rfSpacing['14x'],
+  },
+  loginLink: {
+    color: color.F_OnBoard,
+    fontWeight: '600',
+  },
   gradientButton: {
     marginVertical: rfSpacing['18x'],
     borderRadius: rfSpacing['12x'],
+  },
+  gradientButtonDisabled: {
+    opacity: 0.6,
   },
   loginBtn: {
     flexDirection: 'row',
@@ -248,7 +310,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  loginText: {
+  loginText2: {
     color: color.F_White,
     fontSize: rfSpacing['16x'],
     fontWeight: 'bold',
